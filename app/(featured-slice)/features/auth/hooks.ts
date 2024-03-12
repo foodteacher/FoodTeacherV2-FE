@@ -5,7 +5,7 @@ interface UseSocialLogin {
   signUpNaverHandler: () => void;
 }
 
-export const useSocialLogin = (): UseSocialLogin => {
+export const useSocialToken = (): UseSocialLogin => {
   const redirect_uri =
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000/oauth"

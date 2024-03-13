@@ -4,11 +4,11 @@ interface LoginPageParams {
 
 const Page = async ({ searchParams }: LoginPageParams) => {
   const kakaoCode = searchParams.code;
-
   let jwtToken;
   if (kakaoCode) {
     jwtToken;
   }
+
   return <div></div>;
 };
 

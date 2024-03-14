@@ -9,7 +9,7 @@ export const instacne = axios.create({
 });
 
 /**요청 인터셉터 추가 */
-axios.interceptors.request.use(
+instacne.interceptors.request.use(
   /**요청이 전달되기 전에 작업 수행 */
   (config) => {
     return config;
@@ -21,13 +21,24 @@ axios.interceptors.request.use(
 );
 
 /**응답 인터셉터 추가 */
-axios.interceptors.response.use(
+instacne.interceptors.response.use(
   (res) => {
     /**2xx 범위의 상태 코드 trigger */
     return res;
   },
   (err) => {
+    const {
+      config,
+      response: { status },
+    } = err;
     /**2xx 범위 이외에 있는 상태 코드 trigger */
+    console.log(status);
+    // instacne(config);
     return Promise.reject(err);
   }
 );
+
+export const getData = async () => {
+  const res = await instacne.post("213", { id: 1, name: "hun" });
+  return res.data;
+};

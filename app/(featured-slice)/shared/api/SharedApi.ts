@@ -7,3 +7,27 @@ export const instacne = axios.create({
     "Content-Type": "application/json",
   },
 });
+
+/**요청 인터셉터 추가 */
+axios.interceptors.request.use(
+  /**요청이 전달되기 전에 작업 수행 */
+  (config) => {
+    return config;
+  },
+  (error) => {
+    /**요청 오류가 있을 때 수행 */
+    return Promise.reject(error);
+  }
+);
+
+/**응답 인터셉터 추가 */
+axios.interceptors.response.use(
+  (res) => {
+    /**2xx 범위의 상태 코드 trigger */
+    return res;
+  },
+  (err) => {
+    /**2xx 범위 이외에 있는 상태 코드 trigger */
+    return Promise.reject(err);
+  }
+);

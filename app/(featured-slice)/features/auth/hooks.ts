@@ -9,7 +9,7 @@ export const useSocialToken = (): UseSocialLogin => {
   const redirect_uri =
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000/oauth"
-      : "https://foodteacher.xyz/oauth";
+      : "https://v2foodteacher.xyz/oauth";
 
   const signUpKakaoHandler = () => {
     window.location.href = KAKAO_URL(redirect_uri);

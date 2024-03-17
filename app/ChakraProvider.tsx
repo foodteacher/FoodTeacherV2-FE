@@ -1,9 +1,9 @@
-"use client"
-import {ChakraProvider} from "@chakra-ui/react";
+"use client";
+import { ChakraProvider } from "@chakra-ui/react";
 import React from "react";
 
-const ChakraProviders = ({children} : {children : React.ReactNode}) => {
-    return <ChakraProvider>{children}</ChakraProvider>
+const ChakraProviders = ({ children }: { children: React.ReactNode }) => {
+  return <ChakraProvider>{children}</ChakraProvider>;
 };
 
 export default ChakraProviders;

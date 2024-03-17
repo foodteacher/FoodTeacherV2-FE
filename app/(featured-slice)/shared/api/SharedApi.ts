@@ -37,8 +37,3 @@ instacne.interceptors.response.use(
     return Promise.reject(err);
   }
 );
-
-export const getData = async () => {
-  const res = await instacne.post("213", { id: 1, name: "hun" });
-  return res.data;
-};

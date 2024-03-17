@@ -6,6 +6,7 @@ import { useSocialToken } from "../hooks";
 
 const LoginForm = () => {
   const { signUpKakaoHandler, signUpNaverHandler } = useSocialToken();
+
   return (
     <ButtonGroup>
       <Box onClick={() => signUpKakaoHandler()}>

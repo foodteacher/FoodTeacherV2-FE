@@ -9,7 +9,15 @@ const Page = async ({ searchParams }: LoginPageParams) => {
     jwtToken;
   }
 
-  return <div></div>;
+  return (
+    <>
+      {kakaoCode ? (
+        <div>Authentication success</div>
+      ) : (
+        <div>Not Authentication</div>
+      )}
+    </>
+  );
 };
 
 export default Page;

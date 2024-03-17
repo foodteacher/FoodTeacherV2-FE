@@ -28,7 +28,7 @@ jobs:
       run: |
         echo "NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}" >> .env
         echo "NEXT_PUBLIC_KAKAO_REST_KEY=${{ secrets.NEXT_PUBLIC_KAKAO_REST_KEY }}" >> .env
-        echo "NEXT_PUBLIC_KAKAO_REST_KEY=${{ secrets.NEXT_PUBLIC_NAVER_SECRET  }}" >> .env
+        echo "NEXT_PUBLIC_NAVER_SECRET=${{ secrets.NEXT_PUBLIC_NAVER_SECRET  }}" >> .env
 
     - name: build and push
       uses: docker/build-push-action@v3

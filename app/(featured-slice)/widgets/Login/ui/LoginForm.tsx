@@ -2,7 +2,7 @@
 import { KaKaoButtonIcon } from "@/app/(featured-slice)/shared/UI";
 import { Box, Button, ButtonGroup, Flex } from "@chakra-ui/react";
 import React from "react";
-import { useSocialToken } from "../hooks";
+import { useSocialToken } from "../../../features/auth/hooks";
 
 const LoginForm = () => {
   const { signUpKakaoHandler, signUpNaverHandler } = useSocialToken();

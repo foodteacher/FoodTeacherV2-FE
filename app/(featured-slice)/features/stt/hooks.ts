@@ -11,28 +11,15 @@ export interface UseSttType {
 export const useStt = (): UseSttType => {
   const [transcript, setTranscript] = useState("");
   const [listening, setListening] = useState(false);
+
   let recognition: any;
 
   if (typeof window !== "undefined") {
     recognition = new window.webkitSpeechRecognition();
   }
 
-  const startListening = () => {
-    if (recognition) {
-      recognition.start();
-      setListening(true);
-    }
-  };
-
-  const stopListening = () => {
-    if (recognition) {
-      recognition.stop();
-      setListening(false);
-    }
-  };
-
   if (recognition) {
-    recognition.onresult = (event: any) => {
+    recognition.onresult = (event: SpeechRecognitionEvent) => {
       setListening(false);
 
       const result = event.results[0][0].transcript;
@@ -43,6 +30,22 @@ export const useStt = (): UseSttType => {
       setListening(false);
     };
   }
+
+  /**음성 인식 시작 */
+  const startListening = () => {
+    if (recognition) {
+      recognition.start();
+      setListening(true);
+    }
+  };
+
+  /**음성 인식 멈춤 */
+  const stopListening = () => {
+    if (recognition) {
+      recognition.stop();
+      setListening(false);
+    }
+  };
 
   return {
     transcript,

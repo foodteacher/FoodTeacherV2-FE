@@ -4,6 +4,7 @@ import { UseSttType, useStt } from "../hooks";
 import { Button } from "@/app/(featured-slice)/shared/UI";
 import { PhoneIcon } from "@chakra-ui/icons";
 import Input from "@/app/(featured-slice)/shared/UI/Input/Input";
+import { FormControl, FormLabel } from "@chakra-ui/react";
 
 export const SttContext = createContext<UseSttType>({
   listening: false,
@@ -16,11 +17,13 @@ const SttFormItem = ({ children }: { children?: ReactNode }) => {
   const { listening, startListening, stopListening, transcript } = useStt();
 
   return (
-    <SttContext.Provider
-      value={{ listening, startListening, stopListening, transcript }}
-    >
-      {children}
-    </SttContext.Provider>
+    <FormControl>
+      <SttContext.Provider
+        value={{ listening, startListening, stopListening, transcript }}
+      >
+        {children}
+      </SttContext.Provider>
+    </FormControl>
   );
 };
 
@@ -51,7 +54,17 @@ const SttInput = () => {
   );
 };
 
+const SttLabel = ({ children }: { children: ReactNode }) => {
+  const context = useContext(SttContext);
+  return (
+    <>
+      <FormLabel>{children}</FormLabel>
+    </>
+  );
+};
+
 SttFormItem.SttButton = SttButton;
 SttFormItem.sttInput = SttInput;
+SttFormItem.Label = SttLabel;
 
 export default SttFormItem;

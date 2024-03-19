@@ -1,31 +1,23 @@
 "use client";
 
-import SttButton from "@/app/(featured-slice)/features/stt/ui/SttButton";
 import SttItem from "@/app/(featured-slice)/features/stt/ui/SttFormItem";
-import { FormControl, FormLabel, Input, Text } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 
 const UserInfoForm = () => {
   return (
-    <FormControl>
-      <FormLabel display={"flex"}>
-        <Text as={"label"}>나이</Text>
-        <SttButton />
-      </FormLabel>
-      <Input />
-
+    <Flex as={"form"}>
       <SttItem>
-        <SttItem.SttButton />
+        <Flex>
+          <SttItem.Label>123</SttItem.Label>
+          <SttItem.SttButton />
+        </Flex>
         <SttItem.sttInput />
       </SttItem>
       <SttItem>
         <SttItem.SttButton />
         <SttItem.sttInput />
       </SttItem>
-      <SttItem>
-        <SttItem.SttButton />
-        <SttItem.sttInput />
-      </SttItem>
-    </FormControl>
+    </Flex>
   );
 };
 

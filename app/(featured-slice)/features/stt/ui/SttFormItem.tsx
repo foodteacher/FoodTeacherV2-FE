@@ -10,7 +10,7 @@ import {
   FormLabelProps,
   Input,
 } from "@chakra-ui/react";
-import { SttInput } from "../types";
+import { SttInputProps } from "../types";
 
 export const SttContext = createContext<UseSttType>({
   listening: false,
@@ -55,7 +55,7 @@ const SttLabel = ({ children, ...props }: FormLabelProps) => {
   );
 };
 
-const SttInput = ({ register, ...props }: SttInput) => {
+const SttInput = ({ register, ...props }: SttInputProps) => {
   const context = useContext(SttContext);
   return (
     <>

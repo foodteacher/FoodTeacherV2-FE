@@ -1,10 +1,10 @@
 "use client";
 
+import { UserInfo } from "@/app/(featured-slice)/features/auth/types";
 import SttItem from "@/app/(featured-slice)/features/stt/ui/SttFormItem";
 import { Button } from "@/app/(featured-slice)/shared/UI";
 import { ButtonGroup, Flex, FormErrorMessage, VStack } from "@chakra-ui/react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { UserInfo } from "../types";
 
 const UserInfoForm = () => {
   const {

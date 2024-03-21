@@ -1,8 +1,10 @@
-import { InputProps } from "@chakra-ui/react";
+import { FormControlProps, InputProps } from "@chakra-ui/react";
+import { FieldErrors } from "react-hook-form";
 
 /**userInfo */
-export interface UserInfo {
-  name: string;
+
+export interface FormItem extends FormControlProps {
+  errors: FieldErrors;
 }
 
 export interface SttInputProps extends InputProps {

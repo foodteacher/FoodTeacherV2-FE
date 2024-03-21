@@ -1,16 +1,15 @@
 "use client";
 
-import SttItem from "@/app/(featured-slice)/features/stt/ui/SttFormItem";
+import { UserInfo } from "@/app/(featured-slice)/features/auth/types";
+import SttFormItem from "@/app/(featured-slice)/features/stt/ui/SttFormItem";
 import { Button } from "@/app/(featured-slice)/shared/UI";
 import { ButtonGroup, Flex, FormErrorMessage, VStack } from "@chakra-ui/react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { UserInfo } from "../types";
 
 const UserInfoForm = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<UserInfo>();
 
@@ -25,12 +24,12 @@ const UserInfoForm = () => {
       margin={"0 auto"}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <SttItem isInvalid={!!errors.name}>
+      <SttFormItem isInvalid={!!errors.name}>
         <Flex>
-          <SttItem.Label htmlFor="name">이름</SttItem.Label>
-          <SttItem.SttButton />
+          <SttFormItem.Label htmlFor="name">이름</SttFormItem.Label>
+          <SttFormItem.SttButton />
         </Flex>
-        <SttItem.sttInput
+        <SttFormItem.sttInput
           id="name"
           placeholder="이름을 입력해주세요."
           register={register("name", {
@@ -40,14 +39,14 @@ const UserInfoForm = () => {
         <FormErrorMessage>
           {errors.name && errors.name.message}
         </FormErrorMessage>
-      </SttItem>
+      </SttFormItem>
 
-      <SttItem isInvalid={!!errors.gender}>
+      <SttFormItem isInvalid={!!errors.gender}>
         <Flex>
-          <SttItem.Label htmlFor="gender">성별</SttItem.Label>
-          <SttItem.SttButton />
+          <SttFormItem.Label htmlFor="gender">성별</SttFormItem.Label>
+          <SttFormItem.SttButton />
         </Flex>
-        <SttItem.sttInput
+        <SttFormItem.sttInput
           id="gender"
           placeholder="성별을 입력해주세요."
           register={register("gender", {
@@ -57,7 +56,8 @@ const UserInfoForm = () => {
         <FormErrorMessage>
           {errors.gender && errors.gender.message}
         </FormErrorMessage>
-      </SttItem>
+      </SttFormItem>
+
       <ButtonGroup>
         <Button>뒤로가기</Button>
         <Button type="submit">등록하기</Button>

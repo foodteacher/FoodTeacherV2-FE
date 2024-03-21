@@ -1,5 +1,9 @@
-import { FormLabelProps, InputProps } from "@chakra-ui/react";
-import { ReactNode } from "react";
+import { InputProps } from "@chakra-ui/react";
+
+/**userInfo */
+export interface UserInfo {
+  name: string;
+}
 
 export interface SttInputProps extends InputProps {
   register?: any;

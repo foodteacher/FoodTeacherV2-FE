@@ -32,7 +32,6 @@ instacne.interceptors.response.use(
       response: { status },
     } = err;
     /**2xx 범위 이외에 있는 상태 코드 trigger */
-    console.log(status);
     // instacne(config);
     return Promise.reject(err);
   }

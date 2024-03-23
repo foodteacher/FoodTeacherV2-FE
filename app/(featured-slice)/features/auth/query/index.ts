@@ -1,2 +1,2 @@
 export { useUser } from "./useUser";
-export { useKakaoLogin } from "./useKakaoLogin";
+export { useKakaoLogin, useNaverLogin } from "./useLogin";

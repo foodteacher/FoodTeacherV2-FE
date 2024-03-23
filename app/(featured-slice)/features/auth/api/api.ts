@@ -1,4 +1,5 @@
 import { instacne } from "@/app/(featured-slice)/shared/api/SharedApi";
+import { Code } from "@/app/(user)/oauth/page";
 import { redirect } from "next/navigation";
 
 export const getUser = async () => {
@@ -6,18 +7,31 @@ export const getUser = async () => {
   return res.data;
 };
 
-export const postKakaoLogin = async (code: string) => {
+export const postKakaoCode = async (code: Code) => {
   try {
-    const res = await instacne.post(`/login`, { code });
+    const res = await instacne.post(`/login/kakao`, { code });
+    console.log(res);
+    const refresh = res.headers;
+    const access = res.data;
+    return { access, refresh };
+  } catch (err) {
+    // return redirect("/");
+  }
+};
+
+export const postKakaoLogin = async (code: Code) => {
+  try {
+    const res = await instacne.post(`/login/kakao`, { code });
     return res.data;
   } catch {
     return redirect("/");
   }
 };
 
-export const postNaverLogin = async (code: string) => {
+export const postNaverLogin = async (code: Code) => {
   try {
-    const res = await instacne.post("/login", { code });
+    const res = await instacne.post("/login/naver", { code });
+    console.log(res);
     return res.data;
   } catch {
     return redirect("/");

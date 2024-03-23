@@ -22,7 +22,7 @@ export function middleware(request: NextRequest) {
   });
   cookie = response.cookies.get("vercel");
 
-  console.log(response);
+  // console.log(response);
 
   // console.log(cookie); // => { name: 'vercel', value: 'fast', Path: '/' }
   // The outgoing response will have a `Set-Cookie:vercel=fast;path=/` header.

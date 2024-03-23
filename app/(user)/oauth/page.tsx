@@ -1,27 +1,34 @@
-import { postKakaoCode } from "@/app/(featured-slice)/features/auth/api";
-import { cookies, headers } from "next/headers";
+import {
+  postKakaoCode,
+  postNaverLogin,
+} from "@/app/(featured-slice)/features/auth/api";
+import { create } from "./create";
+import AuthConfirm from "@/app/(featured-slice)/widgets/authConfim/ui/AuthConfirm";
+
+export type Code = { code: string; state?: string };
 interface LoginPageParams {
-  searchParams: { code: string; error: string };
+  searchParams: { code: Code; error: string };
 }
 
 const Page = async ({ searchParams }: LoginPageParams) => {
-  const kakaoCode = searchParams.code;
+  const code = searchParams.code;
 
   let jwtToken;
 
-  if (kakaoCode) {
-    jwtToken = await postKakaoCode(kakaoCode);
+  if (code.state) {
+    jwtToken = await postNaverLogin(code);
+    // create(jwtToken);
+  } else {
+    jwtToken = await postKakaoCode(code);
   }
-
-  const cookieStore = cookies();
 
   return (
     <>
-      {kakaoCode ? (
-        <div>Authentication success</div>
-      ) : (
-        <div>Not Authentication</div>
-      )}
+      {/* <AuthConfirm kakaoCode={kakaoCode} /> */}
+      {/* {refresh} */}
+      {/* <AuthConfirm kakaoCode={jwtToken} /> */}
+
+      <AuthConfirm token={jwtToken} />
     </>
   );
 };

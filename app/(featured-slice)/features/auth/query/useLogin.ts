@@ -3,7 +3,7 @@ import { postKakaoLogin, postNaverLogin } from "../api";
 
 export const useKakaoLogin = () => {
   const { mutateAsync, isPending } = useMutation({
-    mutationFn: () => postKakaoLogin(""),
+    mutationFn: (kakaoCode: any) => postKakaoLogin(kakaoCode),
   });
 
   return { kakaoLoginHandler: mutateAsync, isPending };
@@ -11,7 +11,7 @@ export const useKakaoLogin = () => {
 
 export const useNaverLogin = () => {
   const { mutateAsync, isPending } = useMutation({
-    mutationFn: () => postNaverLogin(""),
+    // mutationFn: () => postNaverLogin(""),
   });
 
   return { naverLoginHandler: mutateAsync, isPending };

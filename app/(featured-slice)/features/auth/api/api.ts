@@ -6,6 +6,15 @@ export const getUser = async () => {
   return res.data;
 };
 
+export const postKakaoCode = async (code: string) => {
+  try {
+    const res = await instacne.post(`/login/kakao`, { code });
+    return res.data;
+  } catch (err) {
+    return redirect("/");
+  }
+};
+
 export const postKakaoLogin = async (code: string) => {
   try {
     const res = await instacne.post(`/login`, { code });

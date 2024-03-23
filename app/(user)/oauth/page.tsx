@@ -1,13 +1,19 @@
+import { postKakaoCode } from "@/app/(featured-slice)/features/auth/api";
+import { cookies, headers } from "next/headers";
 interface LoginPageParams {
   searchParams: { code: string; error: string };
 }
 
 const Page = async ({ searchParams }: LoginPageParams) => {
   const kakaoCode = searchParams.code;
+
   let jwtToken;
+
   if (kakaoCode) {
-    jwtToken;
+    jwtToken = await postKakaoCode(kakaoCode);
   }
+
+  const cookieStore = cookies();
 
   return (
     <>

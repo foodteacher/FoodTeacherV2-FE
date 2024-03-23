@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 // import "./globals.css";
 import ChakraProviders from "@/app/ChakraProvider";
 import QueryProviders from "@/app/QueryProviders";
+import TheHeader from "./TheHeader";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +18,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <QueryProviders>
-          <ChakraProviders>{children}</ChakraProviders>
+          <ChakraProviders>
+            <TheHeader />
+            {children}
+          </ChakraProviders>
         </QueryProviders>
       </body>
     </html>

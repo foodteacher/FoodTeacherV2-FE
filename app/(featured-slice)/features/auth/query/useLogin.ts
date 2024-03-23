@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { postKakaoLogin, postNaverLogin } from "../api/api";
+import { postKakaoLogin, postNaverLogin } from "../api";
 
 export const useKakaoLogin = () => {
   const { mutateAsync, isPending } = useMutation({

@@ -1,9 +1,10 @@
 import {
-  postKakaoCode,
+  postKakaoLogin,
   postNaverLogin,
 } from "@/app/(featured-slice)/features/auth/api";
 import { create } from "./create";
 import AuthConfirm from "@/app/(featured-slice)/widgets/authConfim/ui/authConfirm";
+import { instacne } from "@/app/(featured-slice)/shared/api/SharedApi";
 
 interface LoginPageParams {
   searchParams: { code: string; state?: string; error: string };
@@ -12,16 +13,14 @@ interface LoginPageParams {
 const Page = async ({ searchParams }: LoginPageParams) => {
   const code = searchParams;
 
-  let jwtToken;
-
-  if (code.state) {
-    const naverCode = { code: code.code, state: code.state };
-    jwtToken = await postNaverLogin(naverCode);
-    // create(jwtToken);
-  } else {
-    const kakaoCode = { code: code.code };
-    jwtToken = await postKakaoCode(kakaoCode);
-  }
+  // if (code.state) {
+  //   const naverCode = { code: code.code, state: code.state };
+  //   jwtToken = await postNaverLogin(naverCode);
+  //   // create(jwtToken);
+  // } else {
+  //   const kakaoCode = { code: code.code };
+  //   jwtToken = await postKakaoLogin(kakaoCode);
+  // }
 
   return (
     <>

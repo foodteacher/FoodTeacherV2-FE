@@ -3,23 +3,24 @@ import {
   postNaverLogin,
 } from "@/app/(featured-slice)/features/auth/api";
 import { create } from "./create";
-import AuthConfirm from "@/app/(featured-slice)/widgets/authConfim/ui/AuthConfirm";
+import AuthConfirm from "@/app/(featured-slice)/widgets/authConfim/ui/authConfirm";
 
-export type Code = { code: string; state?: string };
 interface LoginPageParams {
-  searchParams: { code: Code; error: string };
+  searchParams: { code: string; state?: string; error: string };
 }
 
 const Page = async ({ searchParams }: LoginPageParams) => {
-  const code = searchParams.code;
+  const code = searchParams;
 
   let jwtToken;
 
   if (code.state) {
-    jwtToken = await postNaverLogin(code);
+    const naverCode = { code: code.code, state: code.state };
+    jwtToken = await postNaverLogin(naverCode);
     // create(jwtToken);
   } else {
-    jwtToken = await postKakaoCode(code);
+    const kakaoCode = { code: code.code };
+    jwtToken = await postKakaoCode(kakaoCode);
   }
 
   return (
@@ -28,7 +29,7 @@ const Page = async ({ searchParams }: LoginPageParams) => {
       {/* {refresh} */}
       {/* <AuthConfirm kakaoCode={jwtToken} /> */}
 
-      <AuthConfirm token={jwtToken} />
+      <AuthConfirm code={code} />
     </>
   );
 };

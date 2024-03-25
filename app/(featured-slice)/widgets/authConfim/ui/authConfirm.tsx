@@ -1,7 +1,8 @@
 "use client";
-import { postKakaoCode } from "@/app/(featured-slice)/features/auth/api";
-import { useKakaoLogin } from "@/app/(featured-slice)/features/auth/query";
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import { postKakaoLogin } from "@/app/(featured-slice)/features/auth/api";
+import { postNaverLogin } from "@/app/(featured-slice)/features/auth/api/api";
+import { Code } from "@/app/(featured-slice)/shared/type";
+import React, { useLayoutEffect } from "react";
 
 const AuthConfirm = ({ code }: any) => {
   // const [token, setToken] = useState(null);
@@ -20,14 +21,18 @@ const AuthConfirm = ({ code }: any) => {
   //   kakaoLoginHandler(kakaoCode);
 
   useLayoutEffect(() => {
-    console.log(code);
-
-    const postLogin = async () => {
-      const res = await postKakaoCode(code);
-      console.log(res);
+    const postLogin = async (code: Code) => {
+      let accessToken;
+      if (code?.state) {
+        const data = await postNaverLogin(code);
+        console.log("naver :", data);
+      } else {
+        const data = await postKakaoLogin(code);
+        console.log("kakao :", data);
+      }
     };
 
-    postLogin();
+    postLogin(code);
   }, []);
 
   return (

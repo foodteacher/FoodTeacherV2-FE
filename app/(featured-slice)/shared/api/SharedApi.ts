@@ -1,7 +1,10 @@
 import axios from "axios";
 
 export const instacne = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  baseURL:
+    process.env.NODE_ENV === "development"
+      ? "/"
+      : process.env.NEXT_PUBLIC_API_URL,
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
@@ -36,3 +39,8 @@ instacne.interceptors.response.use(
     return Promise.reject(err);
   }
 );
+
+export const defaultApi = async () => {
+  const res = await instacne.get("/");
+  return res.data;
+};

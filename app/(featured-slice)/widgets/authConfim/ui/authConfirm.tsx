@@ -3,7 +3,7 @@ import { postKakaoCode } from "@/app/(featured-slice)/features/auth/api";
 import { useKakaoLogin } from "@/app/(featured-slice)/features/auth/query";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 
-const AuthConfirm = ({ token }: any) => {
+const AuthConfirm = ({ code }: any) => {
   // const [token, setToken] = useState(null);
 
   // useEffect(() => {
@@ -19,7 +19,16 @@ const AuthConfirm = ({ token }: any) => {
 
   //   kakaoLoginHandler(kakaoCode);
 
-  console.log(token);
+  useLayoutEffect(() => {
+    console.log(code);
+
+    const postLogin = async () => {
+      const res = await postKakaoCode(code);
+      console.log(res);
+    };
+
+    postLogin();
+  }, []);
 
   return (
     <>

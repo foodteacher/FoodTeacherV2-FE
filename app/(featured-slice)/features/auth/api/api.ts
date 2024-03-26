@@ -11,7 +11,6 @@ export const getUser = async () => {
 //   try {
 //     const res = await instacne.post(`/login/kakao`, code);
 
-//     console.log(res);
 //     const refresh = res.headers;
 //     const access = res.data;
 
@@ -22,6 +21,7 @@ export const getUser = async () => {
 // };
 
 export const postKakaoLogin = async (code: Code) => {
+  console.log(process.env.NEXT_PUBLIC_API_URL);
   try {
     const res = await instacne.post(`/login/kakao`, code);
     return res.data;

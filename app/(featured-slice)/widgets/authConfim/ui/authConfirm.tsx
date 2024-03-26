@@ -11,7 +11,6 @@ const AuthConfirm = ({ code }: any) => {
   //   const getToken = async () => {
   //     const data = await postKakaoCode(kakaoCode);
 
-  //     console.log(data);
   //     //   setToken(data);
   //   };
 
@@ -25,10 +24,8 @@ const AuthConfirm = ({ code }: any) => {
       let accessToken;
       if (code?.state) {
         const data = await postNaverLogin(code);
-        console.log("naver :", data);
       } else {
         const data = await postKakaoLogin(code);
-        console.log("kakao :", data);
       }
     };
 
@@ -42,7 +39,7 @@ const AuthConfirm = ({ code }: any) => {
       ) : (
         <div>Not Authentication</div>
       )} */}
-      <div>fewqf</div>
+      <div>Loading</div>
       {/* <p>token : {token}</p> */}
     </>
   );

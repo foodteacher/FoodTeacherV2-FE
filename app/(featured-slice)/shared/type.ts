@@ -1,1 +1,1 @@
-export type Code = { code: string; state?: string };
+export type Code = { code: string; state?: string; error: string };

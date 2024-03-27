@@ -6,7 +6,7 @@ import { useToast } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import React, { useLayoutEffect } from "react";
 
-const AuthConfirm = ({ code }: any) => {
+const AuthConfirm = ({ codeInfo }: { codeInfo: Code }) => {
   const router = useRouter();
   const toast = useToast();
 
@@ -31,8 +31,7 @@ const AuthConfirm = ({ code }: any) => {
         });
       }
     };
-
-    postLogin(code);
+    postLogin(codeInfo);
   }, []);
 
   return (

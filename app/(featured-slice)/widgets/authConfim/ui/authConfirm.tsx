@@ -2,48 +2,41 @@
 import { postKakaoLogin } from "@/app/(featured-slice)/features/auth/api";
 import { postNaverLogin } from "@/app/(featured-slice)/features/auth/api/api";
 import { Code } from "@/app/(featured-slice)/shared/type";
+import { useToast } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
 import React, { useLayoutEffect } from "react";
 
-const AuthConfirm = ({ code }: any) => {
-  // const [token, setToken] = useState(null);
-
-  // useEffect(() => {
-  //   const getToken = async () => {
-  //     const data = await postKakaoCode(kakaoCode);
-
-  //     console.log(data);
-  //     //   setToken(data);
-  //   };
-
-  //   getToken();
-  // }, []);
-
-  //   kakaoLoginHandler(kakaoCode);
+const AuthConfirm = ({ codeInfo }: { codeInfo: Code }) => {
+  const router = useRouter();
+  const toast = useToast();
 
   useLayoutEffect(() => {
     const postLogin = async (code: Code) => {
       let accessToken;
       if (code?.state) {
         const data = await postNaverLogin(code);
-        console.log("naver :", data);
+        accessToken = data;
       } else {
         const data = await postKakaoLogin(code);
-        console.log("kakao :", data);
+        accessToken = data;
+      }
+
+      if (accessToken) {
+      } else {
+        router.replace("/");
+        toast({
+          title: "로그인에 실패했습니다!",
+          id: "login",
+          status: "error",
+        });
       }
     };
-
-    postLogin(code);
+    postLogin(codeInfo);
   }, []);
 
   return (
     <>
-      {/* {kakaoCode ? (
-        <div>Authentication success</div>
-      ) : (
-        <div>Not Authentication</div>
-      )} */}
-      <div>fewqf</div>
-      {/* <p>token : {token}</p> */}
+      <div>Loading</div>
     </>
   );
 };

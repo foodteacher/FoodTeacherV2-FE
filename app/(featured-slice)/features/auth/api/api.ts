@@ -1,6 +1,6 @@
 import { instacne } from "@/app/(featured-slice)/shared/api/SharedApi";
 import { Code } from "@/app/(featured-slice)/shared/type";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export const getUser = async () => {
   const res = await instacne.get("/me");
@@ -21,20 +21,22 @@ export const getUser = async () => {
 // };
 
 export const postKakaoLogin = async (code: Code) => {
-  console.log(process.env.NEXT_PUBLIC_API_URL);
+  const router = useRouter();
   try {
     const res = await instacne.post(`/login/kakao`, code);
     return res.data;
   } catch {
-    return redirect("/");
+    return router.replace("/");
   }
 };
 
 export const postNaverLogin = async (code: Code) => {
+  const router = useRouter();
+
   try {
     const res = await instacne.post("/login/naver", { code });
     return res.data;
   } catch {
-    return redirect("/");
+    return router.replace("/");
   }
 };

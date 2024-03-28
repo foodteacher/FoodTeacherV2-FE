@@ -16,10 +16,8 @@ export const postKakaoLogin = async (code: Code) => {
 };
 
 export const postNaverLogin = async (code: Code) => {
-  // const router = useRouter();
-
   try {
-    const res = await instacne.post("/login/naver", { code });
+    const res = await instacne.post("/login/naver", code);
     return res.data;
   } catch (err) {
     return null;

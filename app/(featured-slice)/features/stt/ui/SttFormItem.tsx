@@ -59,7 +59,13 @@ const SttInput = ({ register, ...props }: SttInputProps) => {
   const context = useContext(SttContext);
   return (
     <>
-      <Input defaultValue={context?.transcript} {...register} {...props} />
+      <Input
+        defaultValue={context?.transcript}
+        borderColor={"gray.200"}
+        _placeholder={{ color: "gray.400" }}
+        {...register}
+        {...props}
+      />
     </>
   );
 };

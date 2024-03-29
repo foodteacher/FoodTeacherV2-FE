@@ -1,11 +1,7 @@
 import AuthConfirm from "@/app/(featured-slice)/widgets/authConfim/ui/authConfirm";
-import { Code } from "@/app/(featured-slice)/shared/type";
+import { Code, PageParams } from "@/app/(featured-slice)/shared/type";
 
-interface LoginPageParams {
-  searchParams: Code;
-}
-
-const Page = async ({ searchParams }: LoginPageParams) => {
+const Page = async ({ searchParams }: PageParams<any, Code>) => {
   const code = searchParams;
 
   return (

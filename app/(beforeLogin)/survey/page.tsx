@@ -1,7 +1,12 @@
+import Funnel from "@/app/(featured-slice)/widgets/funnel/ui/funnel/Funnel";
 import React from "react";
 
-const page = () => {
-  return <div>survey</div>;
+const SurveyPage = () => {
+  return (
+    <>
+      <Funnel />
+    </>
+  );
 };
 
-export default page;
+export default SurveyPage;

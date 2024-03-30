@@ -1,14 +1,22 @@
 import axios from "axios";
 
+const headers =
+  process.env.NODE_ENV === "development"
+    ? {
+        "Content-Type": "application/json",
+        "X-Environment": "dev",
+      }
+    : {
+        "Content-Type": "application/json",
+      };
+
 export const instacne = axios.create({
   baseURL:
     process.env.NODE_ENV === "development"
       ? "/"
       : process.env.NEXT_PUBLIC_API_URL,
   withCredentials: true,
-  headers: {
-    "Content-Type": "application/json",
-  },
+  headers,
 });
 
 /**요청 인터셉터 추가 */

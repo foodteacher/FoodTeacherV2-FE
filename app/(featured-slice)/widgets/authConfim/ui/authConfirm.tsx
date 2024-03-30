@@ -22,6 +22,7 @@ const AuthConfirm = ({ codeInfo }: { codeInfo: Code }) => {
       }
 
       if (accessToken) {
+        return router.push("/survey");
       } else {
         router.replace("/");
         toast({

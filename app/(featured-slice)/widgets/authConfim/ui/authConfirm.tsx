@@ -32,7 +32,6 @@ const AuthConfirm = ({ codeInfo }: { codeInfo: Code }) => {
       }
     };
     postLogin(codeInfo);
-    //
   }, []);
 
   return (

@@ -1,5 +1,5 @@
-import AuthConfirm from "@/app/(featured-slice)/widgets/authConfim/ui/authConfirm";
 import { Code, PageParams } from "@/app/(featured-slice)/shared/type";
+import AuthConfirm from "@/app/(featured-slice)/widgets/authConfim/ui/authConfirm";
 
 const Page = async ({ searchParams }: PageParams<any, Code>) => {
   const code = searchParams;

@@ -71,7 +71,7 @@ const SttInput = ({ register, ...props }: SttInputProps) => {
 };
 
 SttFormItem.SttButton = SttButton;
-SttFormItem.sttInput = SttInput;
+SttFormItem.SttInput = SttInput;
 SttFormItem.Label = SttLabel;
 
 export default SttFormItem;

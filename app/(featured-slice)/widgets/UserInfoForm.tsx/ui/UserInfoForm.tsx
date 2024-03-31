@@ -29,7 +29,7 @@ const UserInfoForm = () => {
           <SttFormItem.Label htmlFor="name">이름</SttFormItem.Label>
           <SttFormItem.SttButton />
         </Flex>
-        <SttFormItem.sttInput
+        <SttFormItem.SttInput
           id="name"
           placeholder="이름을 입력해주세요."
           register={register("name", {
@@ -46,7 +46,7 @@ const UserInfoForm = () => {
           <SttFormItem.Label htmlFor="gender">성별</SttFormItem.Label>
           <SttFormItem.SttButton />
         </Flex>
-        <SttFormItem.sttInput
+        <SttFormItem.SttInput
           id="gender"
           placeholder="성별을 입력해주세요."
           register={register("gender", {

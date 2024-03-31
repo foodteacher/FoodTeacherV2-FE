@@ -9,7 +9,7 @@ const Funnel = ({ children }: { children: ReactNode }) => {
   );
 };
 
-const Step = ({ children }: { children: ReactNode }) => {
+const Step = ({ children, name }: { children: ReactNode; name: string }) => {
   return <>{children}</>;
 };
 

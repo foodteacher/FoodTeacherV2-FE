@@ -52,3 +52,13 @@ export const defaultApi = async () => {
   const res = await instacne.get("/");
   return res.data;
 };
+
+export const getUser = async () => {
+  const accessToken = localStorage.getItem("accessToken");
+  const res = await instacne.get("/user/user-info", {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+  return res.data;
+};

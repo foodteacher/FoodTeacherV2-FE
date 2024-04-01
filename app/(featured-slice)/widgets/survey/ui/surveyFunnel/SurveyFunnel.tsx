@@ -3,7 +3,9 @@ import Funnel from "@/app/(featured-slice)/shared/UI/Funnel/Funnel";
 import React, { useEffect } from "react";
 import { AgeStep } from "../step";
 import { useFunnel } from "@/app/(featured-slice)/shared/UI/Funnel/hook";
-import { instacne } from "@/app/(featured-slice)/shared/api/SharedApi";
+import { useUser } from "@/app/(featured-slice)/shared/hooks";
+import { Button } from "@/app/(featured-slice)/shared/UI";
+import { updateAccessToken } from "@/app/(featured-slice)/shared/api/SharedApi";
 
 const SurveyFunnel = () => {
   const { onChangeNextStep, onChangePrevStep, currentStep } = useFunnel([
@@ -11,16 +13,16 @@ const SurveyFunnel = () => {
     "gender",
   ]);
 
-  useEffect(() => {
-    instacne.get("/user/user-info", {
-      headers: {},
-    });
-  });
+  const refreshAccess = async () => {
+    const data = await updateAccessToken();
+    console.log(data);
+  };
 
   return (
     <Funnel>
       <Funnel.Step name="age">
         <AgeStep />
+        <Button onClick={refreshAccess}>refresh</Button>
       </Funnel.Step>
     </Funnel>
   );

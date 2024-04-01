@@ -65,6 +65,5 @@ export const getUser = async () => {
 
 export const updateAccessToken = async () => {
   const res = await instacne.post("/token/jwt/access_token");
-
   return res.data;
 };

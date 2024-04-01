@@ -1,1 +1,1 @@
-export { getUser, postKakaoLogin, postNaverLogin } from "./api";
+export { postKakaoLogin, postNaverLogin } from "./api";

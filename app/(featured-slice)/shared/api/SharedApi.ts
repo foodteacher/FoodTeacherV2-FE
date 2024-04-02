@@ -55,7 +55,7 @@ export const defaultApi = async () => {
 
 export const getUser = async () => {
   const accessToken = localStorage.getItem("accessToken");
-  const res = await instacne.get("/user/user-info", {
+  const res = await instacne.get("/user/mypage/user-info", {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
@@ -64,6 +64,6 @@ export const getUser = async () => {
 };
 
 export const updateAccessToken = async () => {
-  const res = await instacne.post("/token/jwt/access_token");
+  const res = await instacne.post("/token/jwt/access-token");
   return res.data;
 };

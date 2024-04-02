@@ -4,9 +4,9 @@ import QueryProviders from "@/app/QueryProviders";
 import TheHeader from "./TheHeader";
 
 export const metadata: Metadata = {
-  // metadataBase: new URL(
-  //   "http://fe-fe-544a1-21216457-67a2ef796b03.kr.lb.naverncp.com/"
-  // ),
+  metadataBase: new URL(
+    "http://fe-fe-544a1-21216457-67a2ef796b03.kr.lb.naverncp.com/"
+  ),
   title: "식선생",
   description: "당신의 식단 관리 서비스",
 

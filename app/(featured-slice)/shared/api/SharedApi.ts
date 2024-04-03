@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Token } from "../type";
 
 const headers =
   process.env.NODE_ENV === "development"
@@ -24,7 +23,6 @@ export const instacne = axios.create({
 instacne.interceptors.request.use(
   /**요청이 전달되기 전에 작업 수행 */
   (config) => {
-    /**여기서 accessToken사전에 header에 실어서 보내주기 */
     return config;
   },
   (error) => {
@@ -45,8 +43,6 @@ instacne.interceptors.response.use(
       response: { status },
     } = err;
     /**2xx 범위 이외에 있는 상태 코드 trigger */
-
-    /**에러 발생시 accessToken재발급 이후 기존의 axios api call 재시도 */
     // instacne(config);
     return Promise.reject(err);
   }
@@ -68,13 +64,8 @@ export const getUser = async () => {
 };
 
 export const updateAccessToken = async () => {
-  try {
-    const res = await instacne.post("/token/jwt/access-token");
-    const data: Token = await res.data;
-    localStorage.setItem("accessToken", data.accessToken);
-  } catch (err) {
-    console.log(err);
-  }
+  const res = await instacne.post("/token/jwt/access-token");
+  return res.data;
 };
 
 //

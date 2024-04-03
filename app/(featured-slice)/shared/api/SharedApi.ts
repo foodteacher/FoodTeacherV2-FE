@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Token } from "../type";
 
 const headers =
   process.env.NODE_ENV === "development"
@@ -23,6 +24,8 @@ export const instacne = axios.create({
 instacne.interceptors.request.use(
   /**요청이 전달되기 전에 작업 수행 */
   (config) => {
+    const accessToken = localStorage.getItem("accessToken");
+    config.headers[`Authorization`] = `Bearer ${accessToken}`;
     return config;
   },
   (error) => {
@@ -37,14 +40,21 @@ instacne.interceptors.response.use(
     /**2xx 범위의 상태 코드 trigger */
     return res;
   },
-  (err) => {
+  async (err) => {
     const {
       config,
       response: { status },
     } = err;
     /**2xx 범위 이외에 있는 상태 코드 trigger */
-    // instacne(config);
-    return Promise.reject(err);
+
+    console.log(config);
+    if (status === "401") {
+      await updateAccessToken();
+      console.log(config);
+      return instacne(config);
+    } else {
+      // return (window.location.href = "/");
+    }
   }
 );
 
@@ -64,8 +74,12 @@ export const getUser = async () => {
 };
 
 export const updateAccessToken = async () => {
-  const res = await instacne.post("/token/jwt/access-token");
-  return res.data;
+  try {
+    const res = await instacne.post("/token/jwt/access-token");
+    const data: Token = res.data;
+    const { accessToken } = data;
+    localStorage.setItem("accessToken", accessToken);
+  } catch (err) {
+    console.log(err);
+  }
 };
-
-//

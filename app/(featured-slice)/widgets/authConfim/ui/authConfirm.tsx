@@ -22,7 +22,7 @@ const AuthConfirm = ({ codeInfo }: { codeInfo: Code }) => {
       }
 
       if (accessToken) {
-        localStorage.setItem("accessToken", accessToken.token);
+        localStorage.setItem("accessToken", accessToken.accessToken);
         return router.push("/survey");
       } else {
         router.replace("/");

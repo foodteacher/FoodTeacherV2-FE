@@ -2,6 +2,7 @@ import { instacne } from "@/app/(featured-slice)/shared/api/SharedApi";
 import { Code } from "@/app/(featured-slice)/shared/type";
 
 export const postKakaoLogin = async (code: Code) => {
+  console.log(code);
   try {
     const res = await instacne.post(`/login/kakao`, code);
     return res.data;

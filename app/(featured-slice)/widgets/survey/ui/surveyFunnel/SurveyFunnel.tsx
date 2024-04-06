@@ -13,18 +13,18 @@ const SurveyFunnel = () => {
     "gender",
   ]);
 
-  const refreshAccess = async () => {
-    const data = await updateAccessToken();
-    console.log(data);
-  };
+  // const refreshAccess = async () => {
+  //   const data = await updateAccessToken();
+  //   console.log(data);
+  // };
 
-  const {} = useUser();
+  // const {} = useUser();
 
   return (
     <Funnel>
       <Funnel.Step name="age">
         <AgeStep />
-        <Button onClick={refreshAccess}>refresh</Button>
+        {/* <Button onClick={refreshAccess}>refresh</Button> */}
       </Funnel.Step>
     </Funnel>
   );

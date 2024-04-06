@@ -1,5 +1,5 @@
 /**step props */
-interface StepProps {
+export interface StepProps {
   goNextStep: () => void;
-  goPrevStep: () => void;
+  goPrevStep?: () => void;
 }

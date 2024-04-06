@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/app/(featured-slice)/shared/UI";
+import { Button } from "@/app/(featured-slice)/shared/ui";
 import { PhoneIcon } from "@chakra-ui/icons";
 import { useStt } from "../hooks";
 

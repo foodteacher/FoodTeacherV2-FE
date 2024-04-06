@@ -1,16 +1,25 @@
 "use client";
-import React, { ReactNode, createContext } from "react";
+import React, { ReactNode, createContext, useContext } from "react";
 
 const FunnelProvider = createContext<any>(null);
 
-const Funnel = ({ children }: { children: ReactNode }) => {
+interface FunnelProps {
+  children: ReactNode;
+  currentStep: string;
+}
+
+const Funnel = ({ currentStep, children }: FunnelProps) => {
   return (
-    <FunnelProvider.Provider value={null}>{children}</FunnelProvider.Provider>
+    <FunnelProvider.Provider value={currentStep}>
+      {children}
+    </FunnelProvider.Provider>
   );
 };
 
 const Step = ({ children, name }: { children: ReactNode; name: string }) => {
-  return <>{children}</>;
+  const context = useContext(FunnelProvider);
+
+  return <>{context === name && children}</>;
 };
 
 Funnel.Step = Step;

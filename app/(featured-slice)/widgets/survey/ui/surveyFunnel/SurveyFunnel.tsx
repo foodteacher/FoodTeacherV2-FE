@@ -23,11 +23,11 @@ export const SurveyFunnel = () => {
   return (
     <Funnel currentStep={currentStep}>
       <Funnel.Step name="age">
-        <AgeStep nextStep={onChangeNextStep} />
+        <AgeStep goNextStep={onChangeNextStep} />
         {/* <Button onClick={refreshAccess}>refresh</Button> */}
       </Funnel.Step>
       <Funnel.Step name="gender">
-        <GenderStep />
+        <GenderStep goNextStep={onChangeNextStep} />
       </Funnel.Step>
       <Funnel.Step name="weight">
         <WeightStep />

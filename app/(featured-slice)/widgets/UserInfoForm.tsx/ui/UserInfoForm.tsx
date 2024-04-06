@@ -2,7 +2,7 @@
 
 import { UserInfo } from "@/app/(featured-slice)/features/auth/types";
 import SttFormItem from "@/app/(featured-slice)/features/stt/ui/SttFormItem";
-import { Button } from "@/app/(featured-slice)/shared/UI";
+import { Button } from "@/app/(featured-slice)/shared/ui";
 import { ButtonGroup, Flex, FormErrorMessage, VStack } from "@chakra-ui/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 

@@ -1,5 +1,5 @@
 "use client";
-import { KaKaoButtonIcon } from "@/app/(featured-slice)/shared/UI";
+import { KaKaoButtonIcon } from "@/app/(featured-slice)/shared/ui";
 import { Box, Button, ButtonGroup, Flex } from "@chakra-ui/react";
 import { useSocialToken } from "../../../features/auth/hooks";
 

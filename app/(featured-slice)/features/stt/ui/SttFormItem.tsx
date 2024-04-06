@@ -1,7 +1,7 @@
 "use client";
 import { createContext, useContext } from "react";
 import { UseSttType, useStt } from "../hooks";
-import { Button } from "@/app/(featured-slice)/shared/UI";
+import { Button } from "@/app/(featured-slice)/shared/ui";
 import { PhoneIcon } from "@chakra-ui/icons";
 import {
   FormControl,

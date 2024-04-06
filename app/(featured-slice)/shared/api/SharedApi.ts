@@ -47,7 +47,7 @@ instacne.interceptors.response.use(
     } = err;
     /**2xx 범위 이외에 있는 상태 코드 trigger */
 
-    console.log(config);
+    // console.log(config);
     if (status === "401") {
       await updateAccessToken();
       console.log(config);
@@ -80,6 +80,6 @@ export const updateAccessToken = async () => {
     const { accessToken } = data;
     localStorage.setItem("accessToken", accessToken);
   } catch (err) {
-    console.log(err);
+    window.location.replace("/");
   }
 };

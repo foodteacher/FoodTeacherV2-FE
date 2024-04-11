@@ -1,16 +1,24 @@
 "use client";
+import { SurveyState } from "@/app/(featured-slice)/widgets/survey/types";
 import React, { ReactNode, createContext, useContext } from "react";
 
 const FunnelProvider = createContext<any>(null);
 
-interface FunnelProps {
+type FunnelState = SurveyState;
+
+interface FunnelProps<T> {
   children: ReactNode;
   currentStep: string;
+  funnelState: T;
 }
 
-const Funnel = ({ currentStep, children }: FunnelProps) => {
+const Funnel = <T extends FunnelState>({
+  funnelState,
+  currentStep,
+  children,
+}: FunnelProps<T>) => {
   return (
-    <FunnelProvider.Provider value={currentStep}>
+    <FunnelProvider.Provider value={{ currentStep, funnelState }}>
       {children}
     </FunnelProvider.Provider>
   );

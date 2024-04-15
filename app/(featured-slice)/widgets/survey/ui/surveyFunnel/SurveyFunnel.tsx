@@ -6,11 +6,8 @@ import { useState } from "react";
 import { SurveyState } from "../../types";
 
 export const SurveyFunnel = () => {
-  const { onChangeNextStep, onChangePrevStep, currentStep } = useFunnel([
-    "age",
-    "gender",
-    "weight",
-  ]);
+  const { onChangeNextStep, onChangePrevStep, currentStep, progress } =
+    useFunnel(["age", "gender", "weight"]);
 
   const [surveyState, setSurveyState] = useState<SurveyState>({
     age: 0,
@@ -19,7 +16,11 @@ export const SurveyFunnel = () => {
   });
 
   return (
-    <Funnel currentStep={currentStep} funnelState={surveyState}>
+    <Funnel
+      currentStep={currentStep}
+      funnelState={surveyState}
+      progress={progress}
+    >
       <Funnel.Step name="age">
         <AgeStep goNextStep={onChangeNextStep} setState={setSurveyState} />
       </Funnel.Step>

@@ -9,3 +9,10 @@ export interface SurveyState {
   gender: string;
   weight: string;
 }
+
+export type FunnelInfo = SurveyState;
+
+export type FunnelState = {
+  currentStep: string;
+  funnelState: FunnelInfo;
+};

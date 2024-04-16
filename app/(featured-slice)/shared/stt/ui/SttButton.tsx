@@ -1,8 +1,8 @@
 "use client";
 
-import { Button } from "@/app/(featured-slice)/shared/ui";
 import { PhoneIcon } from "@chakra-ui/icons";
 import { useStt } from "../hooks";
+import { MainButton } from "@/app/(featured-slice)/shared/Button/ui";
 
 const SttButton = () => {
   const { listening, startListening, stopListening } = useStt();
@@ -10,16 +10,16 @@ const SttButton = () => {
   return (
     <>
       {!listening ? (
-        <Button onClick={() => startListening()}>
+        <MainButton onClick={() => startListening()}>
           <PhoneIcon />
-        </Button>
+        </MainButton>
       ) : (
-        <Button
+        <MainButton
           className="btn btn-secondary btn-sm"
           onClick={() => stopListening()}
         >
           Stop
-        </Button>
+        </MainButton>
       )}
     </>
   );

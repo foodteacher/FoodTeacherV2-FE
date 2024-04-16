@@ -1,7 +1,6 @@
 "use client";
 import { createContext, useContext } from "react";
 import { UseSttType, useStt } from "../hooks";
-import { Button } from "@/app/(featured-slice)/shared/ui";
 import { PhoneIcon } from "@chakra-ui/icons";
 import {
   FormControl,
@@ -11,6 +10,7 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { SttInputProps } from "../types";
+import { MainButton } from "@/app/(featured-slice)/shared/Button/ui";
 
 export const SttContext = createContext<UseSttType>({
   listening: false,
@@ -38,11 +38,11 @@ const SttButton = () => {
   return (
     <>
       {!listening ? (
-        <Button onClick={() => startListening()}>
+        <MainButton onClick={() => startListening()}>
           <PhoneIcon />
-        </Button>
+        </MainButton>
       ) : (
-        <Button onClick={() => stopListening()}>Stop</Button>
+        <MainButton onClick={() => stopListening()}>Stop</MainButton>
       )}
     </>
   );

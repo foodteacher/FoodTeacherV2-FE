@@ -6,8 +6,8 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import Input from "@/app/(featured-slice)/shared/ui/Input/Input";
-import { MainButton } from "@/app/(featured-slice)/shared/ui/Button";
+import Input from "@/app/(featured-slice)/shared/Input/Input";
+import { MainButton } from "@/app/(featured-slice)/shared/Button/ui";
 
 type Gender = { gender: string };
 

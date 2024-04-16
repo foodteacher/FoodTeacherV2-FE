@@ -2,9 +2,9 @@
 import { FormControl, FormErrorMessage, FormLabel } from "@chakra-ui/react";
 import React from "react";
 import { StepProps } from "../../types";
-import Input from "@/app/(featured-slice)/shared/ui/Input/Input";
+import Input from "@/app/(featured-slice)/shared/Input/Input";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { MainButton } from "@/app/(featured-slice)/shared/ui/Button";
+import { MainButton } from "@/app/(featured-slice)/shared/Button/ui";
 
 type Age = { age: number };
 

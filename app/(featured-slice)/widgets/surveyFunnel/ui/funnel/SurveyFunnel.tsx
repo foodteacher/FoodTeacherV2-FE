@@ -1,7 +1,7 @@
 "use client";
-import Funnel from "@/app/(featured-slice)/shared/ui/Funnel/Funnel";
+import Funnel from "@/app/(featured-slice)/shared/Funnel/Funnel";
 import { AgeStep, GenderStep, WeightStep } from "../step";
-import { useFunnel } from "@/app/(featured-slice)/shared/ui/Funnel/hook";
+import { useFunnel } from "@/app/(featured-slice)/shared/Funnel/hook";
 import { useState } from "react";
 import { SurveyState } from "../../types";
 

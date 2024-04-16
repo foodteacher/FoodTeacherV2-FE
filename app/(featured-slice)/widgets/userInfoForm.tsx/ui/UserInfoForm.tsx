@@ -1,8 +1,8 @@
 "use client";
 
 import { UserInfo } from "@/app/(featured-slice)/features/auth/types";
-import SttFormItem from "@/app/(featured-slice)/features/stt/ui/SttFormItem";
-import { Button } from "@/app/(featured-slice)/shared/ui";
+import SttFormItem from "@/app/(featured-slice)/shared/stt/ui/SttFormItem";
+import { MainButton } from "@/app/(featured-slice)/shared/Button/ui";
 import { ButtonGroup, Flex, FormErrorMessage, VStack } from "@chakra-ui/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -59,8 +59,8 @@ const UserInfoForm = () => {
       </SttFormItem>
 
       <ButtonGroup>
-        <Button>뒤로가기</Button>
-        <Button type="submit">등록하기</Button>
+        <MainButton>뒤로가기</MainButton>
+        <MainButton type="submit">등록하기</MainButton>
       </ButtonGroup>
     </VStack>
   );

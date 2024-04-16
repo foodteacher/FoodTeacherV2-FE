@@ -10,7 +10,7 @@ export interface StepProps {
 export interface SurveyState {
   age: number;
   gender: string;
-  weight: string;
+  weight: number;
 }
 
 export type FunnelInfo = SurveyState;
@@ -18,4 +18,5 @@ export type FunnelInfo = SurveyState;
 export type FunnelState = {
   currentStep: string;
   funnelState: FunnelInfo;
+  progress?: number;
 };

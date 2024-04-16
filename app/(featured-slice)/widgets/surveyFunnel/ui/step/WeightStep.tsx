@@ -1,10 +1,9 @@
 "use client";
-import React, { PropsWithChildren } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { StepProps } from "../../types";
 import { FormControl, FormErrorMessage, FormLabel } from "@chakra-ui/react";
-import Input from "@/app/(featured-slice)/shared/ui/Input/Input";
-import { Button } from "@/app/(featured-slice)/shared/ui";
+import Input from "@/app/(featured-slice)/shared/Input/Input";
+import { MainButton } from "@/app/(featured-slice)/shared/Button/ui";
 
 interface WeightStep extends StepProps {
   initializeStep: () => void;
@@ -46,7 +45,7 @@ export const WeightStep = ({ setState, goNextStep }: StepProps) => {
             {errors.weight && errors.weight.message}
           </FormErrorMessage>
         </FormControl>
-        <Button
+        <MainButton
           type={"submit"}
           _disabled={{
             bgColor: "#D2D2D2",
@@ -55,7 +54,7 @@ export const WeightStep = ({ setState, goNextStep }: StepProps) => {
           isDisabled={!isValid}
         >
           다음
-        </Button>
+        </MainButton>
       </form>
     </>
   );

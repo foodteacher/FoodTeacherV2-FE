@@ -1,5 +1,4 @@
 import { StepProps } from "../../types";
-import { Button } from "@/app/(featured-slice)/shared/ui";
 import {
   FormControl,
   FormErrorMessage,
@@ -7,7 +6,8 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import Input from "@/app/(featured-slice)/shared/ui/Input/Input";
+import Input from "@/app/(featured-slice)/shared/Input/Input";
+import { MainButton } from "@/app/(featured-slice)/shared/Button/ui";
 
 type Gender = { gender: string };
 
@@ -46,7 +46,7 @@ export const GenderStep = ({ goNextStep, setState }: StepProps) => {
           {errors.gender && errors.gender.message}
         </FormErrorMessage>
       </FormControl>
-      <Button
+      <MainButton
         type={"submit"}
         _disabled={{
           bgColor: "#D2D2D2",
@@ -55,7 +55,7 @@ export const GenderStep = ({ goNextStep, setState }: StepProps) => {
         isDisabled={!isValid}
       >
         다음
-      </Button>
+      </MainButton>
     </form>
   );
 };

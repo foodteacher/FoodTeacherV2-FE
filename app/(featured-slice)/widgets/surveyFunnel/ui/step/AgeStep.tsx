@@ -1,10 +1,10 @@
 "use client";
-import { Button } from "@/app/(featured-slice)/shared/ui";
 import { FormControl, FormErrorMessage, FormLabel } from "@chakra-ui/react";
 import React from "react";
 import { StepProps } from "../../types";
 import Input from "@/app/(featured-slice)/shared/ui/Input/Input";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { MainButton } from "@/app/(featured-slice)/shared/ui/Button";
 
 type Age = { age: number };
 
@@ -41,7 +41,7 @@ export const AgeStep = ({ goNextStep, setState }: StepProps) => {
         />
         <FormErrorMessage>{errors.age && errors.age.message}</FormErrorMessage>
       </FormControl>
-      <Button
+      <MainButton
         type={"submit"}
         _disabled={{
           bgColor: "#D2D2D2",
@@ -50,7 +50,7 @@ export const AgeStep = ({ goNextStep, setState }: StepProps) => {
         isDisabled={!isValid}
       >
         다음
-      </Button>
+      </MainButton>
     </form>
   );
 };

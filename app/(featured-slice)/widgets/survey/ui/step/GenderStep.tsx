@@ -1,4 +1,3 @@
-import React from "react";
 import { StepProps } from "../../types";
 import { Button } from "@/app/(featured-slice)/shared/ui";
 import {

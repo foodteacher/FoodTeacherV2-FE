@@ -2,8 +2,8 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { StepProps } from "../../types";
 import { FormControl, FormErrorMessage, FormLabel } from "@chakra-ui/react";
-import Input from "@/app/(featured-slice)/shared/ui/Input/Input";
-import { MainButton } from "@/app/(featured-slice)/shared/ui/Button";
+import Input from "@/app/(featured-slice)/shared/Input/Input";
+import { MainButton } from "@/app/(featured-slice)/shared/Button/ui";
 
 interface WeightStep extends StepProps {
   initializeStep: () => void;

@@ -10,7 +10,7 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { SttInputProps } from "../types";
-import { MainButton } from "@/app/(featured-slice)/shared/ui/Button";
+import { MainButton } from "@/app/(featured-slice)/shared/Button/ui";
 
 export const SttContext = createContext<UseSttType>({
   listening: false,

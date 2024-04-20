@@ -13,7 +13,6 @@ const queryClient = new QueryClient({
     mutations: {
       onError: () => {
         const toast = useToast();
-        console.log(1);
       },
     },
   },

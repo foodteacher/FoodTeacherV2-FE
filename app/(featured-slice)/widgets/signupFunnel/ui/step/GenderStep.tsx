@@ -10,7 +10,6 @@ type Gender = { gender: string };
 export const GenderStep = ({ goNextStep, setState }: StepProps) => {
   const {
     formState: { errors, isValid },
-    register,
     handleSubmit,
     control,
   } = useForm<Gender>();
@@ -19,6 +18,7 @@ export const GenderStep = ({ goNextStep, setState }: StepProps) => {
     setState((data) => {
       return { ...data, gender: gender };
     });
+    goNextStep();
   };
 
   return (

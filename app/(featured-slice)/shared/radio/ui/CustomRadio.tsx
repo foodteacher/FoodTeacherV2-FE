@@ -41,19 +41,16 @@ export const RadioCard = (props: PropsWithChildren<UseRadioProps>) => {
   );
 };
 
-export const CustomRadio = ({
-  options,
-  name,
-  control,
-}: {
+interface CustomRadioProps {
   options: (string | number)[];
   name: string;
   control?: any;
-}) => {
+}
+
+export const CustomRadio = ({ options, name, control }: CustomRadioProps) => {
   const { field } = useController({
     name,
     control,
-    rules: { required: "Toggle is required" },
   });
 
   const { getRootProps, getRadioProps } = useRadioGroup({
@@ -64,7 +61,7 @@ export const CustomRadio = ({
 
   return (
     <HStack {...group}>
-      {options.map((value) => {
+      {options.map((value: string | number) => {
         const radio = getRadioProps({ value });
         return (
           <RadioCard key={value} {...radio}>
@@ -73,19 +70,5 @@ export const CustomRadio = ({
         );
       })}
     </HStack>
-
-    //     <Controller
-    //     name="radio"
-    //     control={control}
-    //     render={({ field: { onChange, value } }) => (
-    //       <RadioGroup onChange={onChange} value={value}>
-    //         <Stack direction="row">
-    //           <Radio value="1">First</Radio>
-    //           <Radio value="2">Second</Radio>
-    //           <Radio value="3">Third</Radio>
-    //         </Stack>
-    //       </RadioGroup>
-    //     )}
-    //   />
   );
 };

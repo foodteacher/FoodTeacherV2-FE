@@ -1,18 +1,16 @@
 "use client";
-import { KaKaoButtonIcon } from "@/app/(featured-slice)/shared/ui";
-import { Box, Button, ButtonGroup, Flex } from "@chakra-ui/react";
-import { useSocialToken } from "../../../features/auth/hooks";
+import { ButtonGroup, Flex } from "@chakra-ui/react";
+import {
+  KakaoButton,
+  NaverButton,
+} from "@/app/(featured-slice)/shared/Button/ui";
 
 const LoginForm = () => {
-  const { signUpKakaoHandler, signUpNaverHandler } = useSocialToken();
-
   return (
     <Flex as={"form"}>
       <ButtonGroup>
-        <Box onClick={() => signUpKakaoHandler()}>
-          <KaKaoButtonIcon />
-        </Box>
-        <Button onClick={() => signUpNaverHandler()}>네이버 로그인</Button>
+        <KakaoButton />
+        <NaverButton />
       </ButtonGroup>
     </Flex>
   );

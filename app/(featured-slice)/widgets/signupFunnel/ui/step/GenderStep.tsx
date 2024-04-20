@@ -1,27 +1,22 @@
 import { StepProps } from "../../types";
-import { Button } from "@/app/(featured-slice)/shared/ui";
-import {
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Text,
-} from "@chakra-ui/react";
+import { FormControl, FormErrorMessage, FormLabel } from "@chakra-ui/react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import Input from "@/app/(featured-slice)/shared/ui/Input/Input";
+import { MainButton } from "@/app/(featured-slice)/shared/Button/ui";
+import { CustomRadio } from "@/app/(featured-slice)/shared/radio/ui/CustomRadio";
+import { genderOptions } from "../../const/const";
 
 type Gender = { gender: string };
 
 export const GenderStep = ({ goNextStep, setState }: StepProps) => {
   const {
     formState: { errors, isValid },
-    register,
     handleSubmit,
+    control,
   } = useForm<Gender>();
 
   const onSubmit: SubmitHandler<Gender> = ({ gender }) => {
     setState((data) => {
-      data.gender = gender;
-      return data;
+      return { ...data, gender: gender };
     });
     goNextStep();
   };
@@ -30,23 +25,17 @@ export const GenderStep = ({ goNextStep, setState }: StepProps) => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormControl isInvalid={!!errors.gender}>
         <FormLabel htmlFor="gender">성별을 입력해주세요.</FormLabel>
-        <Input
-          id="gender"
-          type="text"
-          placeholder="나이를 입력해주세요."
-          register={{
-            ...register("gender", {
-              required: { value: true, message: "성별을 선택해주세요!" },
-              minLength: { value: 1, message: "숫자를 입력해주세요!" },
-              min: { value: 10, message: "10세이상 가입가능합니다." },
-            }),
-          }}
+        <CustomRadio
+          options={genderOptions}
+          name={"gender"}
+          control={control}
         />
         <FormErrorMessage>
           {errors.gender && errors.gender.message}
         </FormErrorMessage>
       </FormControl>
-      <Button
+
+      <MainButton
         type={"submit"}
         _disabled={{
           bgColor: "#D2D2D2",
@@ -55,7 +44,7 @@ export const GenderStep = ({ goNextStep, setState }: StepProps) => {
         isDisabled={!isValid}
       >
         다음
-      </Button>
+      </MainButton>
     </form>
   );
 };

@@ -1,4 +1,4 @@
-import { SurveyFunnel } from "@/app/(featured-slice)/widgets/survey/ui/surveyFunnel/SurveyFunnel";
+import { SurveyFunnel } from "@/app/(featured-slice)/widgets/signupFunnel/ui/funnel/SurveyFunnel";
 import React from "react";
 
 const SurveyPage = () => {

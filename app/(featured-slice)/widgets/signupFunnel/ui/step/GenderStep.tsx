@@ -8,6 +8,7 @@ import {
 import { SubmitHandler, useForm } from "react-hook-form";
 import Input from "@/app/(featured-slice)/shared/Input/Input";
 import { MainButton } from "@/app/(featured-slice)/shared/Button/ui";
+import { CustomRadio } from "@/app/(featured-slice)/shared/radio/ui/CustomRadio";
 
 type Gender = { gender: string };
 
@@ -46,6 +47,9 @@ export const GenderStep = ({ goNextStep, setState }: StepProps) => {
           {errors.gender && errors.gender.message}
         </FormErrorMessage>
       </FormControl>
+
+      <CustomRadio />
+
       <MainButton
         type={"submit"}
         _disabled={{

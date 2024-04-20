@@ -1,5 +1,5 @@
 "use client";
-import { FunnelState } from "@/app/(featured-slice)/widgets/surveyFunnel/types";
+import { FunnelState } from "@/app/(featured-slice)/widgets/signupFunnel/types";
 import { Progress } from "@chakra-ui/react";
 import React, {
   ReactNode,

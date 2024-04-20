@@ -1,7 +1,7 @@
 import { instacne } from "@/app/(featured-slice)/shared/api/SharedApi";
-import { Code } from "@/app/(featured-slice)/shared/type";
+import { AccessToken } from "@/app/(featured-slice)/shared/type";
 
-export const postKakaoLogin = async (code: Code) => {
+export const postKakaoLogin = async (code: AccessToken) => {
   try {
     const res = await instacne.post(`/login/kakao`, code);
     return res.data;
@@ -10,7 +10,7 @@ export const postKakaoLogin = async (code: Code) => {
   }
 };
 
-export const postNaverLogin = async (code: Code) => {
+export const postNaverLogin = async (code: AccessToken) => {
   try {
     const res = await instacne.post("/login/naver", code);
     return res.data;

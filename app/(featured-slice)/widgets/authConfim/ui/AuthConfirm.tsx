@@ -1,6 +1,4 @@
 "use client";
-import { postKakaoLogin } from "@/app/(featured-slice)/features/auth/api";
-import { postNaverLogin } from "@/app/(featured-slice)/features/auth/api/api";
 import { useToast } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import React, { useLayoutEffect } from "react";
@@ -11,7 +9,6 @@ const AuthConfirm = ({ accessToken }: { accessToken: string }) => {
 
   useLayoutEffect(() => {
     const postLogin = async (token: string) => {
-      console.log(token);
       if (accessToken) {
         localStorage.setItem("accessToken", token);
         return router.push("/survey");

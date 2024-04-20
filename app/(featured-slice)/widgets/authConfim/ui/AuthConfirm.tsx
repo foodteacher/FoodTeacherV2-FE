@@ -1,28 +1,19 @@
 "use client";
 import { postKakaoLogin } from "@/app/(featured-slice)/features/auth/api";
 import { postNaverLogin } from "@/app/(featured-slice)/features/auth/api/api";
-import { Code } from "@/app/(featured-slice)/shared/type";
 import { useToast } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import React, { useLayoutEffect } from "react";
 
-const AuthConfirm = ({ codeInfo }: { codeInfo: Code }) => {
+const AuthConfirm = ({ accessToken }: { accessToken: string }) => {
   const router = useRouter();
   const toast = useToast();
 
   useLayoutEffect(() => {
-    const postLogin = async (code: Code) => {
-      let accessToken;
-      if (code?.state) {
-        const data = await postNaverLogin(code);
-        accessToken = data;
-      } else {
-        const data = await postKakaoLogin(code);
-        accessToken = data;
-      }
-
+    const postLogin = async (token: string) => {
+      console.log(token);
       if (accessToken) {
-        localStorage.setItem("accessToken", accessToken.accessToken);
+        localStorage.setItem("accessToken", token);
         return router.push("/survey");
       } else {
         router.replace("/");
@@ -33,7 +24,7 @@ const AuthConfirm = ({ codeInfo }: { codeInfo: Code }) => {
         });
       }
     };
-    postLogin(codeInfo);
+    postLogin(accessToken);
   }, []);
 
   return (

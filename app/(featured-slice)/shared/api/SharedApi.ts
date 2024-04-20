@@ -48,10 +48,12 @@ instacne.interceptors.response.use(
     /**2xx 범위 이외에 있는 상태 코드 trigger */
 
     // console.log(config);
-    if (status === "401") {
-      await updateAccessToken();
+    if (status === 401) {
+      console.log("expired");
       console.log(config);
-      return instacne(config);
+      await updateAccessToken();
+      // await updateAccessToken();
+      // return instacne(config);
     } else {
       // return (window.location.href = "/");
     }
@@ -65,7 +67,7 @@ export const defaultApi = async () => {
 
 export const getUser = async () => {
   const accessToken = localStorage.getItem("accessToken");
-  const res = await instacne.get("/user/mypage/user-info", {
+  const res = await instacne.get("/user/info", {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },

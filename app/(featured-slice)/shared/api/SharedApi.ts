@@ -42,15 +42,15 @@ instacne.interceptors.response.use(
   },
   async (err) => {
     const {
-      config,
+      config: { url },
       response: { status },
     } = err;
     /**2xx 범위 이외에 있는 상태 코드 trigger */
+    if (url === "/token/jwt/access-token") {
+      window.location.replace("/");
+    }
 
-    // console.log(config);
     if (status === 401) {
-      console.log("expired");
-      console.log(config);
       await updateAccessToken();
       // await updateAccessToken();
       // return instacne(config);

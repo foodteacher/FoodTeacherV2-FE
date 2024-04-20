@@ -4,6 +4,8 @@ import { AgeStep, GenderStep, WeightStep } from "../step";
 import { useFunnel } from "@/app/(featured-slice)/shared/Funnel/hook";
 import { useState } from "react";
 import { SurveyState } from "../../types";
+import { Button } from "@chakra-ui/react";
+import { getUser } from "@/app/(featured-slice)/shared/api/SharedApi";
 
 export const SurveyFunnel = () => {
   const { onChangeNextStep, initializeStep, currentStep, progress } = useFunnel(
@@ -17,20 +19,23 @@ export const SurveyFunnel = () => {
   });
 
   return (
-    <Funnel
-      currentStep={currentStep}
-      funnelState={surveyState}
-      progress={progress}
-    >
-      <Funnel.Step name="age">
-        <AgeStep goNextStep={onChangeNextStep} setState={setSurveyState} />
-      </Funnel.Step>
-      <Funnel.Step name="gender">
-        <GenderStep goNextStep={onChangeNextStep} setState={setSurveyState} />
-      </Funnel.Step>
-      <Funnel.Step name="weight">
-        <WeightStep goNextStep={onChangeNextStep} setState={setSurveyState} />
-      </Funnel.Step>
-    </Funnel>
+    <>
+      <Funnel
+        currentStep={currentStep}
+        funnelState={surveyState}
+        progress={progress}
+      >
+        <Funnel.Step name="age">
+          <AgeStep goNextStep={onChangeNextStep} setState={setSurveyState} />
+        </Funnel.Step>
+        <Funnel.Step name="gender">
+          <GenderStep goNextStep={onChangeNextStep} setState={setSurveyState} />
+        </Funnel.Step>
+        <Funnel.Step name="weight">
+          <WeightStep goNextStep={onChangeNextStep} setState={setSurveyState} />
+        </Funnel.Step>
+      </Funnel>
+      <Button onClick={() => getUser()}>refresh</Button>
+    </>
   );
 };

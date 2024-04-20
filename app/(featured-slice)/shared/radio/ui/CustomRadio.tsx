@@ -8,6 +8,7 @@ import {
   useRadio,
   useRadioGroup,
 } from "@chakra-ui/react";
+import { useController } from "react-hook-form";
 
 export const RadioCard = (props: PropsWithChildren<UseRadioProps>) => {
   const { getInputProps, getRadioProps } = useRadio(props);
@@ -26,11 +27,11 @@ export const RadioCard = (props: PropsWithChildren<UseRadioProps>) => {
         _checked={{
           bg: "teal.600",
           color: "white",
-          borderColor: "teal.600",
+          //   borderColor: "red",
         }}
-        _focus={{
-          boxShadow: "outline",
-        }}
+        // _focus={{
+        //   boxShadow: "outline",
+        // }}
         px={5}
         py={3}
       >
@@ -40,13 +41,23 @@ export const RadioCard = (props: PropsWithChildren<UseRadioProps>) => {
   );
 };
 
-export const CustomRadio = () => {
-  const options = ["react", "vue", "svelte"];
+export const CustomRadio = ({
+  options,
+  name,
+  control,
+}: {
+  options: (string | number)[];
+  name: string;
+  control?: any;
+}) => {
+  const { field } = useController({
+    name,
+    control,
+    rules: { required: "Toggle is required" },
+  });
 
   const { getRootProps, getRadioProps } = useRadioGroup({
-    name: "framework",
-    defaultValue: "react",
-    onChange: console.log,
+    ...field,
   });
 
   const group = getRootProps();
@@ -62,5 +73,19 @@ export const CustomRadio = () => {
         );
       })}
     </HStack>
+
+    //     <Controller
+    //     name="radio"
+    //     control={control}
+    //     render={({ field: { onChange, value } }) => (
+    //       <RadioGroup onChange={onChange} value={value}>
+    //         <Stack direction="row">
+    //           <Radio value="1">First</Radio>
+    //           <Radio value="2">Second</Radio>
+    //           <Radio value="3">Third</Radio>
+    //         </Stack>
+    //       </RadioGroup>
+    //     )}
+    //   />
   );
 };

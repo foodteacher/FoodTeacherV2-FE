@@ -29,6 +29,9 @@ export const GenderStep = ({ goNextStep, setState }: StepProps) => {
           options={genderOptions}
           name={"gender"}
           control={control}
+          w={"154px"}
+          h={"148px"}
+          padding={"12px 16px"}
         />
         <FormErrorMessage>
           {errors.gender && errors.gender.message}

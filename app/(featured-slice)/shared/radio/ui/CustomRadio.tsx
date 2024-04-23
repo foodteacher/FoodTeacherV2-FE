@@ -24,6 +24,7 @@ export const RadioCard = ({
 
   const input = getInputProps();
   const checkbox = getRadioProps();
+
   return (
     <Box as="label">
       <input {...input} />
@@ -38,9 +39,9 @@ export const RadioCard = ({
           color: "white",
           //   borderColor: "red",
         }}
-        // _focus={{
-        //   boxShadow: "outline",
-        // }}
+        _focus={{
+          boxShadow: "outline",
+        }}
         w={w}
         h={h}
         padding={padding}
@@ -83,7 +84,10 @@ export const CustomRadio = ({
   const { field } = useController({
     name,
     control,
+    rules: { required: true },
   });
+
+  console.log(field);
 
   const { getRootProps, getRadioProps } = useRadioGroup({
     ...field,

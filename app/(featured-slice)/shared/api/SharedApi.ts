@@ -42,20 +42,19 @@ instacne.interceptors.response.use(
   },
   async (err) => {
     const {
-      config: { url },
+      config,
       response: { status },
     } = err;
     /**2xx 범위 이외에 있는 상태 코드 trigger */
-    if (url === "/token/jwt/access-token") {
+    if (config.url === "/token/jwt/access-token") {
       window.location.replace("/");
     }
 
     if (status === 401) {
       await updateAccessToken();
-      // await updateAccessToken();
-      // return instacne(config);
+      return instacne(config);
     } else {
-      // return (window.location.href = "/");
+      return (window.location.href = "/");
     }
   }
 );
@@ -82,6 +81,8 @@ export const updateAccessToken = async () => {
     const { accessToken } = data;
     localStorage.setItem("accessToken", accessToken);
   } catch (err) {
+    /**access 재발급에 실패한다면 로그아웃 및 redirect */
+    localStorage.removeItem("accessToken");
     window.location.replace("/");
   }
 };

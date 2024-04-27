@@ -8,16 +8,14 @@ interface UseSocialLogin {
 export const useSocialToken = (): UseSocialLogin => {
   const redirect_uri = "https://api2.foodteacher.xyz/login/kakao/auth/callback";
 
-  // process.env.NODE_ENV === "development"
-  //   ? "http://localhost:3000/oauth"
-  //   : "https://v2.foodteacher.xyz/oauth";
+  const mode = process.env.NODE_ENV === "development" ? "dev" : "prod";
 
   const signUpKakaoHandler = () => {
-    window.location.href = KAKAO_URL(redirect_uri);
+    window.location.href = KAKAO_URL(redirect_uri, mode);
   };
 
   const signUpNaverHandler = () => {
-    window.location.href = NAVER_URL(redirect_uri);
+    window.location.href = NAVER_URL(redirect_uri, mode);
   };
 
   return { signUpKakaoHandler, signUpNaverHandler };

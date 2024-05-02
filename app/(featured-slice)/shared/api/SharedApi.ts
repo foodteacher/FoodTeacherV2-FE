@@ -11,7 +11,7 @@ const headers =
         "Content-Type": "application/json",
       };
 
-export const instacne = axios.create({
+export const instance = axios.create({
   baseURL:
     process.env.NODE_ENV === "development"
       ? "/"
@@ -21,7 +21,7 @@ export const instacne = axios.create({
 });
 
 /**요청 인터셉터 추가 */
-instacne.interceptors.request.use(
+instance.interceptors.request.use(
   /**요청이 전달되기 전에 작업 수행 */
   (config) => {
     const accessToken = localStorage.getItem("accessToken");
@@ -35,7 +35,7 @@ instacne.interceptors.request.use(
 );
 
 /**응답 인터셉터 추가 */
-instacne.interceptors.response.use(
+instance.interceptors.response.use(
   (res) => {
     /**2xx 범위의 상태 코드 trigger */
     return res;
@@ -52,7 +52,7 @@ instacne.interceptors.response.use(
 
     if (status === 401) {
       await updateAccessToken();
-      return instacne(config);
+      return instance(config);
     } else {
       return (window.location.href = "/");
     }
@@ -60,13 +60,13 @@ instacne.interceptors.response.use(
 );
 
 export const defaultApi = async () => {
-  const res = await instacne.get("/");
+  const res = await instance.get("/");
   return res.data;
 };
 
 export const getUser = async () => {
   const accessToken = localStorage.getItem("accessToken");
-  const res = await instacne.get("/user/info", {
+  const res = await instance.get("/user/info", {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
@@ -76,7 +76,7 @@ export const getUser = async () => {
 
 export const updateAccessToken = async () => {
   try {
-    const res = await instacne.post("/token/jwt/access-token");
+    const res = await instance.post("/token/jwt/access-token");
     const data: Token = res.data;
     const { accessToken } = data;
     localStorage.setItem("accessToken", accessToken);

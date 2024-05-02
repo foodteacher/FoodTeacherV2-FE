@@ -13,9 +13,7 @@ const UserInfoForm = () => {
     formState: { errors },
   } = useForm<UserInfo>();
 
-  const onSubmit: SubmitHandler<UserInfo> = (formData) => {
-    console.log(formData);
-  };
+  const onSubmit: SubmitHandler<UserInfo> = (formData) => {};
 
   return (
     <VStack

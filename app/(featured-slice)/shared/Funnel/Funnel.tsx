@@ -1,6 +1,6 @@
 "use client";
 import { FunnelState } from "@/app/(featured-slice)/widgets/signupFunnel/types";
-import { Box, Progress } from "@chakra-ui/react";
+import { Box, Button, ButtonGroup, Progress, VStack } from "@chakra-ui/react";
 import React, { createContext, useContext, PropsWithChildren } from "react";
 
 const FunnelProvider = createContext<FunnelState | null>(null);
@@ -13,8 +13,18 @@ const Funnel = ({
 }: PropsWithChildren<FunnelState>) => {
   return (
     <FunnelProvider.Provider value={{ currentStep, funnelState }}>
-      <Progress value={progress} />
-      {children}
+      <Box margin={"0 10px"}>
+        <Progress value={progress} />
+        <ButtonGroup margin={"24px 0"}>
+          <Button w={"36px"} h={"36px"} color={"#8F00FF"} bg={"#F2E2FF"}>
+            1
+          </Button>
+          <Button w={"36px"} h={"36px"} color={"#868686"} bg={"#EEEEEF"}>
+            2
+          </Button>
+        </ButtonGroup>
+        {children}
+      </Box>
     </FunnelProvider.Provider>
   );
 };
@@ -25,9 +35,7 @@ const Step = ({ children, name }: PropsWithChildren<{ name: string }>) => {
     throw new Error("not Context");
   }
 
-  return (
-    <Box margin={"0 10px"}>{context.currentStep === name && children}</Box>
-  );
+  return <>{context.currentStep === name && children}</>;
 };
 
 Funnel.Step = Step;

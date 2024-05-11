@@ -1,10 +1,5 @@
-import { InputProps } from "@chakra-ui/react";
 import { Input as ChakraInput } from "@chakra-ui/react";
-import { UseFormRegisterReturn } from "react-hook-form";
-
-interface InputProp extends InputProps {
-  register: UseFormRegisterReturn;
-}
+import { InputProp } from "./type";
 
 const Input = ({ ...props }: InputProp) => {
   const register = props.register;

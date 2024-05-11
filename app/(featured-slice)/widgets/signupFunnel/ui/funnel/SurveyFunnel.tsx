@@ -1,11 +1,9 @@
 "use client";
 import Funnel from "@/app/(featured-slice)/shared/Funnel/Funnel";
-import { AgeStep, GenderStep, WeightStep } from "../step";
+import { GenderStep, UserInfo, WeightStep } from "../step";
 import { useFunnel } from "@/app/(featured-slice)/shared/Funnel/hook";
 import { useState } from "react";
 import { SurveyState } from "../../types";
-import { Button } from "@chakra-ui/react";
-import { getUser } from "@/app/(featured-slice)/shared/api/SharedApi";
 
 export const SurveyFunnel = () => {
   const { onChangeNextStep, initializeStep, currentStep, progress } = useFunnel(
@@ -26,7 +24,7 @@ export const SurveyFunnel = () => {
         progress={progress}
       >
         <Funnel.Step name="age">
-          <AgeStep goNextStep={onChangeNextStep} setState={setSurveyState} />
+          <UserInfo goNextStep={onChangeNextStep} setState={setSurveyState} />
         </Funnel.Step>
         <Funnel.Step name="gender">
           <GenderStep goNextStep={onChangeNextStep} setState={setSurveyState} />
@@ -35,7 +33,6 @@ export const SurveyFunnel = () => {
           <WeightStep goNextStep={onChangeNextStep} setState={setSurveyState} />
         </Funnel.Step>
       </Funnel>
-      <Button onClick={() => getUser()}>refresh</Button>
     </>
   );
 };

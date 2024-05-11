@@ -1,12 +1,11 @@
 import { instance } from "@/app/(featured-slice)/shared/api/SharedApi";
 
 export const postSpeechToText = async (text: string) => {
-  const res = await instance.get("https://api2.foodteacher.xyz/voice/tts", {
-    responseType: "blob",
-    params: {
-      text,
-    },
-  });
+  const res = await instance.post(
+    "https://api2.foodteacher.xyz/voice/tts",
+    { text },
+    { responseType: "blob" }
+  );
 
   const href = URL.createObjectURL(res.data);
 

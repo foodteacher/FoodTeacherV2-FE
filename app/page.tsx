@@ -13,7 +13,7 @@ export default function Home() {
       <LoginForm />
       <UserInfoForm />
       <Box>text fewqfeqwfewq</Box>
-      <Button onClick={() => speechReqMutate("hello")}>req</Button>
+      <Button onClick={() => speechReqMutate("안녕하세요!")}>req</Button>
     </main>
   );
 }

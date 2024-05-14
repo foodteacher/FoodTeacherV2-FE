@@ -1,6 +1,6 @@
 "use client";
 import { FunnelState } from "@/app/(featured-slice)/widgets/signupFunnel/types";
-import { Box, Button, ButtonGroup, Progress, VStack } from "@chakra-ui/react";
+import { Box, Button, ButtonGroup, Progress } from "@chakra-ui/react";
 import React, { createContext, useContext, PropsWithChildren } from "react";
 
 const FunnelProvider = createContext<FunnelState | null>(null);

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import ChakraProviders from "@/app/ChakraProvider";
 import QueryProviders from "@/app/QueryProviders";
-import TheHeader from "./TheHeader";
-import DefaultLayout from "./DefaultLayout";
+import TheHeader from "./(featured-slice)/widgets/layout/ui/TheHeader";
+import DefaultLayout from "./(featured-slice)/widgets/layout/ui/DefaultLayout";
 
 export const metadata: Metadata = {
   metadataBase: new URL(

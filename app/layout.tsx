@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import ChakraProviders from "@/app/ChakraProvider";
 import QueryProviders from "@/app/QueryProviders";
 import TheHeader from "./TheHeader";
+import DefaultLayout from "./DefaultLayout";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -46,8 +47,10 @@ export default function RootLayout({
       <body>
         <QueryProviders>
           <ChakraProviders>
-            <TheHeader />
-            {children}
+            <DefaultLayout>
+              <TheHeader />
+              {children}
+            </DefaultLayout>
           </ChakraProviders>
         </QueryProviders>
       </body>

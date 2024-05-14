@@ -1,8 +1,8 @@
-import { KAKAO_URL, NAVER_URL } from "../../../shared/Button/consts/consts";
+import { KAKAO_URL, NAVER_URL } from "../consts/consts";
 
 interface UseSocialLogin {
-  signUpKakaoHandler: () => void;
-  signUpNaverHandler: () => void;
+  signUpKakao: () => void;
+  signUpNaver: () => void;
 }
 
 export const useSocialToken = (): UseSocialLogin => {
@@ -12,13 +12,13 @@ export const useSocialToken = (): UseSocialLogin => {
 
   const mode = process.env.NODE_ENV === "development" ? "dev" : "prod";
 
-  const signUpKakaoHandler = () => {
+  const signUpKakao = () => {
     window.location.href = KAKAO_URL(redirect_uri, mode);
   };
 
-  const signUpNaverHandler = () => {
+  const signUpNaver = () => {
     window.location.href = NAVER_URL(redirect_naver, mode);
   };
 
-  return { signUpKakaoHandler, signUpNaverHandler };
+  return { signUpKakao, signUpNaver };
 };

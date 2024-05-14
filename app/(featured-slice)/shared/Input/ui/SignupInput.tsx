@@ -1,8 +1,8 @@
 import { Input } from "@chakra-ui/react";
 import React from "react";
-import { InputProp } from "./type";
+import { FormInputProp } from "../type";
 
-const SignupInput = ({ ...props }: InputProp) => {
+const SignupInput = ({ ...props }: FormInputProp) => {
   return (
     <Input
       {...props}

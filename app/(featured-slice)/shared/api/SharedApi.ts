@@ -59,11 +59,6 @@ instance.interceptors.response.use(
   }
 );
 
-export const defaultApi = async () => {
-  const res = await instance.get("/");
-  return res.data;
-};
-
 export const getUser = async () => {
   const accessToken = localStorage.getItem("accessToken");
   const res = await instance.get("/user/info", {

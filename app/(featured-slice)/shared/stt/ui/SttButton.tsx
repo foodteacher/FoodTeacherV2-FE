@@ -2,7 +2,7 @@
 
 import { PhoneIcon } from "@chakra-ui/icons";
 import { useStt } from "../hooks";
-import { MainButton } from "@/app/(featured-slice)/shared/Button/ui";
+import { MainButton } from "../../Button/ui/MainButton";
 
 const SttButton = () => {
   const { listening, startListening, stopListening } = useStt();

@@ -1,9 +1,9 @@
 "use client";
-import { ButtonGroup, Flex } from "@chakra-ui/react";
 import {
   KakaoButton,
   NaverButton,
-} from "@/app/(featured-slice)/shared/Button/ui";
+} from "@/app/(featured-slice)/features/auth/ui";
+import { ButtonGroup, Flex } from "@chakra-ui/react";
 
 const LoginForm = () => {
   return (

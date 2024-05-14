@@ -1,11 +1,11 @@
 "use client";
 import { Box } from "@chakra-ui/react";
-import { useSocialToken } from "../model/hooks";
+import { useSocialToken } from "../model/useSocialLogin";
 
 export const KakaoButton = () => {
-  const { signUpKakaoHandler } = useSocialToken();
+  const { signUpKakao } = useSocialToken();
   return (
-    <Box onClick={signUpKakaoHandler} cursor={"pointer"}>
+    <Box onClick={signUpKakao} cursor={"pointer"}>
       <svg
         width="346"
         height="54"

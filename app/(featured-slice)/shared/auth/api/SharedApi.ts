@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Token } from "../type";
+import { Token } from "../types";
 
 const headers =
   process.env.NODE_ENV === "development"

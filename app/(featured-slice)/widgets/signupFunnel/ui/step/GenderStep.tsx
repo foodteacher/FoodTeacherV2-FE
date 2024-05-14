@@ -1,9 +1,9 @@
 import { StepProps } from "../../types";
 import { FormControl, FormErrorMessage, FormLabel } from "@chakra-ui/react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { MainButton } from "@/app/(featured-slice)/shared/Button/ui";
 import { CustomRadio } from "@/app/(featured-slice)/shared/radio/ui/CustomRadio";
 import { genderOptions } from "../../const/const";
+import { MainButton } from "@/app/(featured-slice)/features/auth/ui";
 
 type Gender = { gender: string };
 

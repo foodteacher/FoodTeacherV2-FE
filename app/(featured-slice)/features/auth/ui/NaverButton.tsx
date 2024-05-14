@@ -1,9 +1,9 @@
 "use client";
 import { Button } from "@chakra-ui/react";
-import { useSocialToken } from "../model/hooks";
+import { useSocialToken } from "../model/useSocialLogin";
 
 export const NaverButton = () => {
-  const { signUpNaverHandler } = useSocialToken();
+  const { signUpNaver } = useSocialToken();
 
-  return <Button onClick={() => signUpNaverHandler()}>네이버 로그인</Button>;
+  return <Button onClick={() => signUpNaver()}>네이버 로그인</Button>;
 };

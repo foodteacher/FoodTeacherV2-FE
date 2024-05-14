@@ -2,19 +2,14 @@ import {
   Box,
   FormControl,
   FormErrorMessage,
-  FormLabel,
   Heading,
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
 import { StepProps } from "../../types";
-import Input from "@/app/(featured-slice)/shared/Input/Input";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { MainButton } from "@/app/(featured-slice)/shared/Button/ui";
 import SignupInput from "@/app/(featured-slice)/shared/Input/SignupInput";
 import SignupLabel from "@/app/(featured-slice)/shared/label/SignupLabel";
-
-type Age = { age: number };
 
 interface UserInfo {
   name: string;

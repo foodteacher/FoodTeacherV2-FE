@@ -1,4 +1,4 @@
-import { KAKAO_URL, NAVER_URL } from "../consts/consts";
+import { KAKAO_URL, NAVER_URL } from "../../../shared/Button/consts/consts";
 
 interface UseSocialLogin {
   signUpKakaoHandler: () => void;

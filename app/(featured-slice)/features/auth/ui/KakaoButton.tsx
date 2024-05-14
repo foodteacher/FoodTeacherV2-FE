@@ -1,5 +1,5 @@
 "use client";
-import { Box, Button } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { useSocialToken } from "../model/hooks";
 
 export const KakaoButton = () => {

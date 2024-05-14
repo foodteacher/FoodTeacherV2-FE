@@ -3,7 +3,7 @@
 import { Box, Button } from "@chakra-ui/react";
 import LoginForm from "./(featured-slice)/widgets/login/ui/LoginForm";
 import UserInfoForm from "./(featured-slice)/widgets/userInfoForm.tsx/ui/UserInfoForm";
-import { useTTS } from "./(featured-slice)/entities/STT/hooks";
+import { useTTS } from "./(featured-slice)/features/stt/model/useStt";
 
 export default function Home() {
   const { mutateAsync: speechReqMutate } = useTTS();
@@ -12,7 +12,6 @@ export default function Home() {
     <main>
       <LoginForm />
       <UserInfoForm />
-      <Box>text fewqfeqwfewq</Box>
       <Button onClick={() => speechReqMutate("hello")}>req</Button>
     </main>
   );

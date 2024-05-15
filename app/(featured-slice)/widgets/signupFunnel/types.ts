@@ -14,12 +14,15 @@ export interface UserInfoType {
   birthday: string;
   gender: string;
 }
-export interface SignupState extends UserInfoType {
+
+export interface PhysicalInfo {
   height: number;
   weight: number;
   targetWeight: number;
-  bloodType: BloodType;
+  bloodType: string;
 }
+
+export type SignupState = UserInfoType & PhysicalInfo;
 
 export type FunnelInfo = SignupState;
 

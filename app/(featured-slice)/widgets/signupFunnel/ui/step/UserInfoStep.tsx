@@ -61,11 +61,15 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
             register={{
               ...register("birthday", {
                 required: { value: true, message: "생년월일을 입력해주세요." },
+                pattern: /^\d{4}\/\d{2}\/\d{2}$/,
               }),
             }}
           />
           <FormErrorMessage>
-            {errors.name && errors.name.message}
+            {errors.birthday && errors.birthday.message}
+            {errors?.birthday?.type === "pattern" && (
+              <p>형식에 맞게 입력해주세요.</p>
+            )}
           </FormErrorMessage>
         </FormControl>
 

@@ -10,10 +10,10 @@ import React from "react";
 import { StepProps } from "../../types";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { CustomRadio } from "@/app/(featured-slice)/shared/radio/ui/CustomRadio";
-import { genderOptions } from "../../const/const";
 import SignupLabel from "@/app/(featured-slice)/shared/label/ui/SignupLabel";
 import SignupInput from "@/app/(featured-slice)/shared/Input/ui/SignupInput";
 import { SignupButton } from "@/app/(featured-slice)/shared/Button/ui";
+import { GENDER_OPTIONS } from "../../const/const";
 
 interface UserInfo {
   name: string;
@@ -77,7 +77,7 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
         <FormControl isInvalid={!!errors.gender}>
           <SignupLabel htmlFor="gender">성별</SignupLabel>
           <CustomRadio
-            options={genderOptions}
+            options={GENDER_OPTIONS}
             name={"gender"}
             control={control}
             w={"50%"}
@@ -91,7 +91,7 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
       </VStack>
 
       <Box pos={"fixed"} right={0} bottom={0} left={0} padding={"10px"}>
-        <SignupButton>다음</SignupButton>
+        <SignupButton type={"submit"}>다음</SignupButton>
       </Box>
     </Flex>
   );

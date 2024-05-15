@@ -10,6 +10,8 @@ import { StepProps } from "../../types";
 import { SubmitHandler, useForm } from "react-hook-form";
 import SignupInput from "@/app/(featured-slice)/shared/Input/SignupInput";
 import SignupLabel from "@/app/(featured-slice)/shared/label/SignupLabel";
+import { CustomRadio } from "@/app/(featured-slice)/shared/radio/ui/CustomRadio";
+import { genderOptions } from "../../const/const";
 
 interface UserInfo {
   name: string;
@@ -21,6 +23,7 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
   const {
     formState: { errors, isValid },
     register,
+    control,
     handleSubmit,
   } = useForm<UserInfo>();
 
@@ -71,6 +74,21 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
           />
           <FormErrorMessage>
             {errors.name && errors.name.message}
+          </FormErrorMessage>
+        </FormControl>
+
+        <FormControl isInvalid={!!errors.gender}>
+          <FormLabel htmlFor="gender">성별을 입력해주세요.</FormLabel>
+          <CustomRadio
+            options={genderOptions}
+            name={"gender"}
+            control={control}
+            w={"50%"}
+            h={"56px"}
+            padding={"12px 16px"}
+          />
+          <FormErrorMessage>
+            {errors.gender && errors.gender.message}
           </FormErrorMessage>
         </FormControl>
       </VStack>

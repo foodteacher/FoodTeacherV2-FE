@@ -1,9 +1,9 @@
 "use client";
-import Funnel from "@/app/(featured-slice)/shared/Funnel/Funnel";
 import { GenderStep, UserInfo, WeightStep } from "../step";
-import { useFunnel } from "@/app/(featured-slice)/shared/Funnel/hook";
 import { useState } from "react";
 import { SurveyState } from "../../types";
+import { useFunnel } from "@/app/(featured-slice)/shared/Funnel/model/useFunnel";
+import Funnel from "@/app/(featured-slice)/shared/Funnel/ui/Funnel";
 
 export const SurveyFunnel = () => {
   const { onChangeNextStep, initializeStep, currentStep, progress } = useFunnel(

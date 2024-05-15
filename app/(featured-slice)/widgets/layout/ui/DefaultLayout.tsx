@@ -8,7 +8,7 @@ const DefaultLayout = ({ children }: PropsWithChildren) => {
      * 768px 태블릿
      * 968px pc
      */
-    <Box w={["360px", "768px", "968px"]} margin={"0 auto"}>
+    <Box w={["360px", "768px", "968px"]} margin={"0 auto"} h={"100%"}>
       {children}
     </Box>
   );

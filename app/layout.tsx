@@ -3,6 +3,7 @@ import ChakraProviders from "@/app/ChakraProvider";
 import QueryProviders from "@/app/QueryProviders";
 import TheHeader from "./(featured-slice)/widgets/layout/ui/TheHeader";
 import DefaultLayout from "./(featured-slice)/widgets/layout/ui/DefaultLayout";
+import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(

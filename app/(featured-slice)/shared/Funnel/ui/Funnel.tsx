@@ -13,7 +13,7 @@ const Funnel = ({
 }: PropsWithChildren<FunnelState>) => {
   return (
     <FunnelProvider.Provider value={{ currentStep, funnelState }}>
-      <Box margin={"0 10px"}>
+      <Box margin={"0 10px"} h={"100%"}>
         <Progress value={progress} />
         <ButtonGroup margin={"24px 0"}>
           <Button w={"36px"} h={"36px"} color={"#8F00FF"} bg={"#F2E2FF"}>

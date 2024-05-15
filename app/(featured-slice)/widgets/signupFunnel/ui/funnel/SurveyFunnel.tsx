@@ -1,5 +1,5 @@
 "use client";
-import { GenderStep, UserInfo, WeightStep } from "../step";
+import { UserPysicalStep, UserInfo } from "../step";
 import { useState } from "react";
 import { SurveyState } from "../../types";
 import { useFunnel } from "@/app/(featured-slice)/shared/Funnel/model/useFunnel";
@@ -7,7 +7,7 @@ import Funnel from "@/app/(featured-slice)/shared/Funnel/ui/Funnel";
 
 export const SurveyFunnel = () => {
   const { onChangeNextStep, initializeStep, currentStep, progress } = useFunnel(
-    ["age", "gender", "weight"]
+    ["age", "physical"]
   );
 
   const [surveyState, setSurveyState] = useState<SurveyState>({
@@ -26,11 +26,11 @@ export const SurveyFunnel = () => {
         <Funnel.Step name="age">
           <UserInfo goNextStep={onChangeNextStep} setState={setSurveyState} />
         </Funnel.Step>
-        <Funnel.Step name="gender">
-          <GenderStep goNextStep={onChangeNextStep} setState={setSurveyState} />
-        </Funnel.Step>
-        <Funnel.Step name="weight">
-          <WeightStep goNextStep={onChangeNextStep} setState={setSurveyState} />
+        <Funnel.Step name="physical">
+          <UserPysicalStep
+            goNextStep={onChangeNextStep}
+            setState={setSurveyState}
+          />
         </Funnel.Step>
       </Funnel>
     </>

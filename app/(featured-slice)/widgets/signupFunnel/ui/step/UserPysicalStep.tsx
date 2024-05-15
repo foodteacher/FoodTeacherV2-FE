@@ -40,7 +40,12 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
   };
 
   return (
-    <Flex as="form" onSubmit={handleSubmit(onSubmit)} flexDir={"column"}>
+    <Flex
+      as="form"
+      onSubmit={handleSubmit(onSubmit)}
+      flexDir={"column"}
+      paddingBottom={"90px"}
+    >
       <Heading fontSize={"24px"} fontWeight={"bold"}>
         신체 정보를 입력해주세요
       </Heading>
@@ -110,14 +115,15 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
         </FormControl>
 
         <FormControl isInvalid={!!errors.bloodType}>
-          <SignupLabel htmlFor="bloodType">성별</SignupLabel>
+          <SignupLabel htmlFor="bloodType">혈액형</SignupLabel>
           <CustomRadio
             options={BLOOD_TYPE_OTPIONS}
             name={"bloodType"}
             control={control}
-            w={"50%"}
-            h={"56px"}
+            w={"100%"}
             padding={"12px 16px"}
+            gap={"10px"}
+            flexDir={"column"}
           />
           <FormErrorMessage>
             {errors.bloodType && errors.bloodType.message}
@@ -125,7 +131,15 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
         </FormControl>
       </VStack>
 
-      <Box pos={"fixed"} right={0} bottom={0} left={0} padding={"10px"}>
+      <Box
+        pos={"fixed"}
+        right={0}
+        bottom={0}
+        left={0}
+        padding={"10px"}
+        zIndex={"100"}
+        bgColor={"white"}
+      >
         <SignupButton>다음</SignupButton>
       </Box>
     </Flex>

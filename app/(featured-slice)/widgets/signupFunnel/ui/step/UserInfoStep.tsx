@@ -4,6 +4,7 @@ import {
   FormControl,
   FormErrorMessage,
   Heading,
+  Radio,
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
@@ -80,8 +81,9 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
             options={GENDER_OPTIONS}
             name={"gender"}
             control={control}
-            w={"50%"}
+            w={"100%"}
             h={"56px"}
+            gap={"16px"}
             padding={"12px 16px"}
           />
           <FormErrorMessage>

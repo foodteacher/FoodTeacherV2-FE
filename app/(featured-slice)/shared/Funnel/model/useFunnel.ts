@@ -22,18 +22,18 @@ export const useFunnel = (steps: string[], option?: Option) => {
   /**현재 step index */
   const index = steps.indexOf(currentStep);
 
-  const [progress, setProgress] = useState(0);
+  const [progress, setProgress] = useState(1);
 
   /**이전 step 이동 */
   const onChangePrevStep = () => {
     setCurrentStep(steps[index - 1]);
-    setProgress(100 / (steps.length + (index - 1)));
+    setProgress((step) => step - 1);
   };
 
   /**다음 step 이동 */
   const onChangeNextStep = () => {
     setCurrentStep(steps[index + 1]);
-    setProgress(100 / (steps.length - (index + 1)));
+    setProgress((step) => step + 1);
   };
 
   return {
@@ -42,5 +42,6 @@ export const useFunnel = (steps: string[], option?: Option) => {
     initializeStep,
     onChangeNextStep,
     onChangePrevStep,
+    steps,
   };
 };

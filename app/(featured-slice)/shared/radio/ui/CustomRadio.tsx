@@ -27,44 +27,39 @@ export const RadioCard = ({
   const checkbox = getRadioProps();
 
   return (
-    <Box as="label">
-      <input {...input} />
+    <Box as="label" w={"100%"} left={0} h={h}>
+      {/* <input {...input} /> */}
       <Flex
         {...checkbox}
         cursor="pointer"
         borderWidth="1px"
         borderRadius="md"
         boxShadow="md"
+        alignItems={"flex-start"}
+        bg={"#EAEAEA"}
         _checked={{
-          bg: "teal.600",
-          color: "white",
-          //   borderColor: "red",
+          bg: "#FAF7FC",
+          fontWeight: "bold",
         }}
         _focus={{
           boxShadow: "outline",
         }}
-        w={w}
-        h={h}
         padding={padding}
         justifyContent={"center"}
-        alignItems={"center"}
         flexDir={"column"}
-        gap={"16px"}
+        gap={"30px"}
       >
-        {/* <svg
-          width="43"
-          height="46"
-          viewBox="0 0 43 46"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle cx="22" cy="10" r="10" fill="#D9D9D9" />
-          <path
-            d="M0 35C0 28.3726 5.37258 23 12 23H31C37.6274 23 43 28.3726 43 35V44C43 45.1046 42.1046 46 41 46H2C0.895431 46 0 45.1046 0 44V35Z"
-            fill="#D9D9D9"
-          />
-        </svg> */}
-        {props.children}
+        {/* {props.children} */}
+        <Radio
+          {...props}
+          // {...checkbox}
+          size={"lg"}
+          flexDir={"row"}
+          bg={"white"}
+          borderColor={"#E1E1E1"}
+          color={"#D0CECB"}
+          // _checked={{ bg: "red", borderColor: "#8F00FF", color: "#8F00FF" }}
+        />
       </Flex>
     </Box>
   );
@@ -95,7 +90,7 @@ export const CustomRadio = ({
   const group = getRootProps();
 
   return (
-    <HStack {...group}>
+    <Flex {...group} {...props} padding={"0"}>
       {options.map((value: string | number) => {
         const radio = getRadioProps({ value });
         return (
@@ -104,6 +99,6 @@ export const CustomRadio = ({
           </RadioCard>
         );
       })}
-    </HStack>
+    </Flex>
   );
 };

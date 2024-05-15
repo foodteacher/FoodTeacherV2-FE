@@ -9,20 +9,13 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
-import { StepProps } from "../../types";
+import { PhysicalInfo, StepProps } from "../../types";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { CustomRadio } from "@/app/(featured-slice)/shared/radio/ui/CustomRadio";
 import SignupLabel from "@/app/(featured-slice)/shared/label/ui/SignupLabel";
 import SignupInput from "@/app/(featured-slice)/shared/Input/ui/SignupInput";
 import { SignupButton } from "@/app/(featured-slice)/shared/Button/ui";
 import { BLOOD_TYPE_OTPIONS } from "../../const/const";
-
-interface PhysicalInfo {
-  height: string;
-  weight: string;
-  targetWeight: string;
-  bloodType: string;
-}
 
 export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
   const {
@@ -32,11 +25,11 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
     handleSubmit,
   } = useForm<PhysicalInfo>();
 
-  const onSubmit: SubmitHandler<PhysicalInfo> = (formInfo) => {
+  const onSubmit: SubmitHandler<PhysicalInfo> = (physicalInfo) => {
     setState((data) => {
-      return data;
+      return { ...data, ...physicalInfo };
     });
-    goNextStep();
+    // goNextStep();
   };
 
   return (

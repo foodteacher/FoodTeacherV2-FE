@@ -1,5 +1,6 @@
 import {
   Box,
+  Flex,
   FormControl,
   FormErrorMessage,
   Heading,
@@ -8,10 +9,11 @@ import {
 import React from "react";
 import { StepProps } from "../../types";
 import { SubmitHandler, useForm } from "react-hook-form";
-import SignupInput from "@/app/(featured-slice)/shared/Input/SignupInput";
-import SignupLabel from "@/app/(featured-slice)/shared/label/SignupLabel";
 import { CustomRadio } from "@/app/(featured-slice)/shared/radio/ui/CustomRadio";
 import { genderOptions } from "../../const/const";
+import SignupLabel from "@/app/(featured-slice)/shared/label/ui/SignupLabel";
+import SignupInput from "@/app/(featured-slice)/shared/Input/ui/SignupInput";
+import { SignupButton } from "@/app/(featured-slice)/shared/Button/ui";
 
 interface UserInfo {
   name: string;
@@ -27,16 +29,15 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
     handleSubmit,
   } = useForm<UserInfo>();
 
-  const onSubmit: SubmitHandler<UserInfo> = (ageInfo) => {
+  const onSubmit: SubmitHandler<UserInfo> = (formInfo) => {
     setState((data) => {
-      // data.age = ageInfo.age;
       return data;
     });
     goNextStep();
   };
 
   return (
-    <Box as="form" onSubmit={handleSubmit(onSubmit)}>
+    <Flex as="form" onSubmit={handleSubmit(onSubmit)} flexDir={"column"}>
       <Heading fontSize={"24px"} fontWeight={"bold"}>
         기본 정보를 입력해주세요
       </Heading>
@@ -49,8 +50,6 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
             register={{
               ...register("name", {
                 required: { value: true, message: "이름을 입력해주세요." },
-                // minLength: { value: 1, message: "숫자를 입력해주세요!" },
-                // min: { value: 10, message: "10세이상 가입가능합니다." },
               }),
             }}
           />
@@ -67,8 +66,6 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
             register={{
               ...register("birth", {
                 required: { value: true, message: "생년월일을 입력해주세요." },
-                // minLength: { value: 1, message: "숫자를 입력해주세요!" },
-                // min: { value: 10, message: "10세이상 가입가능합니다." },
               }),
             }}
           />
@@ -78,7 +75,7 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
         </FormControl>
 
         <FormControl isInvalid={!!errors.gender}>
-          <FormLabel htmlFor="gender">성별을 입력해주세요.</FormLabel>
+          <SignupLabel htmlFor="gender">성별</SignupLabel>
           <CustomRadio
             options={genderOptions}
             name={"gender"}
@@ -93,16 +90,9 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
         </FormControl>
       </VStack>
 
-      {/* <MainButton
-        type={"submit"}
-        _disabled={{
-          bgColor: "#D2D2D2",
-          color: "#FFFFFF",
-        }}
-        isDisabled={!isValid}
-      >
-        다음
-      </MainButton> */}
-    </Box>
+      <Box pos={"fixed"} right={0} bottom={0} left={0} padding={"10px"}>
+        <SignupButton>다음</SignupButton>
+      </Box>
+    </Flex>
   );
 };

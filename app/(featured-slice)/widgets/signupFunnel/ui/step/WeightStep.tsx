@@ -1,9 +1,13 @@
 "use client";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { StepProps } from "../../types";
-import { FormControl, FormErrorMessage, FormLabel } from "@chakra-ui/react";
-import Input from "@/app/(featured-slice)/shared/Input/Input";
-import { MainButton } from "@/app/(featured-slice)/features/auth/ui";
+import {
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Input,
+} from "@chakra-ui/react";
+// import Input from "@/app/(featured-slice)/shared/Input/Input";
 
 interface WeightStep extends StepProps {
   initializeStep: () => void;
@@ -30,7 +34,7 @@ export const WeightStep = ({ setState, goNextStep }: StepProps) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormControl isInvalid={!!errors.weight}>
           <FormLabel htmlFor="weight">몸무게를 입력해주세요!</FormLabel>
-          <Input
+          {/* <Input
             id="weight"
             type="number"
             placeholder="몸무게를 입력해주세요."
@@ -40,12 +44,12 @@ export const WeightStep = ({ setState, goNextStep }: StepProps) => {
                 minLength: { value: 1, message: "숫자를 입력해주세요!" },
               }),
             }}
-          />
+          /> */}
           <FormErrorMessage>
             {errors.weight && errors.weight.message}
           </FormErrorMessage>
         </FormControl>
-        <MainButton
+        {/* <MainButton
           type={"submit"}
           _disabled={{
             bgColor: "#D2D2D2",
@@ -54,7 +58,7 @@ export const WeightStep = ({ setState, goNextStep }: StepProps) => {
           isDisabled={!isValid}
         >
           다음
-        </MainButton>
+        </MainButton> */}
       </form>
     </>
   );

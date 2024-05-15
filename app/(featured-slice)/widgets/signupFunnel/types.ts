@@ -8,12 +8,15 @@ export interface StepProps {
 }
 
 export type BloodType = "A" | "B" | "AB" | "O";
-export interface SignupState {
+
+export interface UserInfoType {
   name: string;
-  height: number;
-  weight: number;
   birthday: string;
   gender: string;
+}
+export interface SignupState extends UserInfoType {
+  height: number;
+  weight: number;
   targetWeight: number;
   bloodType: BloodType;
 }

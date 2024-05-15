@@ -8,7 +8,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
-import { StepProps } from "../../types";
+import { StepProps, UserInfoType } from "../../types";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { CustomRadio } from "@/app/(featured-slice)/shared/radio/ui/CustomRadio";
 import SignupLabel from "@/app/(featured-slice)/shared/label/ui/SignupLabel";
@@ -16,23 +16,17 @@ import SignupInput from "@/app/(featured-slice)/shared/Input/ui/SignupInput";
 import { SignupButton } from "@/app/(featured-slice)/shared/Button/ui";
 import { GENDER_OPTIONS } from "../../const/const";
 
-interface UserInfo {
-  name: string;
-  birth: number;
-  gender: string;
-}
-
 export const UserInfo = ({ goNextStep, setState }: StepProps) => {
   const {
     formState: { errors, isValid },
     register,
     control,
     handleSubmit,
-  } = useForm<UserInfo>();
+  } = useForm<UserInfoType>();
 
-  const onSubmit: SubmitHandler<UserInfo> = (formInfo) => {
+  const onSubmit: SubmitHandler<UserInfoType> = (formInfo) => {
     setState((data) => {
-      return data;
+      return { ...data, ...formInfo };
     });
     goNextStep();
   };
@@ -59,13 +53,13 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
           </FormErrorMessage>
         </FormControl>
 
-        <FormControl isInvalid={!!errors.birth}>
+        <FormControl isInvalid={!!errors.birthday}>
           <SignupLabel>생년월일</SignupLabel>
           <SignupInput
             id="birth"
             placeholder="YYYY/MM/DD"
             register={{
-              ...register("birth", {
+              ...register("birthday", {
                 required: { value: true, message: "생년월일을 입력해주세요." },
               }),
             }}

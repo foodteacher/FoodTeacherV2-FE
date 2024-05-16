@@ -7,6 +7,7 @@ const SignupInput = ({ ...props }: FormInputProp) => {
     <Input
       {...props}
       {...props.register}
+      borderColor={"gray.200"}
       h={"53px"}
       _placeholder={{ color: "#D1D1D1" }}
     />

@@ -19,6 +19,7 @@ const Funnel = ({
           {steps?.map((ele, idx) => {
             return (
               <Button
+                key={ele}
                 w={"36px"}
                 h={"36px"}
                 color={progress !== idx + 1 ? "#868686" : "#8F00FF"}

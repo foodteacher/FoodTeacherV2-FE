@@ -11,6 +11,8 @@ export const SignupButton = ({
     <Button
       bgColor={"#6F00DE"}
       color={"#FFFFFF"}
+      marginInlineStart={"0px"}
+      fontWeight={"bold"}
       {...props}
       w={"100%"}
       h={"53px"}

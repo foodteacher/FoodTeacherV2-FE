@@ -129,11 +129,11 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
         right={0}
         bottom={0}
         left={0}
-        padding={"10px"}
-        zIndex={"100"}
-        bgColor={"white"}
+        padding={"20px 10px"}
+        w={["100%", "100%", "740px"]}
+        margin={"0 auto"}
       >
-        <SignupButton>다음</SignupButton>
+        <SignupButton type={"submit"}>다음</SignupButton>
       </Box>
     </Flex>
   );

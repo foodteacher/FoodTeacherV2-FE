@@ -32,11 +32,11 @@ export const RadioCard = ({
       <Flex
         {...checkbox}
         cursor="pointer"
-        borderWidth="1px"
-        borderRadius="md"
-        boxShadow="md"
+        borderWidth={"1px"}
+        borderRadius={"8px"}
+        borderColor={"#EAEAEA"}
         alignItems={"flex-start"}
-        bg={"#EAEAEA"}
+        bg={"#F6F4F1"}
         _checked={{
           bg: "#FAF7FC",
           fontWeight: "bold",

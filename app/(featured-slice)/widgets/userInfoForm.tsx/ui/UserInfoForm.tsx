@@ -9,7 +9,7 @@ interface UserInfo {
   gender: string;
 }
 
-const UserInfoForm = () => {
+export const UserInfoForm = () => {
   const {
     register,
     handleSubmit,
@@ -66,5 +66,3 @@ const UserInfoForm = () => {
     </VStack>
   );
 };
-
-export default UserInfoForm;

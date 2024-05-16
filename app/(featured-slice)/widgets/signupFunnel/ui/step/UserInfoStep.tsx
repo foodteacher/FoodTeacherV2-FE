@@ -89,7 +89,15 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
         </FormControl>
       </VStack>
 
-      <Box pos={"fixed"} right={0} bottom={0} left={0} padding={"10px"}>
+      <Box
+        pos={"fixed"}
+        right={0}
+        bottom={0}
+        left={0}
+        padding={"20px 10px"}
+        w={["100%", "100%", "740px"]}
+        margin={"0 auto"}
+      >
         <SignupButton type={"submit"}>다음</SignupButton>
       </Box>
     </Flex>

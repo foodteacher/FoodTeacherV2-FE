@@ -4,19 +4,31 @@ import { Dispatch, SetStateAction } from "react";
 export interface StepProps {
   goNextStep: () => void;
   goPrevStep?: () => void;
-  setState: Dispatch<SetStateAction<SurveyState>>;
+  setState: Dispatch<SetStateAction<SignupState>>;
 }
 
-export interface SurveyState {
-  age: number;
+export type BloodType = "A" | "B" | "AB" | "O";
+
+export interface UserInfoType {
+  name: string;
+  birthday: string;
   gender: string;
-  weight: number;
 }
 
-export type FunnelInfo = SurveyState;
+export interface PhysicalInfo {
+  height: number;
+  weight: number;
+  targetWeight: number;
+  bloodType: string;
+}
+
+export type SignupState = UserInfoType & PhysicalInfo;
+
+export type FunnelInfo = SignupState;
 
 export type FunnelState = {
   currentStep: string;
   funnelState: FunnelInfo;
   progress?: number;
+  steps?: string[];
 };

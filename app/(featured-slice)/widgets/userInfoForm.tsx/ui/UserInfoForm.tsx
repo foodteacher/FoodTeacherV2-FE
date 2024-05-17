@@ -1,6 +1,5 @@
 "use client";
 
-import { MainButton } from "@/app/(featured-slice)/features/auth/ui";
 import SttFormItem from "@/app/(featured-slice)/shared/stt/ui/SttFormItem";
 import { ButtonGroup, Flex, FormErrorMessage, VStack } from "@chakra-ui/react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -10,7 +9,7 @@ interface UserInfo {
   gender: string;
 }
 
-const UserInfoForm = () => {
+export const UserInfoForm = () => {
   const {
     register,
     handleSubmit,
@@ -61,11 +60,9 @@ const UserInfoForm = () => {
       </SttFormItem>
 
       <ButtonGroup>
-        <MainButton>뒤로가기</MainButton>
-        <MainButton type="submit">등록하기</MainButton>
+        {/* <MainButton>뒤로가기</MainButton>
+        <MainButton type="submit">등록하기</MainButton> */}
       </ButtonGroup>
     </VStack>
   );
 };
-
-export default UserInfoForm;

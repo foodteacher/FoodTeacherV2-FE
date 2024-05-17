@@ -1,39 +1,37 @@
 import {
   Box,
+  Flex,
   FormControl,
   FormErrorMessage,
   Heading,
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
-import { StepProps } from "../../types";
+import { StepProps, UserInfoType } from "../../types";
 import { SubmitHandler, useForm } from "react-hook-form";
-import SignupInput from "@/app/(featured-slice)/shared/Input/SignupInput";
-import SignupLabel from "@/app/(featured-slice)/shared/label/SignupLabel";
-
-interface UserInfo {
-  name: string;
-  birth: number;
-  gender: string;
-}
+import { CustomRadio } from "@/app/(featured-slice)/shared/radio/ui/CustomRadio";
+import SignupLabel from "@/app/(featured-slice)/shared/label/ui/SignupLabel";
+import SignupInput from "@/app/(featured-slice)/shared/Input/ui/SignupInput";
+import { SignupButton } from "@/app/(featured-slice)/shared/Button/ui";
+import { GENDER_OPTIONS } from "../../const/const";
 
 export const UserInfo = ({ goNextStep, setState }: StepProps) => {
   const {
     formState: { errors, isValid },
     register,
+    control,
     handleSubmit,
-  } = useForm<UserInfo>();
+  } = useForm<UserInfoType>();
 
-  const onSubmit: SubmitHandler<UserInfo> = (ageInfo) => {
+  const onSubmit: SubmitHandler<UserInfoType> = (formInfo) => {
     setState((data) => {
-      // data.age = ageInfo.age;
-      return data;
+      return { ...data, ...formInfo };
     });
     goNextStep();
   };
 
   return (
-    <Box as="form" onSubmit={handleSubmit(onSubmit)}>
+    <Flex as="form" onSubmit={handleSubmit(onSubmit)} flexDir={"column"}>
       <Heading fontSize={"24px"} fontWeight={"bold"}>
         기본 정보를 입력해주세요
       </Heading>
@@ -46,8 +44,6 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
             register={{
               ...register("name", {
                 required: { value: true, message: "이름을 입력해주세요." },
-                // minLength: { value: 1, message: "숫자를 입력해주세요!" },
-                // min: { value: 10, message: "10세이상 가입가능합니다." },
               }),
             }}
           />
@@ -56,35 +52,54 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
           </FormErrorMessage>
         </FormControl>
 
-        <FormControl isInvalid={!!errors.birth}>
+        <FormControl isInvalid={!!errors.birthday}>
           <SignupLabel>생년월일</SignupLabel>
           <SignupInput
             id="birth"
             placeholder="YYYY/MM/DD"
             register={{
-              ...register("birth", {
+              ...register("birthday", {
                 required: { value: true, message: "생년월일을 입력해주세요." },
-                // minLength: { value: 1, message: "숫자를 입력해주세요!" },
-                // min: { value: 10, message: "10세이상 가입가능합니다." },
+                pattern: /^\d{4}\/\d{2}\/\d{2}$/,
               }),
             }}
           />
           <FormErrorMessage>
-            {errors.name && errors.name.message}
+            {errors.birthday && errors.birthday.message}
+            {errors?.birthday?.type === "pattern" && (
+              <p>형식에 맞게 입력해주세요.</p>
+            )}
+          </FormErrorMessage>
+        </FormControl>
+
+        <FormControl isInvalid={!!errors.gender}>
+          <SignupLabel htmlFor="gender">성별</SignupLabel>
+          <CustomRadio
+            options={GENDER_OPTIONS}
+            name={"gender"}
+            control={control}
+            w={"100%"}
+            h={"56px"}
+            gap={"16px"}
+            padding={"12px 16px"}
+          />
+          <FormErrorMessage>
+            {errors.gender && errors.gender.message}
           </FormErrorMessage>
         </FormControl>
       </VStack>
 
-      {/* <MainButton
-        type={"submit"}
-        _disabled={{
-          bgColor: "#D2D2D2",
-          color: "#FFFFFF",
-        }}
-        isDisabled={!isValid}
+      <Box
+        pos={"fixed"}
+        right={0}
+        bottom={0}
+        left={0}
+        padding={"20px 10px"}
+        w={["100%", "100%", "740px"]}
+        margin={"0 auto"}
       >
-        다음
-      </MainButton> */}
-    </Box>
+        <SignupButton type={"submit"}>다음</SignupButton>
+      </Box>
+    </Flex>
   );
 };

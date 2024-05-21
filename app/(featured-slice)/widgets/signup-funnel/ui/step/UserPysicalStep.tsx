@@ -6,17 +6,16 @@ import {
   Heading,
   InputGroup,
   InputRightElement,
-  VStack,
 } from "@chakra-ui/react";
 import React from "react";
 import { PhysicalInfo, StepProps } from "../../types";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { CustomRadio } from "@/app/(featured-slice)/shared/ui/radio/CustomRadio";
 import SignupLabel from "@/app/(featured-slice)/shared/ui/label/SignupLabel";
 import { SignupButton } from "@/app/(featured-slice)/shared/ui/button";
 import { BLOOD_TYPE_OTPIONS } from "../../const/const";
 import SignupInput from "@/app/(featured-slice)/shared/ui/Input/SignupInput";
 import { useRouter } from "next/navigation";
+import { CustomRadio } from "@/app/(featured-slice)/shared/ui/radio/CheckRadio";
 
 export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
   const router = useRouter();
@@ -122,6 +121,7 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
           gap={"10px"}
           flexDir={"column"}
         />
+
         <FormErrorMessage>
           {errors.bloodType && errors.bloodType.message}
         </FormErrorMessage>
@@ -132,9 +132,10 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
         right={0}
         bottom={0}
         left={0}
-        padding={"20px 10px"}
+        padding={"20px 10px 20px 10px"}
         w={["100%", "100%", "740px"]}
         margin={"0 auto"}
+        bg={"#FDFBF8"}
       >
         <SignupButton type={"submit"}>다음</SignupButton>
       </Box>

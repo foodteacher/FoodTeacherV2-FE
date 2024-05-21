@@ -1,8 +1,12 @@
+"use client";
 import { SignupButton } from "@/app/(featured-slice)/shared/ui/button";
 import { Box, Button, Flex, Heading } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 export const UserRegisterStep = () => {
+  const router = useRouter();
+
   return (
     <Box>
       <Heading fontSize={"24px"} fontWeight={"bold"} w={"280px"}>
@@ -34,7 +38,9 @@ export const UserRegisterStep = () => {
         >
           나중에 쓸래요
         </Button>
-        <SignupButton type={"submit"}>계속하기</SignupButton>
+        <SignupButton type={"submit"} onClick={() => router.push("/survey")}>
+          계속하기
+        </SignupButton>
       </Flex>
     </Box>
   );

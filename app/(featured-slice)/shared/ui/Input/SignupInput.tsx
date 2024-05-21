@@ -8,6 +8,9 @@ const SignupInput = ({ ...props }: FormInputProp) => {
       {...props}
       {...props.register}
       borderColor={"gray.200"}
+      bgColor={"#FFFFFF"}
+      fontWeight={"semibold"}
+      padding={"16px"}
       h={"53px"}
       _placeholder={{ color: "#D1D1D1" }}
     />

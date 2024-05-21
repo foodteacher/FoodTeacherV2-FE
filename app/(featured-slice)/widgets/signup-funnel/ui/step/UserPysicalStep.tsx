@@ -11,13 +11,15 @@ import {
 import React from "react";
 import { PhysicalInfo, StepProps } from "../../types";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { CustomRadio } from "@/app/(featured-slice)/shared/radio/ui/CustomRadio";
-import SignupLabel from "@/app/(featured-slice)/shared/label/ui/SignupLabel";
-import SignupInput from "@/app/(featured-slice)/shared/Input/ui/SignupInput";
-import { SignupButton } from "@/app/(featured-slice)/shared/Button/ui";
+import { CustomRadio } from "@/app/(featured-slice)/shared/ui/radio/CustomRadio";
+import SignupLabel from "@/app/(featured-slice)/shared/ui/label/SignupLabel";
+import { SignupButton } from "@/app/(featured-slice)/shared/ui/button";
 import { BLOOD_TYPE_OTPIONS } from "../../const/const";
+import SignupInput from "@/app/(featured-slice)/shared/ui/Input/SignupInput";
+import { useRouter } from "next/navigation";
 
 export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
+  const router = useRouter();
   const {
     formState: { errors, isValid },
     register,
@@ -25,11 +27,13 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
     handleSubmit,
   } = useForm<PhysicalInfo>();
 
+  /**최종 회원가입 */
   const onSubmit: SubmitHandler<PhysicalInfo> = (physicalInfo) => {
     setState((data) => {
       return { ...data, ...physicalInfo };
     });
     goNextStep();
+    router.push("/signup-complete");
   };
 
   return (

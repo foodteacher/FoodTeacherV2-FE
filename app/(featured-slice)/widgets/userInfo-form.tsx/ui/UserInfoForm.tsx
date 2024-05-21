@@ -1,6 +1,6 @@
 "use client";
 
-import SttFormItem from "@/app/(featured-slice)/shared/stt/ui/SttFormItem";
+import SttFormItem from "@/app/(featured-slice)/shared/ui/stt/SttFormItem";
 import { ButtonGroup, Flex, FormErrorMessage, VStack } from "@chakra-ui/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 

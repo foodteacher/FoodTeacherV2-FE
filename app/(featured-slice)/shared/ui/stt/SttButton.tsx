@@ -1,8 +1,8 @@
 "use client";
 
 import { PhoneIcon } from "@chakra-ui/icons";
-import { useStt } from "../hooks";
-import { MainButton } from "../../Button/ui/MainButton";
+import { useStt } from "../../hooks/hooks";
+import { MainButton } from "../button/MainButton";
 
 const SttButton = () => {
   const { listening, startListening, stopListening } = useStt();

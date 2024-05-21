@@ -29,7 +29,7 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
     setState((data) => {
       return { ...data, ...physicalInfo };
     });
-    // goNextStep();
+    goNextStep();
   };
 
   return (

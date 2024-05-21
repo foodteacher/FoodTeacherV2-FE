@@ -11,11 +11,12 @@ const Funnel = ({
   children,
   progress,
   steps,
+  ...props
 }: PropsWithChildren<FunnelState>) => {
   return (
     <FunnelProvider.Provider value={{ currentStep, funnelState }}>
-      <Box>
-        <ButtonGroup margin={"24px 0"}>
+      <Box {...props}>
+        {/* <ButtonGroup margin={"24px 0"}>
           {steps?.map((ele, idx) => {
             return (
               <Button
@@ -29,7 +30,7 @@ const Funnel = ({
               </Button>
             );
           })}
-        </ButtonGroup>
+        </ButtonGroup> */}
         {children}
       </Box>
     </FunnelProvider.Provider>

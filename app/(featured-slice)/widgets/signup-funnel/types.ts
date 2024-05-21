@@ -1,3 +1,4 @@
+import { BoxProps } from "@chakra-ui/react";
 import { Dispatch, SetStateAction } from "react";
 
 /**step props */
@@ -26,9 +27,9 @@ export type SignupState = UserInfoType & PhysicalInfo;
 
 export type FunnelInfo = SignupState;
 
-export type FunnelState = {
+export interface FunnelState extends BoxProps {
   currentStep: string;
   funnelState: FunnelInfo;
   progress?: number;
   steps?: string[];
-};
+}

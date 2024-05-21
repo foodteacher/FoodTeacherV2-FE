@@ -26,6 +26,11 @@ export const SignupFunnel = () => {
         funnelState={surveyState}
         progress={progress}
         steps={steps}
+        padding={["16px", "16px", "120px"]}
+        margin={"0 auto"}
+        h={"100%"}
+        bg={"#FDFBF8"}
+        w={["100%", "100%", "740px"]}
       >
         <Funnel.Step name="info">
           <UserInfo goNextStep={changeNextStep} setState={setSurveyState} />

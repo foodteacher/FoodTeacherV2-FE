@@ -14,7 +14,7 @@ import { useController } from "react-hook-form";
 
 type RadioCardType = UseRadioProps & FlexProps;
 
-export const RadioCard = ({
+const RadioCard = ({
   w,
   h,
   padding,
@@ -70,7 +70,7 @@ interface CustomRadioProps extends FlexProps {
   control?: any;
 }
 
-export const CustomRadio = ({
+export const FrontRadio = ({
   options,
   name,
   control,

@@ -4,7 +4,7 @@ import React from "react";
 
 const SurveyPage = () => {
   return (
-    <Box>
+    <Box h={"100%"}>
       <SignupFunnel />
     </Box>
   );

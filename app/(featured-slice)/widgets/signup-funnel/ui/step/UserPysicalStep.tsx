@@ -15,7 +15,7 @@ import { SignupButton } from "@/app/(featured-slice)/shared/ui/button";
 import { BLOOD_TYPE_OTPIONS } from "../../const/const";
 import SignupInput from "@/app/(featured-slice)/shared/ui/Input/SignupInput";
 import { useRouter } from "next/navigation";
-import { CustomRadio } from "@/app/(featured-slice)/shared/ui/radio/CheckRadio";
+import { CheckRadio } from "@/app/(featured-slice)/shared/ui/radio/CheckRadio";
 
 export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
   const router = useRouter();
@@ -58,7 +58,9 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
               }),
             }}
           />
-          <InputRightElement h={"53px"}>cm</InputRightElement>
+          <InputRightElement h={"53px"} paddingRight={"16px"}>
+            cm
+          </InputRightElement>
         </InputGroup>
         <FormErrorMessage>
           {errors.height && errors.height.message}
@@ -80,7 +82,9 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
               }),
             }}
           />
-          <InputRightElement h={"53px"}>kg</InputRightElement>
+          <InputRightElement h={"53px"} paddingRight={"16px"}>
+            kg
+          </InputRightElement>
         </InputGroup>
         <FormErrorMessage>
           {errors.height && errors.height.message}
@@ -102,7 +106,9 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
               }),
             }}
           />
-          <InputRightElement h={"53px"}>kg</InputRightElement>
+          <InputRightElement h={"53px"} paddingRight={"16px"}>
+            kg
+          </InputRightElement>
         </InputGroup>
 
         <FormErrorMessage>
@@ -112,7 +118,7 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
 
       <FormControl isInvalid={!!errors.bloodType}>
         <SignupLabel htmlFor="bloodType">혈액형</SignupLabel>
-        <CustomRadio
+        <CheckRadio
           options={BLOOD_TYPE_OTPIONS}
           name={"bloodType"}
           control={control}
@@ -132,7 +138,7 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
         right={0}
         bottom={0}
         left={0}
-        padding={"20px 10px 20px 10px"}
+        padding={["16px", "16px", "20px 120px"]}
         w={["100%", "100%", "740px"]}
         margin={"0 auto"}
         bg={"#FDFBF8"}

@@ -13,10 +13,7 @@ import { useController } from "react-hook-form";
 
 type RadioCardType = UseRadioProps & FlexProps;
 
-export const CheckRadioCard = ({
-  h,
-  ...props
-}: PropsWithChildren<RadioCardType>) => {
+const CheckRadioCard = ({ h, ...props }: PropsWithChildren<RadioCardType>) => {
   const { getInputProps, getRadioProps } = useRadio(props);
 
   const input = getInputProps();
@@ -61,7 +58,7 @@ interface CustomRadioProps extends FlexProps {
   control?: any;
 }
 
-export const CustomRadio = ({
+export const CheckRadio = ({
   options,
   name,
   control,

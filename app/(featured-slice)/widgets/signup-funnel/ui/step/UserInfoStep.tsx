@@ -9,11 +9,11 @@ import {
 import React from "react";
 import { StepProps, UserInfoType } from "../../types";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { CustomRadio } from "@/app/(featured-slice)/shared/radio/ui/CustomRadio";
-import SignupLabel from "@/app/(featured-slice)/shared/label/ui/SignupLabel";
-import SignupInput from "@/app/(featured-slice)/shared/Input/ui/SignupInput";
-import { SignupButton } from "@/app/(featured-slice)/shared/Button/ui";
+import { CustomRadio } from "@/app/(featured-slice)/shared/ui/radio/CustomRadio";
+import SignupLabel from "@/app/(featured-slice)/shared/ui/label/SignupLabel";
 import { GENDER_OPTIONS } from "../../const/const";
+import SignupInput from "@/app/(featured-slice)/shared/ui/Input/SignupInput";
+import { SignupButton } from "@/app/(featured-slice)/shared/ui/button";
 
 export const UserInfo = ({ goNextStep, setState }: StepProps) => {
   const {

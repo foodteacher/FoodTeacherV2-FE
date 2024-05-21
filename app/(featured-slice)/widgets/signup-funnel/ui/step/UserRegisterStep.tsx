@@ -1,4 +1,4 @@
-import { SignupButton } from "@/app/(featured-slice)/shared/Button/ui";
+import { SignupButton } from "@/app/(featured-slice)/shared/ui/button";
 import { Box, Button, Flex, Heading } from "@chakra-ui/react";
 import React from "react";
 

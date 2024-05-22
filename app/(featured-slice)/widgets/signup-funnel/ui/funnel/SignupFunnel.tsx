@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useFunnel } from "@/app/(featured-slice)/shared/hooks/useFunnel";
 import Funnel from "@/app/(featured-slice)/shared/ui/funnel/Funnel";
 import { SignupState } from "../../types";
+import { ProgressBar } from "@/app/(featured-slice)/shared/ui/progress-box";
 
 export const SignupFunnel = () => {
   const { changeNextStep, initializeStep, currentStep, progress, steps } =
@@ -32,6 +33,7 @@ export const SignupFunnel = () => {
         bg={"#FDFBF8"}
         w={["100%", "100%", "740px"]}
       >
+        <ProgressBar orderArr={steps} />
         <Funnel.Step name="info">
           <UserInfo goNextStep={changeNextStep} setState={setSurveyState} />
         </Funnel.Step>

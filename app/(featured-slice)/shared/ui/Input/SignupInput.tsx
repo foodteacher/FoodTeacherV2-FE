@@ -3,7 +3,6 @@ import React from "react";
 import { FormInputProp } from "./type";
 
 const SignupInput = ({ register, ...props }: FormInputProp) => {
-  console.log(props);
   return (
     <Input
       {...props}

@@ -1,10 +1,10 @@
+"use client";
 import {
   Box,
   Flex,
   FormControl,
   FormErrorMessage,
   Heading,
-  Input,
 } from "@chakra-ui/react";
 import React from "react";
 import { StepProps, UserInfoType } from "../../types";
@@ -33,8 +33,6 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
     });
     goNextStep();
   };
-
-  console.log(errors);
 
   const inputSlashValidation = (e: any) => {
     let value = e.target.value;
@@ -70,13 +68,7 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
             }),
           }}
         />
-        {/* <Input
-          id="name"
-          placeholder="이름"
-          {...register("name", {
-            required: { value: true, message: "이름을 입력해주세요." },
-          })}
-        /> */}
+
         <FormErrorMessage>
           {errors.name && errors.name.message}
         </FormErrorMessage>

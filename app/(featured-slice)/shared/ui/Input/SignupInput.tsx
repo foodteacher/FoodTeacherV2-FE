@@ -2,11 +2,12 @@ import { Input } from "@chakra-ui/react";
 import React from "react";
 import { FormInputProp } from "./type";
 
-const SignupInput = ({ ...props }: FormInputProp) => {
+const SignupInput = ({ register, ...props }: FormInputProp) => {
+  console.log(props);
   return (
     <Input
       {...props}
-      {...props.register}
+      {...register}
       borderColor={"gray.200"}
       bgColor={"#FFFFFF"}
       fontWeight={"semibold"}

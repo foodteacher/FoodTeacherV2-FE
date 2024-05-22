@@ -4,6 +4,7 @@ import {
   FormControl,
   FormErrorMessage,
   Heading,
+  Input,
 } from "@chakra-ui/react";
 import React from "react";
 import { StepProps, UserInfoType } from "../../types";
@@ -20,13 +21,32 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
     register,
     control,
     handleSubmit,
-  } = useForm<UserInfoType>();
+  } = useForm<UserInfoType>({
+    defaultValues: {
+      gender: "",
+    },
+  });
 
   const onSubmit: SubmitHandler<UserInfoType> = (formInfo) => {
     setState((data) => {
       return { ...data, ...formInfo };
     });
     goNextStep();
+  };
+
+  console.log(errors);
+
+  const inputSlashValidation = (e: any) => {
+    let value = e.target.value;
+    value = value.replace(/\D/g, "");
+
+    if (value.length > 4) {
+      value = value.slice(0, 4) + "/" + value.slice(4);
+    }
+    if (value.length > 7) {
+      value = value.slice(0, 7) + "/" + value.slice(7);
+    }
+    e.target.value = value;
   };
 
   return (
@@ -50,6 +70,13 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
             }),
           }}
         />
+        {/* <Input
+          id="name"
+          placeholder="이름"
+          {...register("name", {
+            required: { value: true, message: "이름을 입력해주세요." },
+          })}
+        /> */}
         <FormErrorMessage>
           {errors.name && errors.name.message}
         </FormErrorMessage>
@@ -63,6 +90,7 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
           register={{
             ...register("birthday", {
               required: { value: true, message: "생년월일을 입력해주세요." },
+              onChange: (e) => inputSlashValidation(e),
               pattern: /^\d{4}\/\d{2}\/\d{2}$/,
             }),
           }}
@@ -82,12 +110,12 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
           name={"gender"}
           control={control}
           w={"100%"}
-          h={"56px"}
+          h={"80px"}
           gap={"16px"}
           padding={"12px 16px"}
         />
         <FormErrorMessage>
-          {errors.gender && errors.gender.message}
+          {errors.gender && "성별을 선택해 주세요."}
         </FormErrorMessage>
       </FormControl>
 
@@ -100,7 +128,18 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
         w={["100%", "100%", "740px"]}
         margin={"0 auto"}
       >
-        <SignupButton type={"submit"}>다음</SignupButton>
+        <Box
+          pos={"fixed"}
+          right={0}
+          bottom={0}
+          left={0}
+          padding={["16px", "16px", "20px 120px"]}
+          w={["100%", "100%", "740px"]}
+          margin={"0 auto"}
+          bg={"#FDFBF8"}
+        >
+          <SignupButton type={"submit"}>다음</SignupButton>
+        </Box>
       </Box>
     </Flex>
   );

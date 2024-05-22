@@ -9,7 +9,7 @@ import {
   useRadio,
   useRadioGroup,
 } from "@chakra-ui/react";
-import { useController } from "react-hook-form";
+import { UseFormRegisterReturn, useController } from "react-hook-form";
 
 type RadioCardType = UseRadioProps & FlexProps;
 
@@ -55,6 +55,7 @@ const CheckRadioCard = ({ h, ...props }: PropsWithChildren<RadioCardType>) => {
 interface CustomRadioProps extends FlexProps {
   options: (string | number)[];
   name: string;
+  register?: UseFormRegisterReturn;
   control?: any;
 }
 

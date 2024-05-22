@@ -25,7 +25,11 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
     register,
     control,
     handleSubmit,
-  } = useForm<PhysicalInfo>();
+  } = useForm<PhysicalInfo>({
+    defaultValues: {
+      bloodType: "",
+    },
+  });
 
   /**최종 회원가입 */
   const onSubmit: SubmitHandler<PhysicalInfo> = (physicalInfo) => {
@@ -55,7 +59,11 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
             placeholder="키"
             register={{
               ...register("height", {
-                required: { value: true, message: "이름을 입력해주세요." },
+                required: { value: true, message: "키를 입력해주세요." },
+                pattern: {
+                  value: /^\d{2,3}$/,
+                  message: "올바른 키를 입력해주세요.",
+                },
               }),
             }}
           />
@@ -78,7 +86,11 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
               ...register("weight", {
                 required: {
                   value: true,
-                  message: "생년월일을 입력해주세요.",
+                  message: "몸무게를 입력해 주세요.",
+                },
+                pattern: {
+                  value: /^\d{2,3}$/,
+                  message: "올바른 몸무게를 입력해주세요.",
                 },
               }),
             }}
@@ -88,7 +100,7 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
           </InputRightElement>
         </InputGroup>
         <FormErrorMessage color={"#FF0000"} fontSize={"16px"}>
-          {errors.height && errors.height.message}
+          {errors.weight && errors.weight.message}
         </FormErrorMessage>
       </FormControl>
 
@@ -102,7 +114,11 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
               ...register("targetWeight", {
                 required: {
                   value: true,
-                  message: "생년월일을 입력해주세요.",
+                  message: "목표 몸무게를 입력해 주세요.",
+                },
+                pattern: {
+                  value: /^\d{2,3}$/,
+                  message: "올바른 몸무게를 입력해주세요.",
                 },
               }),
             }}
@@ -131,7 +147,7 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
 
         <FormErrorMessage>
           <Text color={"#FF0000"} fontSize={"16px"}>
-            {errors.bloodType && errors.bloodType.message}
+            {errors.bloodType && "혈액형을 선택해 주세요."}
           </Text>
         </FormErrorMessage>
       </FormControl>

@@ -20,14 +20,15 @@ const RadioCard = ({
   padding,
   ...props
 }: PropsWithChildren<RadioCardType>) => {
-  const { getInputProps, getRadioProps } = useRadio(props);
+  const { getInputProps, getRadioProps, getLabelProps } = useRadio(props);
 
   const input = getInputProps();
   const checkbox = getRadioProps();
-
+  const label = getLabelProps();
+  // console.log(props.children);
   return (
     <Box as="label" w={"100%"} left={0} h={h}>
-      {/* <input {...input} /> */}
+      <input {...input} />
       <Flex
         {...checkbox}
         cursor="pointer"
@@ -35,6 +36,7 @@ const RadioCard = ({
         borderRadius={"8px"}
         borderColor={"#EAEAEA"}
         alignItems={"flex-start"}
+        h={"80px"}
         bg={"#F6F4F1"}
         _checked={{
           bg: "#FAF7FC",
@@ -48,17 +50,7 @@ const RadioCard = ({
         flexDir={"column"}
         gap={"30px"}
       >
-        {/* {props.children} */}
-        <Radio
-          {...props}
-          // {...checkbox}
-          size={"lg"}
-          flexDir={"row"}
-          bg={"white"}
-          borderColor={"#E1E1E1"}
-          color={"#D0CECB"}
-          // _checked={{ bg: "red", borderColor: "#8F00FF", color: "#8F00FF" }}
-        />
+        <Radio {...props} size={"lg"} flexDir={"row"} gap={"0px"} />
       </Flex>
     </Box>
   );
@@ -89,7 +81,7 @@ export const FrontRadio = ({
   const group = getRootProps();
 
   return (
-    <Flex {...group} {...props} padding={"0"}>
+    <Flex {...group} {...props} padding={"0"} h={"80px"}>
       {options.map((value: string | number) => {
         const radio = getRadioProps({ value });
         return (

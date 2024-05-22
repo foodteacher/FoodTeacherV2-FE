@@ -24,11 +24,12 @@ export const UserRegisterStep = () => {
         right={0}
         bottom={0}
         left={0}
-        padding={"20px 10px"}
         w={["100%", "100%", "740px"]}
         margin={"0 auto"}
         flexDir={"column"}
         gap={"16px"}
+        padding={["16px", "16px", "20px 120px"]}
+        bg={"#FDFBF8"}
       >
         <Button
           bg={"transparent"}

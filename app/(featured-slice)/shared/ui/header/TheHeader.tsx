@@ -18,6 +18,8 @@ export const TheHeader = ({
       bg={"#FDFBF8"}
       justifyContent={"space-between"}
       padding={["16px", "16px", "30px"]}
+      pos={"sticky"}
+      top={"0"}
     >
       <Box w={"24px"} h={"24px"}>
         {leftElement}

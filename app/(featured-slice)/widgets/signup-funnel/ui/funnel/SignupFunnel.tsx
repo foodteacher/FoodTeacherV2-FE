@@ -33,7 +33,11 @@ export const SignupFunnel = () => {
         bg={"#FDFBF8"}
         w={["100%", "100%", "740px"]}
       >
-        <ProgressBar orderArr={steps} />
+        <ProgressBar
+          stepArr={steps}
+          currentStep={currentStep}
+          boxWidth={"28px"}
+        />
         <Funnel.Step name="info">
           <UserInfo goNextStep={changeNextStep} setState={setSurveyState} />
         </Funnel.Step>

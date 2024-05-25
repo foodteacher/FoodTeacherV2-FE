@@ -57,7 +57,7 @@ const CheckBoxCard = ({ h, ...props }: PropsWithChildren<RadioCardType>) => {
           <CheckBoxIcon />
         </Flex>
       )}
-      <Text color="gray.700" {...getLabelProps()}>
+      <Text color={isChecked ? "#6D00A3" : "black"} {...getLabelProps()}>
         {props.children}
       </Text>
     </Text>

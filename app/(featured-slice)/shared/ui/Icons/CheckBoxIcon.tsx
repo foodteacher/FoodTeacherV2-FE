@@ -18,7 +18,7 @@ export const CheckBoxIcon = () => {
           height="18"
           rx="1"
           stroke="#818488"
-          stroke-width="2"
+          strokeWidth="2"
         />
       </svg>
     </Flex>

@@ -1,20 +1,15 @@
 "use client";
 import { StepProps } from "../../../signup-funnel/types";
 import { useRouter } from "next/navigation";
-import {
-  Box,
-  CheckboxGroup,
-  Flex,
-  FlexProps,
-  Text,
-  UseCheckboxProps,
-  useRadioGroup,
-} from "@chakra-ui/react";
-import { useController, useForm } from "react-hook-form";
-import { FrontCheckRadio } from "@/app/(featured-slice)/shared/ui/radio";
+import { Box, Button, UseCheckboxProps } from "@chakra-ui/react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { BLOOD_TYPE_OTPIONS } from "../../../signup-funnel/const/const";
+import { FrontCheckBox } from "@/app/(featured-slice)/shared/ui/checkbox";
 
 interface TestStep extends UseCheckboxProps, StepProps {}
+interface FormType {
+  bloodType: string;
+}
 
 export const TestStep = ({ goNextStep, setState, ...props }: any) => {
   const router = useRouter();
@@ -23,11 +18,15 @@ export const TestStep = ({ goNextStep, setState, ...props }: any) => {
     register,
     control,
     handleSubmit,
-  } = useForm<any>();
+  } = useForm<FormType>();
+
+  const submitFormHandler: SubmitHandler<FormType> = (data) => {
+    console.log(data);
+  };
 
   return (
-    <Box>
-      <FrontCheckRadio
+    <Box as="form" onSubmit={handleSubmit(submitFormHandler)}>
+      <FrontCheckBox
         options={BLOOD_TYPE_OTPIONS}
         name={"bloodType"}
         control={control}
@@ -36,6 +35,7 @@ export const TestStep = ({ goNextStep, setState, ...props }: any) => {
         gap={"10px"}
         flexDir={"column"}
       />
+      <Button type={"submit"}>click</Button>
     </Box>
   );
 };

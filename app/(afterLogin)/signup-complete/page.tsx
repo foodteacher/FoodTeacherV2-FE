@@ -1,3 +1,4 @@
+"use client";
 import { UserRegisterStep } from "@/app/(featured-slice)/widgets/signup-funnel/ui/step";
 import { Box } from "@chakra-ui/react";
 import React from "react";

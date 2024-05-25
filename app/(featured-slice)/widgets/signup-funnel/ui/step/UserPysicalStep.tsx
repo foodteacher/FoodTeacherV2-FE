@@ -15,7 +15,7 @@ import { SignupButton } from "@/app/(featured-slice)/shared/ui/button";
 import { BLOOD_TYPE_OTPIONS } from "../../const/const";
 import SignupInput from "@/app/(featured-slice)/shared/ui/Input/SignupInput";
 import { useRouter } from "next/navigation";
-import { CheckRadio } from "@/app/(featured-slice)/shared/ui/radio/CheckRadio";
+import { CheckRadio } from "@/app/(featured-slice)/shared/ui/radio";
 
 export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
   const router = useRouter();

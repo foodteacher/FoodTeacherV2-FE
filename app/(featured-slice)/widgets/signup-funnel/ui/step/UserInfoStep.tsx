@@ -116,22 +116,12 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
         right={0}
         bottom={0}
         left={0}
-        padding={"20px 10px"}
+        padding={["16px", "16px", "20px 120px"]}
         w={["100%", "100%", "740px"]}
         margin={"0 auto"}
+        bg={"#FDFBF8"}
       >
-        <Box
-          pos={"fixed"}
-          right={0}
-          bottom={0}
-          left={0}
-          padding={["16px", "16px", "20px 120px"]}
-          w={["100%", "100%", "740px"]}
-          margin={"0 auto"}
-          bg={"#FDFBF8"}
-        >
-          <SignupButton type={"submit"}>다음</SignupButton>
-        </Box>
+        <SignupButton type={"submit"}>다음</SignupButton>
       </Box>
     </Flex>
   );

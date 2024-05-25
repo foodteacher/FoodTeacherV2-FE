@@ -20,6 +20,7 @@ export const TheHeader = ({
       padding={["16px", "16px", "30px"]}
       pos={"sticky"}
       top={"0"}
+      zIndex={"100"}
     >
       <Box w={"24px"} h={"24px"}>
         {leftElement}

@@ -27,10 +27,10 @@ export const SignupFunnel = () => {
         funnelState={surveyState}
         progress={progress}
         steps={steps}
-        padding={["16px", "16px", "120px"]}
+        padding={["0px 16px", "0px 16px", "0px 120px"]}
         margin={"0 auto"}
-        h={"100%"}
         bg={"#FDFBF8"}
+        h={"100%"}
         w={["100%", "100%", "740px"]}
       >
         <ProgressBar
@@ -39,13 +39,17 @@ export const SignupFunnel = () => {
           boxWidth={"28px"}
         />
         <Funnel.Step name="info">
-          <UserInfo goNextStep={changeNextStep} setState={setSurveyState} />
-        </Funnel.Step>
-        <Funnel.Step name="physical">
+          {/* <UserInfo goNextStep={changeNextStep} setState={setSurveyState} /> */}
           <UserPysicalStep
             goNextStep={changeNextStep}
             setState={setSurveyState}
           />
+        </Funnel.Step>
+        <Funnel.Step name="physical">
+          {/* <UserPysicalStep
+            goNextStep={changeNextStep}
+            setState={setSurveyState}
+          /> */}
         </Funnel.Step>
       </Funnel>
     </>

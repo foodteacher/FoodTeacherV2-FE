@@ -29,6 +29,7 @@ import {
   SignupButton,
 } from "@/app/(featured-slice)/shared/ui/button";
 import { MainButton } from "@/app/(featured-slice)/shared/ui/button/MainButton";
+import { LevelRadioGroup } from "@/app/(featured-slice)/shared/ui/radio";
 
 interface TestStep extends UseCheckboxProps, StepProps {}
 interface FormType {
@@ -105,6 +106,9 @@ export const TestStep = ({ goNextStep, setState, ...props }: any) => {
           </OrderedList>
         </SurveyResultCard>
       </VStack>
+
+      <LevelRadioGroup />
+
       <Modal isOpen={isOpen} onClose={onClose} scrollBehavior={"inside"}>
         <ModalOverlay />
         <ModalContent

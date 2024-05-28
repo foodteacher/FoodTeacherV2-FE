@@ -8,16 +8,19 @@ import {
 } from "@chakra-ui/react";
 
 interface SignupResultListProps extends HighlightProps {
-  idx: number;
+  idx?: number;
+  fontSize: string;
 }
 
 export const SurveryResultList = ({
   idx,
-  query,
   children,
+  query,
+  fontSize,
+  ...props
 }: SignupResultListProps) => {
   return (
-    <ListItem display={"flex"} gap={"16px"}>
+    <>
       <Box
         bg={"#D9D9D9"}
         h={"25px"}
@@ -29,7 +32,7 @@ export const SurveryResultList = ({
       >
         {idx}
       </Box>
-      <Text color={"#333331"} fontWeight={"bold"} fontSize={"16px"}>
+      <Text color={"#333331"} fontWeight={"bold"} fontSize={fontSize}>
         <Highlight
           query={query}
           styles={{
@@ -43,6 +46,6 @@ export const SurveryResultList = ({
           {children}
         </Highlight>
       </Text>
-    </ListItem>
+    </>
   );
 };

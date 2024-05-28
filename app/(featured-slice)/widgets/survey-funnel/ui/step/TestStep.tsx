@@ -4,8 +4,10 @@ import { useRouter } from "next/navigation";
 import {
   Box,
   Button,
+  Flex,
   HStack,
   Highlight,
+  OrderedList,
   Text,
   UseCheckboxProps,
   VStack,
@@ -14,6 +16,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { BLOOD_TYPE_OTPIONS } from "../../../signup-funnel/const/const";
 import { FrontCheckBox } from "@/app/(featured-slice)/shared/ui/checkbox";
 import { SurveyResultCard } from "@/app/(featured-slice)/shared/ui/card";
+import { SurveryResultList } from "@/app/(featured-slice)/shared/ui/list";
+import { PencilIcon } from "@/app/(featured-slice)/shared/ui/Icons";
 
 interface TestStep extends UseCheckboxProps, StepProps {}
 interface FormType {
@@ -45,37 +49,38 @@ export const TestStep = ({ goNextStep, setState, ...props }: any) => {
         flexDir={"column"}
       />
 
-      <SurveyResultCard>
-        <HStack spacing={"16px"} w={"100%"}>
-          <Box
-            bg={"#D9D9D9"}
-            h={"25px"}
-            aspectRatio={"1"}
-            borderRadius={"50%"}
-            textAlign={"center"}
-            fontSize={"16px"}
-            fontWeight={"bold"}
-          >
-            1
-          </Box>
-          <Text color={"#333331"} fontWeight={"bold"} fontSize={"16px"}>
-            건강 목표는
-            <Highlight
-              query={"건강 유지"}
-              styles={{
-                border: "1px solid #961AFF",
-                padding: "4px 8px",
-                margin: "0px 8px",
-                borderRadius: "5px",
-                color: "#6D00A3",
-              }}
-            >
-              건강 유지
-            </Highlight>
-            입니다.
+      <VStack spacing={"16px"} w={"100%"}>
+        <Flex h={"29px"} w={"100%"} justifyContent={"space-between"}>
+          <Text fontWeight={"bold"} fontSize={"16px"} lineHeight={2}>
+            건강 정보
           </Text>
-        </HStack>
-      </SurveyResultCard>
+          <Button
+            bg={"#E5E4DC"}
+            color={"#1A1918"}
+            fontSize={"14px"}
+            w={"69px"}
+            h={"29px"}
+            padding={"6px 12px"}
+            borderRadius={"40px"}
+            leftIcon={<PencilIcon />}
+          >
+            수정
+          </Button>
+        </Flex>
+        <SurveyResultCard>
+          <OrderedList listStyleType={"none"} margin={"0"} spacing={"16px"}>
+            <SurveryResultList idx={1} query={"건강 유지"}>
+              건강 목표는 건강 유지 입니다.
+            </SurveryResultList>
+            <SurveryResultList idx={2} query={"매년"}>
+              건강 검진을 매년 받습니다.
+            </SurveryResultList>
+            <SurveryResultList idx={3} query={"전혀 하지 않습니다."}>
+              흡연을 전혀 하지 않습니다.
+            </SurveryResultList>
+          </OrderedList>
+        </SurveyResultCard>
+      </VStack>
 
       <Button type={"submit"}>click</Button>
     </VStack>

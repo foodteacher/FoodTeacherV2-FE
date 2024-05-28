@@ -9,6 +9,7 @@ export const RevertButton = ({ children, onClick, ...props }: ButtonProps) => {
       fontSize={"18px"}
       fontWeight={"bold"}
       {...props}
+      onClick={onClick}
     >
       {children}
     </Button>

@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import {
   Button,
   ButtonGroup,
+  Divider,
   Flex,
   ListItem,
   Modal,
@@ -104,24 +105,82 @@ export const TestStep = ({ goNextStep, setState, ...props }: any) => {
           </OrderedList>
         </SurveyResultCard>
       </VStack>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} scrollBehavior={"inside"}>
         <ModalOverlay />
-        <ModalContent bg={"#FDFBF8"} padding={"24px 16px"} w={"328px"}>
+        <ModalContent
+          bg={"#FDFBF8"}
+          w={"328px"}
+          minH={"625px"}
+          overflow={"scroll"}
+        >
           <VStack spacing={"24px"}>
-            <ModalBody padding={"0"}>
-              <Flex gap={"8px"} alignItems={"center"}>
-                <SurveryResultList query={""} idx={1} fontSize={"20px"}>
-                  바라시는 건강 목표를 알려주세요
-                </SurveryResultList>
-              </Flex>
+            <ModalBody padding={"24px 16px"}>
+              <VStack gap={"20px"} w={"100%"}>
+                <Flex gap={"8px"} alignItems={"center"} dir={"column"}>
+                  <SurveryResultList query={""} idx={1} fontSize={"20px"}>
+                    바라시는 건강 목표를 알려주세요
+                  </SurveryResultList>
+                </Flex>
+                <FrontCheckBox
+                  name=""
+                  options={BLOOD_TYPE_OTPIONS}
+                  w={"100%"}
+                  control={control}
+                  flexDir={"column"}
+                />
+              </VStack>
+              <Divider borderColor={"#F4F3EB"} margin={"24px 0"} />
+              <VStack gap={"20px"} w={"100%"}>
+                <Flex gap={"8px"} alignItems={"center"} dir={"column"}>
+                  <SurveryResultList query={""} idx={1} fontSize={"20px"}>
+                    바라시는 건강 목표를 알려주세요
+                  </SurveryResultList>
+                </Flex>
+                <FrontCheckBox
+                  name=""
+                  options={BLOOD_TYPE_OTPIONS}
+                  w={"100%"}
+                  control={control}
+                  flexDir={"column"}
+                />
+              </VStack>
+              <Divider borderColor={"#F4F3EB"} margin={"24px 0"} />
+
+              <VStack gap={"20px"} w={"100%"}>
+                <Flex gap={"8px"} alignItems={"center"} dir={"column"}>
+                  <SurveryResultList query={""} idx={1} fontSize={"20px"}>
+                    바라시는 건강 목표를 알려주세요
+                  </SurveryResultList>
+                </Flex>
+                <FrontCheckBox
+                  name=""
+                  options={BLOOD_TYPE_OTPIONS}
+                  w={"100%"}
+                  control={control}
+                  flexDir={"column"}
+                />
+              </VStack>
             </ModalBody>
 
-            <ModalFooter padding={0} w={"100%"}>
-              <ButtonGroup w={"100%"}>
-                <RevertButton w={"64px"} onClick={() => onClose()}>
+            <ModalFooter
+              w={"100%"}
+              bottom={"0"}
+              pos={"sticky"}
+              bg={"#FDFBF8"}
+              padding={"24px 16px"}
+            >
+              <ButtonGroup w={"100%"} spacing={"12px"}>
+                <RevertButton
+                  w={"70px"}
+                  h={"53px"}
+                  borderRadius={"32%"}
+                  onClick={() => onClose()}
+                >
                   취소
                 </RevertButton>
-                <SignupButton w={"220px"}>적용</SignupButton>
+                <SignupButton w={"220px"} h={"53px"}>
+                  적용
+                </SignupButton>
               </ButtonGroup>
             </ModalFooter>
           </VStack>

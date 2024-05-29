@@ -4,7 +4,7 @@ import { SignupFunnel } from "@/app/(featured-slice)/widgets/signup-funnel/ui/fu
 import { Box, Text } from "@chakra-ui/react";
 import React from "react";
 
-const SurveyPage = () => {
+export const SurveyPage = () => {
   return (
     <Box h={"100%"}>
       <TheHeader leftElement={<BackArrowIcon />}>
@@ -14,5 +14,3 @@ const SurveyPage = () => {
     </Box>
   );
 };
-
-export default SurveyPage;

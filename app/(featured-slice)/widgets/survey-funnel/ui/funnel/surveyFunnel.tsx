@@ -1,10 +1,12 @@
 import { useFunnel } from "@/app/(featured-slice)/shared/hooks/useFunnel";
 import Funnel from "@/app/(featured-slice)/shared/ui/funnel/Funnel";
 import React, { useState } from "react";
+import { UserPysicalStep } from "../../../signup-funnel/ui/step";
+import { TestStep } from "../step";
 
-const surveyFunnel = () => {
+export const SurveyFunnel = () => {
   const { changeNextStep, initializeStep, currentStep, progress, steps } =
-    useFunnel([""]);
+    useFunnel(["1", "2"]);
 
   const [surveyState, setSurveyState] = useState<any>({
     name: "",
@@ -15,7 +17,21 @@ const surveyFunnel = () => {
     targetWeight: 0,
     bloodType: "A",
   });
-  return <Funnel currentStep={currentStep} funnelState={surveyState}></Funnel>;
+  return (
+    <Funnel
+      currentStep={currentStep}
+      funnelState={surveyState}
+      progress={progress}
+      steps={steps}
+      padding={["16px", "16px", "120px"]}
+      margin={"0 auto"}
+      h={"100%"}
+      bg={"#FDFBF8"}
+      w={["100%", "100%", "740px"]}
+    >
+      <Funnel.Step name="1">
+        <TestStep goNextStep={changeNextStep} setState={setSurveyState} />
+      </Funnel.Step>
+    </Funnel>
+  );
 };
-
-export default surveyFunnel;

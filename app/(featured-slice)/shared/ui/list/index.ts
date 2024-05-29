@@ -1,0 +1,1 @@
+export { SurveryResultList } from "./SurveyResultList";

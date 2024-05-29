@@ -83,12 +83,14 @@ export const FrontCheckBox = ({
   });
 
   const { getCheckboxProps } = useCheckboxGroup({
+    // defaultValue: ["A"],
     ...field,
   });
   return (
     <Flex {...props} padding={"0"} gap={"16px"}>
       {options.map((value: string | number) => {
         const checkbox = getCheckboxProps({ value });
+
         return (
           <CheckBoxCard key={value} {...checkbox}>
             {value}

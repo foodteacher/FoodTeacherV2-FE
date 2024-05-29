@@ -48,7 +48,13 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
   };
 
   return (
-    <Flex as="form" onSubmit={handleSubmit(onSubmit)}>
+    <Flex
+      as="form"
+      onSubmit={handleSubmit(onSubmit)}
+      flexDir={"column"}
+      h={"100%"}
+      pos={"relative"}
+    >
       <Flex flexDir={"column"} gap={"32px"} w={"100%"} paddingBottom={"150px"}>
         <Heading fontSize={"24px"} fontWeight={"bold"}>
           기본 정보를 입력해주세요
@@ -113,10 +119,12 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
         right={0}
         bottom={0}
         left={0}
-        padding={["16px", "16px", "20px 120px"]}
         w={["100%", "100%", "740px"]}
         margin={"0 auto"}
         bg={"#FDFBF8"}
+        justifySelf={"flex-end"}
+        alignSelf={"flex-end"}
+        padding={[" 16px", "16px", "16px 120px"]}
       >
         <SignupButton type={"submit"}>다음</SignupButton>
       </Box>

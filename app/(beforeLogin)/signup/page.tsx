@@ -1,10 +1,11 @@
+"use client";
 import { BackArrowIcon } from "@/app/(featured-slice)/shared/ui/Icons";
 import { TheHeader } from "@/app/(featured-slice)/shared/ui/header";
 import { SignupFunnel } from "@/app/(featured-slice)/widgets/signup-funnel/ui/funnel/SignupFunnel";
 import { Box, Text } from "@chakra-ui/react";
 import React from "react";
 
-export const SurveyPage = () => {
+const page = () => {
   return (
     <Box h={"100%"}>
       <TheHeader leftElement={<BackArrowIcon />}>
@@ -14,3 +15,5 @@ export const SurveyPage = () => {
     </Box>
   );
 };
+
+export default page;

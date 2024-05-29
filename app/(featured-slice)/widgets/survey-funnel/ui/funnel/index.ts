@@ -1,1 +1,1 @@
-export { SurveyFunnel } from "./SurveyFunnel";
+export { SurveyFunnel } from "./surveyFunnel";

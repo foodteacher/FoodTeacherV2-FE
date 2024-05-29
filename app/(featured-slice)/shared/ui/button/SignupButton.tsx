@@ -9,7 +9,7 @@ export const SignupButton = ({
 }: PropsWithChildren<ButtonProps>) => {
   return (
     <Button
-      bgColor={"#6F00DE"}
+      bgColor={"#8800CC"}
       color={"#FFFFFF"}
       marginInlineStart={"0px"}
       fontWeight={"bold"}
@@ -17,6 +17,10 @@ export const SignupButton = ({
       w={"100%"}
       h={"53px"}
       borderRadius={"32px"}
+      _hover={{
+        bg: "#7800B4",
+      }}
+      _pressed={{ bg: "#6D00A3" }}
     >
       {children}
     </Button>

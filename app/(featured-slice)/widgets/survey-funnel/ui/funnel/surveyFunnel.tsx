@@ -1,7 +1,6 @@
 import { useFunnel } from "@/app/(featured-slice)/shared/hooks/useFunnel";
 import Funnel from "@/app/(featured-slice)/shared/ui/funnel/Funnel";
 import React, { useState } from "react";
-import { UserPysicalStep } from "../../../signup-funnel/ui/step";
 import { TestStep } from "../step";
 
 export const SurveyFunnel = () => {

@@ -5,53 +5,102 @@ import {
   Divider,
   HStack,
   Image,
+  RadioProps,
   Stack,
   Text,
   useRadio,
   useRadioGroup,
-  useToast,
 } from "@chakra-ui/react";
-import React from "react";
-import { ColoredVeryBadIcon } from "../Icons";
 
-const LevelRadio = (props: any) => {
-  const { icon, colorIcon, ...radioProps } = props;
+interface LevelRadioProps extends RadioProps {
+  icon: string;
+  colorIcon: string;
+  text: string;
+  w: string;
+}
+
+const LevelRadio = ({
+  icon,
+  colorIcon,
+  text,
+  w,
+  ...radioProps
+}: LevelRadioProps) => {
   const { state, getInputProps, getRadioProps, htmlProps, getLabelProps } =
     useRadio(radioProps);
+
+  const isChecked = state.isChecked;
+
   return (
     <Text as={"label"} {...htmlProps} cursor="pointer" zIndex={"300"}>
       <input {...getInputProps({})} hidden />
       <Box
         {...getRadioProps()}
-        // bg={state.isChecked ? "green.200" : "transparent"}
-        // w={12}
+        w={w}
         // p={1}
-        // rounded="full"
+        rounded="full"
         bg={"transparent"}
       >
-        {/* {state.isChecked ? colorIcon : icon} */}
-        <Image
-          zIndex={"400"}
-          src={icon}
-          {...getLabelProps()}
-          //   w={"40px"}
-          //   aspectRatio={"40px"}
-          aspectRatio={"1/1"}
-          //   w={"100%"}
-        />
+        {state.isChecked ? (
+          <Image
+            zIndex={"400"}
+            w={"100%"}
+            src={colorIcon}
+            {...getLabelProps()}
+          />
+        ) : (
+          <Image zIndex={"400"} w={"100%"} src={icon} {...getLabelProps()} />
+        )}
+        <Text
+          w={"100%"}
+          fontSize={"13px"}
+          fontWeight={isChecked ? "bold" : "normal"}
+          textAlign={"center"}
+        >
+          {text}
+        </Text>
       </Box>
     </Text>
   );
 };
 
 export const LevelRadioGroup = () => {
-  const toast = useToast();
-  const avatars = [
-    { name: "1", icon: "./img/verybad.png", colorIcon: <ColoredVeryBadIcon /> },
-    { name: "2", icon: "./img/bad.png" },
-    { name: "3", icon: "./img/soso.png" },
-    { name: "4", icon: "./img/good.png" },
-    { name: "5", icon: "./img/emotion.png" },
+  const radioOption = [
+    {
+      name: "1",
+      icon: "./img/verybad.png",
+      colorIcon: "./img/verybad-color.png",
+      text: "매우 많음",
+      w: "52px",
+    },
+    {
+      name: "2",
+      icon: "./img/bad.png",
+      colorIcon: "./img/bad-color.png",
+      text: "많음",
+      w: "32px",
+    },
+    {
+      name: "3",
+      icon: "./img/soso.png",
+      colorIcon: "./img/soso-color.png",
+      text: "보통",
+      w: "32px",
+    },
+    {
+      name: "4",
+      icon: "./img/good.png",
+      colorIcon: "./img/good-color.png",
+      text: "적음",
+      w: "32px",
+    },
+    {
+      name: "5",
+      icon: "./img/sogood.png",
+      colorIcon: "./img/sogood-color.png",
+      text: "매우 적음",
+      w: "52px",
+    },
   ];
 
   const handleChange = (value: any) => {
@@ -70,14 +119,21 @@ export const LevelRadioGroup = () => {
   return (
     <Stack {...getRootProps()}>
       <Text> {value}</Text>
-      <HStack pos={"relative"}>
-        <Divider pos={"absolute"} top={"50%"} w={"85%"} left={"10%"} />
-        {avatars.map((avatar) => {
+      <HStack
+        pos={"relative"}
+        spacing={"15px"}
+        w={"296px"}
+        justifyContent={"space-between"}
+      >
+        <Divider pos={"absolute"} top={"36%"} w={"85%"} left={"10%"} />
+        {radioOption.map((avatar) => {
           return (
             <LevelRadio
               key={avatar.name}
               icon={avatar.icon}
               colorIcon={avatar.colorIcon}
+              text={avatar.text}
+              w={avatar.w}
               {...getRadioProps({ value: avatar.name })}
             />
           );

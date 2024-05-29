@@ -16,9 +16,7 @@ const Funnel = ({
 }: PropsWithChildren<FunnelState>) => {
   return (
     <FunnelProvider.Provider value={{ currentStep, funnelState }}>
-
       <Box {...props}>{children}</Box>
-
     </FunnelProvider.Provider>
   );
 };

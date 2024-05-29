@@ -28,8 +28,8 @@ import {
   RevertButton,
   SignupButton,
 } from "@/app/(featured-slice)/shared/ui/button";
-import { MainButton } from "@/app/(featured-slice)/shared/ui/button/MainButton";
 import { LevelRadioGroup } from "@/app/(featured-slice)/shared/ui/radio";
+import { useSurveyById } from "@/app/(featured-slice)/entities/survey/hooks";
 
 interface TestStep extends UseCheckboxProps, StepProps {}
 interface FormType {
@@ -48,6 +48,8 @@ export const TestStep = ({ goNextStep, setState, ...props }: any) => {
   const submitFormHandler: SubmitHandler<FormType> = (data) => {
     console.log(data);
   };
+
+  const { data } = useSurveyById(1);
 
   const { isOpen, onClose, onOpen } = useDisclosure();
 
@@ -114,8 +116,17 @@ export const TestStep = ({ goNextStep, setState, ...props }: any) => {
         <ModalContent
           bg={"#FDFBF8"}
           w={"328px"}
-          minH={"625px"}
+          minH={"425px"}
           overflow={"scroll"}
+          css={{
+            "&::-webkit-scrollbar": {
+              display: "none",
+            },
+            "&::-webkit-scrollbar-track": {},
+            "&::-webkit-scrollbar-thumb": {
+              borderRadius: "24px",
+            },
+          }}
         >
           <VStack spacing={"24px"}>
             <ModalBody padding={"24px 16px"}>

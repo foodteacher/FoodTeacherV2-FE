@@ -1,14 +1,18 @@
 import axios from "axios";
 import { Token } from "../types";
 
+// const accessToken = localStorage.getItem("accessToken");
+
 const headers =
   process.env.NODE_ENV === "development"
     ? {
         "Content-Type": "application/json",
         "X-Environment": "dev",
+        // Authorization: `Bearer ${accessToken}`,
       }
     : {
         "Content-Type": "application/json",
+        // Authorization: `Bearer ${accessToken}`,
       };
 
 export const instance = axios.create({
@@ -54,7 +58,7 @@ instance.interceptors.response.use(
       await updateAccessToken();
       return instance(config);
     } else {
-      return (window.location.href = "/");
+      // return (window.location.href = "/");
     }
   }
 );
@@ -78,6 +82,6 @@ export const updateAccessToken = async () => {
   } catch (err) {
     /**access 재발급에 실패한다면 로그아웃 및 redirect */
     localStorage.removeItem("accessToken");
-    window.location.replace("/");
+    // window.location.replace("/");
   }
 };

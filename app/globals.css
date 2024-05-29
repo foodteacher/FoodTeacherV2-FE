@@ -1,5 +1,15 @@
-html,body
-{
-  height: 100%;
-}
 
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  /* width: 100%; */
+  overflow: hidden;
+}
+/* body {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+  /* overflow: auto;
+  height: 100vh; /* 100% of the viewport height */

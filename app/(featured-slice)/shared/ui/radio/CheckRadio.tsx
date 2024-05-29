@@ -5,11 +5,13 @@ import {
   Box,
   Flex,
   FlexProps,
+  Text,
   UseRadioProps,
   useRadio,
   useRadioGroup,
 } from "@chakra-ui/react";
-import { useController } from "react-hook-form";
+import { UseFormRegisterReturn, useController } from "react-hook-form";
+import { CheckIcon } from "../Icons";
 
 type RadioCardType = UseRadioProps & FlexProps;
 
@@ -18,6 +20,8 @@ const CheckRadioCard = ({ h, ...props }: PropsWithChildren<RadioCardType>) => {
 
   const input = getInputProps();
   const checkbox = getRadioProps();
+
+  const isChecked = props.isChecked;
 
   return (
     <Box as="label" w={"100%"} left={0} h={h}>
@@ -28,7 +32,7 @@ const CheckRadioCard = ({ h, ...props }: PropsWithChildren<RadioCardType>) => {
         borderWidth={"1px"}
         borderRadius={"12px"}
         borderColor={"#EAEAEA"}
-        alignItems={"flex-start"}
+        alignItems={"center"}
         bg={"#FFFFFF"}
         h={"60px"}
         fontSize={"18px"}
@@ -42,11 +46,11 @@ const CheckRadioCard = ({ h, ...props }: PropsWithChildren<RadioCardType>) => {
           boxShadow: "0 0 12px 1px rgba(90,0,161,0.32)",
         }}
         padding={"20px 24px"}
-        justifyContent={"center"}
-        flexDir={"column"}
+        justifyContent={"space-between"}
         gap={"30px"}
       >
         {props.children}
+        {isChecked && <CheckIcon />}
       </Flex>
     </Box>
   );
@@ -55,6 +59,7 @@ const CheckRadioCard = ({ h, ...props }: PropsWithChildren<RadioCardType>) => {
 interface CustomRadioProps extends FlexProps {
   options: (string | number)[];
   name: string;
+  register?: UseFormRegisterReturn;
   control?: any;
 }
 

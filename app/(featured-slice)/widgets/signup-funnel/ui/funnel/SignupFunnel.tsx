@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useFunnel } from "@/app/(featured-slice)/shared/hooks/useFunnel";
 import Funnel from "@/app/(featured-slice)/shared/ui/funnel/Funnel";
 import { SignupState } from "../../types";
+import { ProgressBar } from "@/app/(featured-slice)/shared/ui/progress-box";
 
 export const SignupFunnel = () => {
   const { changeNextStep, initializeStep, currentStep, progress, steps } =
@@ -26,18 +27,33 @@ export const SignupFunnel = () => {
         funnelState={surveyState}
         progress={progress}
         steps={steps}
-        padding={["16px", "16px", "120px"]}
+        padding={["0px 16px", "0px 16px", "0px 120px"]}
         margin={"0 auto"}
-        h={"100%"}
         bg={"#FDFBF8"}
+        h={"100%"}
         w={["100%", "100%", "740px"]}
+        overflow={"scroll"}
+        css={{
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
+          "&::-webkit-scrollbar-track": {},
+          "&::-webkit-scrollbar-thumb": {
+            borderRadius: "24px",
+          },
+        }}
       >
+        <ProgressBar
+          stepArr={steps}
+          currentStep={currentStep}
+          boxWidth={"28px"}
+        />
         <Funnel.Step name="info">
-          {/* <UserInfo goNextStep={changeNextStep} setState={setSurveyState} /> */}
-          <UserPysicalStep
+          <UserInfo goNextStep={changeNextStep} setState={setSurveyState} />
+          {/* <UserPysicalStep
             goNextStep={changeNextStep}
             setState={setSurveyState}
-          />
+          /> */}
         </Funnel.Step>
         <Funnel.Step name="physical">
           <UserPysicalStep

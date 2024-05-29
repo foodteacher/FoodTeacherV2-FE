@@ -1,7 +1,8 @@
 "use client";
 import { FunnelState } from "@/app/(featured-slice)/widgets/signup-funnel/types";
-import { Box, Button, ButtonGroup, Progress } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import React, { createContext, useContext, PropsWithChildren } from "react";
+import { ProgressBar } from "../progress-box";
 
 const FunnelProvider = createContext<FunnelState | null>(null);
 
@@ -15,24 +16,7 @@ const Funnel = ({
 }: PropsWithChildren<FunnelState>) => {
   return (
     <FunnelProvider.Provider value={{ currentStep, funnelState }}>
-      <Box {...props}>
-        {/* <ButtonGroup margin={"24px 0"}>
-          {steps?.map((ele, idx) => {
-            return (
-              <Button
-                key={ele}
-                w={"36px"}
-                h={"36px"}
-                color={progress !== idx + 1 ? "#868686" : "#8F00FF"}
-                bg={progress !== idx + 1 ? "#EEEEEF" : "#F2E2FF"}
-              >
-                {idx + 1}
-              </Button>
-            );
-          })}
-        </ButtonGroup> */}
-        {children}
-      </Box>
+      <Box {...props}>{children}</Box>
     </FunnelProvider.Provider>
   );
 };

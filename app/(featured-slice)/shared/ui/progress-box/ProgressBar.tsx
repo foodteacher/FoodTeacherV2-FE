@@ -1,16 +1,37 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, BoxProps, Flex } from "@chakra-ui/react";
 import React from "react";
 
-const ProgressBox = ({ focus }: { focus: string }) => {
-  const progressColor =
-    focus === "0" ? "#E7E5E2" : focus === "1" ? "#D49EFF" : "#8F00FF";
+interface ProgressBarProps {
+  stepArr: string[];
+  currentStep: string;
+  boxWidth?: string;
+}
 
-  return (
-    <Box bg={progressColor} flexGrow={"1"} h={"5px"} borderRadius={"4px"} />
-  );
+interface ProgressBoxProps extends BoxProps {
+  focus: string;
+  currentStep: string;
+  stepArr: string[];
+}
+
+const ProgressBox = ({ focus, currentStep, stepArr, w }: ProgressBoxProps) => {
+  const targetIdx = stepArr.indexOf(focus);
+  const currentIdx = stepArr.indexOf(currentStep);
+
+  const progressColor =
+    targetIdx === currentIdx
+      ? "#8F00FF"
+      : targetIdx < currentIdx
+        ? "#D49EFF"
+        : "#E7E5E2";
+
+  return <Box bg={progressColor} w={w} h={"5px"} borderRadius={"4px"} />;
 };
 
-export const ProgressBar = ({ orderArr }: { orderArr: string[] }) => {
+export const ProgressBar = ({
+  stepArr,
+  boxWidth,
+  currentStep,
+}: ProgressBarProps) => {
   return (
     <Flex
       gap={"3px"}
@@ -18,8 +39,16 @@ export const ProgressBar = ({ orderArr }: { orderArr: string[] }) => {
       w={"300px"}
       justifyContent={"center"}
     >
-      {orderArr.map((ele) => {
-        return <ProgressBox key={ele} focus={ele} />;
+      {stepArr.map((ele: string) => {
+        return (
+          <ProgressBox
+            key={ele}
+            focus={ele}
+            w={boxWidth}
+            stepArr={stepArr}
+            currentStep={currentStep}
+          />
+        );
       })}
     </Flex>
   );

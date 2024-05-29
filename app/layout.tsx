@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import ChakraProviders from "@/app/ChakraProvider";
 import QueryProviders from "@/app/QueryProviders";
-import TheHeader from "./(featured-slice)/widgets/layout/ui/TheHeader";
 import DefaultLayout from "./(featured-slice)/widgets/layout/ui/DefaultLayout";
 import "./globals.css";
 
@@ -49,7 +48,7 @@ export default function RootLayout({
         <QueryProviders>
           <ChakraProviders>
             <DefaultLayout>
-              <TheHeader />
+              {/* <TheHeader /> */}
               {children}
             </DefaultLayout>
           </ChakraProviders>

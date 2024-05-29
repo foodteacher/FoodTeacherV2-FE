@@ -42,7 +42,7 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
   };
 
   return (
-    <Flex as="form" onSubmit={handleSubmit(onSubmit)}>
+    <Flex as="form" onSubmit={handleSubmit(onSubmit)} flexDir={"column"}>
       <Flex
         flexDir={"column"}
         gap={"32px"}
@@ -160,10 +160,12 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
         right={0}
         bottom={0}
         left={0}
-        padding={["16px", "16px", "20px 120px"]}
         w={["100%", "100%", "740px"]}
         margin={"0 auto"}
         bg={"#FDFBF8"}
+        justifySelf={"flex-end"}
+        alignSelf={"flex-end"}
+        padding={[" 16px", "16px", "16px 120px"]}
       >
         <SignupButton type={"submit"}>다음</SignupButton>
       </Box>

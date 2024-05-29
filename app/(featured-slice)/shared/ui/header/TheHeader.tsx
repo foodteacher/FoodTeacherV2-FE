@@ -14,7 +14,6 @@ export const TheHeader = ({
   return (
     <Flex
       w={"100%"}
-      h={"46px"}
       bg={"#FDFBF8"}
       justifyContent={"space-between"}
       padding={["16px", "16px", "30px"]}

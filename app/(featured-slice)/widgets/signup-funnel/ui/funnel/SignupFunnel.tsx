@@ -30,8 +30,18 @@ export const SignupFunnel = () => {
         padding={["0px 16px", "0px 16px", "0px 120px"]}
         margin={"0 auto"}
         bg={"#FDFBF8"}
-        h={"calc(100% - 64px)"}
+        h={"100%"}
         w={["100%", "100%", "740px"]}
+        overflow={"scroll"}
+        css={{
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
+          "&::-webkit-scrollbar-track": {},
+          "&::-webkit-scrollbar-thumb": {
+            borderRadius: "24px",
+          },
+        }}
       >
         <ProgressBar
           stepArr={steps}

@@ -16,25 +16,9 @@ const Funnel = ({
 }: PropsWithChildren<FunnelState>) => {
   return (
     <FunnelProvider.Provider value={{ currentStep, funnelState }}>
-      <Box {...props}>
-        {/* <ButtonGroup margin={"24px 0"}>
-          {steps?.map((ele, idx) => {
-            return (
-              <Button
-                key={ele}
-                w={"36px"}
-                h={"36px"}
-                color={progress !== idx + 1 ? "#868686" : "#8F00FF"}
-                bg={progress !== idx + 1 ? "#EEEEEF" : "#F2E2FF"}
-              >
-                {idx + 1}
-              </Button>
-            );
-          })}
-        </ButtonGroup> */}
 
-        {children}
-      </Box>
+      <Box {...props}>{children}</Box>
+
     </FunnelProvider.Provider>
   );
 };

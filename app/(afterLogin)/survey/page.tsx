@@ -1,7 +1,13 @@
-import React from "react";
+"use client";
+
+import { SurveyFunnel } from "@/app/(featured-slice)/widgets/survey-funnel/ui/funnel";
 
 const page = () => {
-  return <div>123</div>;
+  return (
+    <>
+      <SurveyFunnel />
+    </>
+  );
 };
 
 export default page;

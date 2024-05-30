@@ -1,9 +1,7 @@
-name: Build and Push
+name: Build and Push dev
 
 on:
   push:
-    branches: [ "dev" ]
-  pull_request:
     branches: [ "dev" ]
   workflow_dispatch:
     inputs:

@@ -45,6 +45,8 @@ interface FormType {
   bloodType: string;
 }
 
+const DOSING_FREQUENCY = ["주 1회 이하", "주 2~3회", "주 4~6회", "매일"];
+
 export const TestStep = ({ goNextStep, setState, ...props }: any) => {
   const router = useRouter();
   const [selectValue, setSelectValue] = useState("복용 횟수");
@@ -72,9 +74,7 @@ export const TestStep = ({ goNextStep, setState, ...props }: any) => {
     onOpenDrawer();
   };
 
-  const setSelectValueHandler = ({ target, ...any }: any) => {
-    const value = target.value;
-    console.log(target.value, any);
+  const setSelectValueHandler = (value: string) => {
     setSelectValue(value);
     onCloseDrawer();
   };
@@ -180,7 +180,18 @@ export const TestStep = ({ goNextStep, setState, ...props }: any) => {
           <DrawerHeader borderBottomWidth="1px">Basic Drawer</DrawerHeader>
           <DrawerBody>
             <UnorderedList>
-              <ListItem
+              {DOSING_FREQUENCY.map((frequency) => {
+                return (
+                  <ListItem
+                    onClick={() => setSelectValueHandler(frequency)}
+                    value={"주 1회 이하"}
+                    cursor={"pointer"}
+                  >
+                    {frequency}
+                  </ListItem>
+                );
+              })}
+              {/* <ListItem
                 onClick={(e) => setSelectValueHandler(e)}
                 value={"주 1회 이하"}
                 cursor={"pointer"}
@@ -207,7 +218,7 @@ export const TestStep = ({ goNextStep, setState, ...props }: any) => {
                 cursor={"pointer"}
               >
                 매일
-              </ListItem>
+              </ListItem> */}
             </UnorderedList>
           </DrawerBody>
         </DrawerContent>

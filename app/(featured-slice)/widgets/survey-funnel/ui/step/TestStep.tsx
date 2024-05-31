@@ -2,9 +2,15 @@
 import { StepProps } from "../../../signup-funnel/types";
 import { useRouter } from "next/navigation";
 import {
+  Box,
   Button,
   ButtonGroup,
   Divider,
+  Drawer,
+  DrawerBody,
+  DrawerContent,
+  DrawerHeader,
+  DrawerOverlay,
   Flex,
   ListItem,
   Modal,
@@ -14,6 +20,7 @@ import {
   ModalOverlay,
   OrderedList,
   Text,
+  UnorderedList,
   UseCheckboxProps,
   VStack,
   useDisclosure,
@@ -30,6 +37,8 @@ import {
 } from "@/app/(featured-slice)/shared/ui/button";
 import { LevelRadioGroup } from "@/app/(featured-slice)/shared/ui/radio";
 import { useSurveyById } from "@/app/(featured-slice)/entities/survey/hooks";
+import SignupInput from "@/app/(featured-slice)/shared/ui/Input/SignupInput";
+import { useState } from "react";
 
 interface TestStep extends UseCheckboxProps, StepProps {}
 interface FormType {
@@ -38,6 +47,7 @@ interface FormType {
 
 export const TestStep = ({ goNextStep, setState, ...props }: any) => {
   const router = useRouter();
+  const [selectValue, setSelectValue] = useState("복용 횟수");
   const {
     formState: { errors, isValid },
     register,
@@ -49,12 +59,32 @@ export const TestStep = ({ goNextStep, setState, ...props }: any) => {
     console.log(data);
   };
 
-  const { data } = useSurveyById(1);
+  // const { data } = useSurveyById(1);
 
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const {
+    isOpen: isOpenDrawer,
+    onClose: onCloseDrawer,
+    onOpen: onOpenDrawer,
+  } = useDisclosure();
+
+  const handleSelectBox = () => {
+    onOpenDrawer();
+  };
+
+  const setSelectValueHandler = ({ target, ...any }: any) => {
+    const value = target.value;
+    console.log(target.value, any);
+    setSelectValue(value);
+    onCloseDrawer();
+  };
 
   return (
-    <VStack as="form" onSubmit={handleSubmit(submitFormHandler)} gap={"100px"}>
+    <Flex
+      as="form"
+      onSubmit={handleSubmit(submitFormHandler)}
+      flexDir={"column"}
+    >
       <FrontCheckBox
         options={BLOOD_TYPE_OTPIONS}
         name={"bloodType"}
@@ -110,6 +140,78 @@ export const TestStep = ({ goNextStep, setState, ...props }: any) => {
       </VStack>
 
       <LevelRadioGroup />
+
+      <Flex gap={"12px"} w={"100%"}>
+        <SignupInput
+          id="name"
+          placeholder="약 이름"
+          // register={{
+          //   ...register("name", {
+          //     required: { value: true, message: "이름을 입력해주세요." },
+          //   }),
+          // }}
+        />
+
+        <Box
+          id="medicine"
+          borderColor={"gray.200"}
+          bgColor={"#FFFFFF"}
+          fontWeight={"semibold"}
+          h={"53px"}
+          w={"123px"}
+          _placeholder={{ color: "#D1D1D1" }}
+          _focus={{ border: "2px" }}
+          _invalid={{ border: "2px solid #282828" }}
+          pos={"relative"}
+        >
+          <Button onClick={() => handleSelectBox()} h={"53px"} w={"123px"}>
+            {selectValue}
+          </Button>
+        </Box>
+      </Flex>
+
+      <Drawer
+        placement={"bottom"}
+        onClose={onCloseDrawer}
+        isOpen={isOpenDrawer}
+      >
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerHeader borderBottomWidth="1px">Basic Drawer</DrawerHeader>
+          <DrawerBody>
+            <UnorderedList>
+              <ListItem
+                onClick={(e) => setSelectValueHandler(e)}
+                value={"주 1회 이하"}
+                cursor={"pointer"}
+              >
+                주 1회 이하
+              </ListItem>
+              <ListItem
+                onClick={setSelectValueHandler}
+                value={"주 2~3회"}
+                cursor={"pointer"}
+              >
+                주 2~3회
+              </ListItem>
+              <ListItem
+                onClick={setSelectValueHandler}
+                value={"주 4~6회"}
+                cursor={"pointer"}
+              >
+                주 4~6회
+              </ListItem>
+              <ListItem
+                onClick={setSelectValueHandler}
+                value={"매일"}
+                cursor={"pointer"}
+              >
+                매일
+              </ListItem>
+            </UnorderedList>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
 
       <Modal isOpen={isOpen} onClose={onClose} scrollBehavior={"inside"}>
         <ModalOverlay />
@@ -203,6 +305,6 @@ export const TestStep = ({ goNextStep, setState, ...props }: any) => {
       </Modal>
 
       <Button type={"submit"}>click</Button>
-    </VStack>
+    </Flex>
   );
 };

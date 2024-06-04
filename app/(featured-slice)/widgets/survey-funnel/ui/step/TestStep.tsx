@@ -30,7 +30,10 @@ import { BLOOD_TYPE_OTPIONS } from "../../../signup-funnel/const/const";
 import { FrontCheckBox } from "@/app/(featured-slice)/shared/ui/checkbox";
 import { SurveyResultCard } from "@/app/(featured-slice)/shared/ui/card";
 import { SurveryResultList } from "@/app/(featured-slice)/shared/ui/list";
-import { PencilIcon } from "@/app/(featured-slice)/shared/ui/Icons";
+import {
+  DropDownIcon,
+  PencilIcon,
+} from "@/app/(featured-slice)/shared/ui/Icons";
 import {
   RevertButton,
   SignupButton,
@@ -49,7 +52,7 @@ const DOSING_FREQUENCY = ["주 1회 이하", "주 2~3회", "주 4~6회", "매일
 
 export const TestStep = ({ goNextStep, setState, ...props }: any) => {
   const router = useRouter();
-  const [selectValue, setSelectValue] = useState("복용 횟수");
+  const [selectValue, setSelectValue] = useState<string>("횟수");
   const {
     formState: { errors, isValid },
     register,
@@ -157,16 +160,28 @@ export const TestStep = ({ goNextStep, setState, ...props }: any) => {
           borderColor={"gray.200"}
           bgColor={"#FFFFFF"}
           fontWeight={"semibold"}
+          border={"1px solid #DADADA"}
+          borderRadius={"8px"}
+          color={"#AEAEAE"}
           h={"53px"}
           w={"123px"}
+          flexShrink={0}
           _placeholder={{ color: "#D1D1D1" }}
           _focus={{ border: "2px" }}
           _invalid={{ border: "2px solid #282828" }}
           pos={"relative"}
+          cursor={"pointer"}
+          onClick={() => handleSelectBox()}
+          padding={"12px 12px"}
         >
-          <Button onClick={() => handleSelectBox()} h={"53px"} w={"123px"}>
-            {selectValue}
-          </Button>
+          <Flex
+            justifyContent={"space-between"}
+            alignItems={"center"}
+            gap={"auto"}
+          >
+            <Text>{selectValue}</Text>
+            <DropDownIcon />
+          </Flex>
         </Box>
       </Flex>
 
@@ -176,49 +191,22 @@ export const TestStep = ({ goNextStep, setState, ...props }: any) => {
         isOpen={isOpenDrawer}
       >
         <DrawerOverlay />
-        <DrawerContent>
-          <DrawerHeader borderBottomWidth="1px">Basic Drawer</DrawerHeader>
+        <DrawerContent h={"45%"}>
+          <DrawerHeader></DrawerHeader>
           <DrawerBody>
-            <UnorderedList>
+            <UnorderedList listStyleType={"none"}>
               {DOSING_FREQUENCY.map((frequency) => {
                 return (
                   <ListItem
                     onClick={() => setSelectValueHandler(frequency)}
                     value={"주 1회 이하"}
                     cursor={"pointer"}
+                    key={frequency}
                   >
                     {frequency}
                   </ListItem>
                 );
               })}
-              {/* <ListItem
-                onClick={(e) => setSelectValueHandler(e)}
-                value={"주 1회 이하"}
-                cursor={"pointer"}
-              >
-                주 1회 이하
-              </ListItem>
-              <ListItem
-                onClick={setSelectValueHandler}
-                value={"주 2~3회"}
-                cursor={"pointer"}
-              >
-                주 2~3회
-              </ListItem>
-              <ListItem
-                onClick={setSelectValueHandler}
-                value={"주 4~6회"}
-                cursor={"pointer"}
-              >
-                주 4~6회
-              </ListItem>
-              <ListItem
-                onClick={setSelectValueHandler}
-                value={"매일"}
-                cursor={"pointer"}
-              >
-                매일
-              </ListItem> */}
             </UnorderedList>
           </DrawerBody>
         </DrawerContent>

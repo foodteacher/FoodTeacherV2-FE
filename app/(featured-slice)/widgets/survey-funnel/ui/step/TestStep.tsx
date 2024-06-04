@@ -2,15 +2,9 @@
 import { StepProps } from "../../../signup-funnel/types";
 import { useRouter } from "next/navigation";
 import {
-  Box,
   Button,
   ButtonGroup,
   Divider,
-  Drawer,
-  DrawerBody,
-  DrawerContent,
-  DrawerHeader,
-  DrawerOverlay,
   Flex,
   ListItem,
   Modal,
@@ -20,7 +14,6 @@ import {
   ModalOverlay,
   OrderedList,
   Text,
-  UnorderedList,
   UseCheckboxProps,
   VStack,
   useDisclosure,
@@ -30,10 +23,7 @@ import { BLOOD_TYPE_OTPIONS } from "../../../signup-funnel/const/const";
 import { FrontCheckBox } from "@/app/(featured-slice)/shared/ui/checkbox";
 import { SurveyResultCard } from "@/app/(featured-slice)/shared/ui/card";
 import { SurveryResultList } from "@/app/(featured-slice)/shared/ui/list";
-import {
-  DropDownIcon,
-  PencilIcon,
-} from "@/app/(featured-slice)/shared/ui/Icons";
+import { PencilIcon } from "@/app/(featured-slice)/shared/ui/Icons";
 import {
   RevertButton,
   SignupButton,
@@ -42,6 +32,8 @@ import { LevelRadioGroup } from "@/app/(featured-slice)/shared/ui/radio";
 import { useSurveyById } from "@/app/(featured-slice)/entities/survey/hooks";
 import SignupInput from "@/app/(featured-slice)/shared/ui/Input/SignupInput";
 import { useState } from "react";
+import { BottomSheetSelect } from "@/app/(featured-slice)/shared/ui/select";
+import { favoriteOption } from "../../consts/const";
 
 interface TestStep extends UseCheckboxProps, StepProps {}
 interface FormType {
@@ -67,20 +59,6 @@ export const TestStep = ({ goNextStep, setState, ...props }: any) => {
   // const { data } = useSurveyById(1);
 
   const { isOpen, onClose, onOpen } = useDisclosure();
-  const {
-    isOpen: isOpenDrawer,
-    onClose: onCloseDrawer,
-    onOpen: onOpenDrawer,
-  } = useDisclosure();
-
-  const handleSelectBox = () => {
-    onOpenDrawer();
-  };
-
-  const setSelectValueHandler = (value: string) => {
-    setSelectValue(value);
-    onCloseDrawer();
-  };
 
   return (
     <Flex
@@ -142,75 +120,23 @@ export const TestStep = ({ goNextStep, setState, ...props }: any) => {
         </SurveyResultCard>
       </VStack>
 
-      <LevelRadioGroup />
+      <LevelRadioGroup option={favoriteOption} />
 
-      <Flex gap={"12px"} w={"100%"}>
-        <SignupInput
-          id="name"
-          placeholder="약 이름"
-          // register={{
-          //   ...register("name", {
-          //     required: { value: true, message: "이름을 입력해주세요." },
-          //   }),
-          // }}
-        />
-
-        <Box
-          id="medicine"
-          borderColor={"gray.200"}
-          bgColor={"#FFFFFF"}
-          fontWeight={"semibold"}
-          border={"1px solid #DADADA"}
-          borderRadius={"8px"}
-          color={"#AEAEAE"}
-          h={"53px"}
-          w={"123px"}
-          flexShrink={0}
-          _placeholder={{ color: "#D1D1D1" }}
-          _focus={{ border: "2px" }}
-          _invalid={{ border: "2px solid #282828" }}
-          pos={"relative"}
-          cursor={"pointer"}
-          onClick={() => handleSelectBox()}
-          padding={"12px 12px"}
-        >
-          <Flex
-            justifyContent={"space-between"}
-            alignItems={"center"}
-            gap={"auto"}
-          >
-            <Text>{selectValue}</Text>
-            <DropDownIcon />
-          </Flex>
-        </Box>
+      <Flex w={"100%"} flexDir={"column"} gap={"16px"}>
+        {Array.from({ length: 3 }, (_, idx) => idx).map((key) => {
+          return (
+            <Flex gap={"12px"} key={key}>
+              <SignupInput id="name" placeholder="약 이름" />
+              <BottomSheetSelect
+                id="dosing"
+                initialText="횟수"
+                sheetHeader="복용 횟수"
+                list={DOSING_FREQUENCY}
+              />
+            </Flex>
+          );
+        })}
       </Flex>
-
-      <Drawer
-        placement={"bottom"}
-        onClose={onCloseDrawer}
-        isOpen={isOpenDrawer}
-      >
-        <DrawerOverlay />
-        <DrawerContent h={"45%"}>
-          <DrawerHeader></DrawerHeader>
-          <DrawerBody>
-            <UnorderedList listStyleType={"none"}>
-              {DOSING_FREQUENCY.map((frequency) => {
-                return (
-                  <ListItem
-                    onClick={() => setSelectValueHandler(frequency)}
-                    value={"주 1회 이하"}
-                    cursor={"pointer"}
-                    key={frequency}
-                  >
-                    {frequency}
-                  </ListItem>
-                );
-              })}
-            </UnorderedList>
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
 
       <Modal isOpen={isOpen} onClose={onClose} scrollBehavior={"inside"}>
         <ModalOverlay />

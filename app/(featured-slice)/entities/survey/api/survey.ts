@@ -4,10 +4,11 @@ import { instance } from "@/app/(featured-slice)/shared/auth/api/SharedApi";
 const getAllSurvey = async () => {};
 
 /**id로 설문조사 데이터 받아오기 */
-const getSurveyById = async (id: number) => {
+const getSurveyById = async (params: { pageNum: number }) => {
   // const accessToken = localStorage.getItem("accessToken");
 
-  const res = await instance.get(`/survey/${id}`, {
+  const res = await instance.get(`/survey/regist`, {
+    params,
     // headers: {
     //   Authorization: `Bearer ${accessToken}`,
     // },

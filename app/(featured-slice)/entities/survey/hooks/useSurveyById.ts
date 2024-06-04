@@ -3,8 +3,8 @@ import { getSurveyById } from "../api/survey";
 
 const useSurveyById = (id: number) => {
   return useQuery({
-    queryKey: ["survey", id],
-    queryFn: () => getSurveyById(id),
+    queryKey: ["survey", { pageNum: id }],
+    queryFn: () => getSurveyById({ pageNum: id }),
   });
 };
 

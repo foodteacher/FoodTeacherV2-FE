@@ -2,7 +2,6 @@
 import { FunnelState } from "@/app/(featured-slice)/widgets/signup-funnel/types";
 import { Box } from "@chakra-ui/react";
 import React, { createContext, useContext, PropsWithChildren } from "react";
-import { ProgressBar } from "../progress-box";
 
 const FunnelProvider = createContext<FunnelState | null>(null);
 
@@ -21,7 +20,10 @@ const Funnel = ({
   );
 };
 
-const Step = ({ children, name }: PropsWithChildren<{ name: string }>) => {
+const Step = ({
+  children,
+  name,
+}: PropsWithChildren<{ name: string | number }>) => {
   const context = useContext(FunnelProvider);
   if (!context) {
     throw new Error("not Context");

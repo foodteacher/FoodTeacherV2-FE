@@ -1,11 +1,12 @@
 import { useFunnel } from "@/app/(featured-slice)/shared/hooks/useFunnel";
 import Funnel from "@/app/(featured-slice)/shared/ui/funnel/Funnel";
 import React, { useState } from "react";
-import { TestStep } from "../step";
+import { HealthGoalStep, TestStep } from "../step";
+import { ProgressBar } from "@/app/(featured-slice)/shared/ui/progress-box";
 
 export const SurveyFunnel = () => {
   const { changeNextStep, initializeStep, currentStep, progress, steps } =
-    useFunnel(["1", "2"]);
+    useFunnel([1, 2, 3, 4]);
 
   const [surveyState, setSurveyState] = useState<any>({
     name: "",
@@ -37,9 +38,14 @@ export const SurveyFunnel = () => {
         },
       }}
     >
-      <Funnel.Step name="1">
-        <TestStep goNextStep={changeNextStep} setState={setSurveyState} />
-        {/* <HealthGoalStep /> */}
+      <ProgressBar
+        stepArr={steps}
+        currentStep={currentStep}
+        boxWidth={"28px"}
+      />
+      <Funnel.Step name={1}>
+        {/* <TestStep goNextStep={changeNextStep} setState={setSurveyState} /> */}
+        <HealthGoalStep goNextStep={changeNextStep} setState={setSurveyState} />
       </Funnel.Step>
     </Funnel>
   );

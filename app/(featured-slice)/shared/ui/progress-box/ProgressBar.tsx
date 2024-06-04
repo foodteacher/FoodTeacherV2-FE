@@ -2,15 +2,15 @@ import { Box, BoxProps, Flex } from "@chakra-ui/react";
 import React from "react";
 
 interface ProgressBarProps {
-  stepArr: string[];
-  currentStep: string;
+  currentStep: string | number;
+  stepArr: (string | number)[];
   boxWidth?: string;
 }
 
 interface ProgressBoxProps extends BoxProps {
-  focus: string;
-  currentStep: string;
-  stepArr: string[];
+  focus: string | number;
+  currentStep: string | number;
+  stepArr: (string | number)[];
 }
 
 const ProgressBox = ({ focus, currentStep, stepArr, w }: ProgressBoxProps) => {
@@ -39,7 +39,7 @@ export const ProgressBar = ({
       w={"300px"}
       justifyContent={"center"}
     >
-      {stepArr.map((ele: string) => {
+      {stepArr.map((ele: string | number) => {
         return (
           <ProgressBox
             key={ele}

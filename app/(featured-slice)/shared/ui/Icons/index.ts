@@ -4,3 +4,4 @@ export { CheckIcon } from "./CheckIcon";
 export { CheckBoxCheckIcon } from "./CheckBoxCheckIcon";
 export { CheckBoxIcon } from "./CheckBoxIcon";
 export { PencilIcon } from "./PencilIcon";
+export { DropDownIcon } from "./DropDownIcon";

@@ -7,7 +7,7 @@ const SignupInput = ({ register, ...props }: FormInputProp) => {
     <Input
       {...props}
       {...register}
-      borderColor={"gray.200"}
+      borderColor={"#CBCBCB"}
       bgColor={"#FFFFFF"}
       fontWeight={"semibold"}
       padding={"16px"}

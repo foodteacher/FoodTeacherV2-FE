@@ -1,7 +1,7 @@
 import { useFunnel } from "@/app/(featured-slice)/shared/hooks/useFunnel";
 import Funnel from "@/app/(featured-slice)/shared/ui/funnel/Funnel";
 import React, { useState } from "react";
-import { HealthGoalStep, TestStep } from "../step";
+import { TestStep } from "../step";
 
 export const SurveyFunnel = () => {
   const { changeNextStep, initializeStep, currentStep, progress, steps } =

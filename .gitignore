@@ -12,6 +12,9 @@
 /.next/
 /out/
 
+# CICD
+/.github/workflows
+
 # production
 /build
 

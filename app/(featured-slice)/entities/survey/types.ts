@@ -1,10 +1,10 @@
-interface SurveyQuestionOption {
+export interface SurveyQuestionOption {
   optionId: number;
   text: string;
   selected: boolean;
 }
 
-interface SurveyListByPage {
+export interface SurveyListByPage {
   questionId: number;
   text: string;
   options: SurveyQuestionOption[];

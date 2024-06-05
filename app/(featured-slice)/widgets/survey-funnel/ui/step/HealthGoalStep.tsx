@@ -9,7 +9,6 @@ import {
   Heading,
   Text,
 } from "@chakra-ui/react";
-import { BLOOD_TYPE_OTPIONS } from "../../../signup-funnel/const/const";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { StepProps } from "../../../signup-funnel/types";
 import { SignupButton } from "@/app/(featured-slice)/shared/ui/button";
@@ -17,7 +16,7 @@ import { WarningIcon } from "@/app/(featured-slice)/shared/ui/Icons";
 import { useSurveyListByPage } from "@/app/(featured-slice)/entities/survey/hooks";
 
 export const HealthGoalStep = ({ goNextStep, setState }: StepProps) => {
-  const { data: surveyData, isLoading } = useSurveyListByPage(1);
+  const { data: surveyData = [], isLoading } = useSurveyListByPage(1);
   const {
     formState: { errors, isValid },
     control,
@@ -32,7 +31,9 @@ export const HealthGoalStep = ({ goNextStep, setState }: StepProps) => {
     // goNextStep();
   };
 
-  console.log(surveyData);
+  const healthGoalOption = surveyData[0]?.options ?? [];
+
+  console.log(healthGoalOption);
 
   return (
     <Flex as="form" onSubmit={handleSubmit(onSubmit)} flexDir={"column"}>
@@ -42,7 +43,7 @@ export const HealthGoalStep = ({ goNextStep, setState }: StepProps) => {
         </Heading>
         <FormControl isInvalid={!!errors.goal}>
           <CheckRadio
-            options={BLOOD_TYPE_OTPIONS}
+            options={healthGoalOption}
             name={"goal"}
             control={control}
             w={"100%"}

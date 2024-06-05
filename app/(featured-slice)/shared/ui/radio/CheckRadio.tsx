@@ -57,7 +57,7 @@ const CheckRadioCard = ({ h, ...props }: PropsWithChildren<RadioCardType>) => {
 };
 
 interface CustomRadioProps extends FlexProps {
-  options: (string | number)[];
+  options: any;
   name: string;
   register?: UseFormRegisterReturn;
   control?: any;
@@ -83,11 +83,12 @@ export const CheckRadio = ({
 
   return (
     <Flex {...group} {...props} padding={"0"} gap={"16px"}>
-      {options.map((value: string | number) => {
-        const radio = getRadioProps({ value });
+      {options?.map((value: any, idx: number) => {
+        const radio = getRadioProps({ value: value.text });
+
         return (
-          <CheckRadioCard key={value} {...radio} {...props}>
-            {value}
+          <CheckRadioCard key={idx} {...radio} {...props}>
+            {value.text}
           </CheckRadioCard>
         );
       })}

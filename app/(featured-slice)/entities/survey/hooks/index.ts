@@ -1,1 +1,1 @@
-export { useSurveyById } from "./useSurveyById";
+export { useSurveyListByPage } from "./useSurveyListByPage";

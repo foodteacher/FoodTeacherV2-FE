@@ -1,7 +1,5 @@
 "use client";
 
-import { useSurveyById } from "@/app/(featured-slice)/entities/survey/hooks";
-import SignupLabel from "@/app/(featured-slice)/shared/ui/label/SignupLabel";
 import { CheckRadio } from "@/app/(featured-slice)/shared/ui/radio";
 import {
   Box,
@@ -16,9 +14,10 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { StepProps } from "../../../signup-funnel/types";
 import { SignupButton } from "@/app/(featured-slice)/shared/ui/button";
 import { WarningIcon } from "@/app/(featured-slice)/shared/ui/Icons";
+import { useSurveyListByPage } from "@/app/(featured-slice)/entities/survey/hooks";
 
 export const HealthGoalStep = ({ goNextStep, setState }: StepProps) => {
-  const { data } = useSurveyById(1);
+  const { data: surveyData, isLoading } = useSurveyListByPage(1);
   const {
     formState: { errors, isValid },
     control,
@@ -32,6 +31,8 @@ export const HealthGoalStep = ({ goNextStep, setState }: StepProps) => {
     });
     // goNextStep();
   };
+
+  console.log(surveyData);
 
   return (
     <Flex as="form" onSubmit={handleSubmit(onSubmit)} flexDir={"column"}>

@@ -1,7 +1,11 @@
 import { useFunnel } from "@/app/(featured-slice)/shared/hooks/useFunnel";
 import Funnel from "@/app/(featured-slice)/shared/ui/funnel/Funnel";
 import React, { useState } from "react";
-import { FirstSurveyFunnel, SecondSurveyFunnel } from "../step";
+import {
+  FirstSurveyFunnel,
+  SecondSurveyFunnel,
+  ThirdSurveyFunnel,
+} from "../step";
 import { ProgressBar } from "@/app/(featured-slice)/shared/ui/progress-box";
 
 export const SurveyFunnel = () => {
@@ -49,7 +53,11 @@ export const SurveyFunnel = () => {
           goNextStep={changeNextStep}
           setState={setSurveyState}
         /> */}
-        <SecondSurveyFunnel
+        {/* <SecondSurveyFunnel
+          goNextStep={changeNextStep}
+          setState={setSurveyState}
+        /> */}
+        <ThirdSurveyFunnel
           goNextStep={changeNextStep}
           setState={setSurveyState}
         />
@@ -59,14 +67,14 @@ export const SurveyFunnel = () => {
           goNextStep={changeNextStep}
           setState={setSurveyState}
         />
-        {/* <TestStep goNextStep={changeNextStep} setState={setSurveyState} /> */}
       </Funnel.Step>
       <Funnel.Step name={3}>
-        {/* <TestStep goNextStep={changeNextStep} setState={setSurveyState} /> */}
+        <ThirdSurveyFunnel
+          goNextStep={changeNextStep}
+          setState={setSurveyState}
+        />
       </Funnel.Step>
-      <Funnel.Step name={4}>
-        {/* <TestStep goNextStep={changeNextStep} setState={setSurveyState} /> */}
-      </Funnel.Step>
+      <Funnel.Step name={4}></Funnel.Step>
     </Funnel>
   );
 };

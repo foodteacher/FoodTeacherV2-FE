@@ -83,7 +83,6 @@ export const FrontCheckBox = ({
   });
 
   const { getCheckboxProps } = useCheckboxGroup({
-    // defaultValue: ["A"],
     ...field,
   });
   return (

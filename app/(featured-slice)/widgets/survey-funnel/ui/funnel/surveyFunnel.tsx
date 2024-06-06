@@ -24,7 +24,7 @@ export const SurveyFunnel = () => {
       funnelState={surveyState}
       progress={progress}
       steps={steps}
-      padding={["16px", "16px", "120px"]}
+      // padding={["16px", "16px", "10%"]}
       margin={"0 auto"}
       h={"100%"}
       bg={"#FDFBF8"}

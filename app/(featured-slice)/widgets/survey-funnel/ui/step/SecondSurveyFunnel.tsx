@@ -15,8 +15,8 @@ import { SignupButton } from "@/app/(featured-slice)/shared/ui/button";
 import { WarningIcon } from "@/app/(featured-slice)/shared/ui/Icons";
 import { useSurveyListByPage } from "@/app/(featured-slice)/entities/survey/hooks";
 
-export const HealthGoalStep = ({ goNextStep, setState }: StepProps) => {
-  const { data: surveyData = [], isLoading } = useSurveyListByPage(1);
+export const SecondSurveyFunnel = ({ goNextStep, setState }: StepProps) => {
+  const { data: surveyData = [], isLoading } = useSurveyListByPage(2);
   const {
     formState: { errors, isValid },
     control,
@@ -24,26 +24,51 @@ export const HealthGoalStep = ({ goNextStep, setState }: StepProps) => {
   } = useForm<{ goal: string }>();
 
   const onSubmit: SubmitHandler<{ goal: string }> = (goal) => {
-    console.log(goal);
     setState((data) => {
       return { ...data, ...goal };
     });
     // goNextStep();
   };
 
-  const healthGoalOption = surveyData[0]?.options ?? [];
+  const heathCheckOption = surveyData[0]?.options ?? [];
 
-  console.log(healthGoalOption);
+  const smokeAwareOption = surveyData[1]?.options ?? [];
 
   return (
     <Flex as="form" onSubmit={handleSubmit(onSubmit)} flexDir={"column"}>
       <Flex flexDir={"column"} gap={"32px"} w={"100%"} paddingBottom={"150px"}>
         <Heading fontSize={"24px"} fontWeight={"bold"}>
-          바라시는 건강 목표를 알려주세요
+          건강 검진을 정기적으로 받으시나요?
         </Heading>
         <FormControl isInvalid={!!errors.goal}>
           <CheckRadio
-            options={healthGoalOption}
+            options={heathCheckOption}
+            name={"goal"}
+            control={control}
+            w={"100%"}
+            padding={"12px 16px"}
+            gap={"10px"}
+            flexDir={"column"}
+          />
+
+          <FormErrorMessage>
+            {errors.goal && (
+              <Flex gap={"4px"}>
+                <WarningIcon />
+                <Text color={"#FF0000"} fontSize={"16px"}>
+                  답변을 선택해주세요.
+                </Text>
+              </Flex>
+            )}
+          </FormErrorMessage>
+        </FormControl>
+
+        <Heading fontSize={"24px"} fontWeight={"bold"}>
+          흡연을 하시나요?
+        </Heading>
+        <FormControl isInvalid={!!errors.goal}>
+          <CheckRadio
+            options={smokeAwareOption}
             name={"goal"}
             control={control}
             w={"100%"}

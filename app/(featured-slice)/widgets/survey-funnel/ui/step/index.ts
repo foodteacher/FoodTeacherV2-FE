@@ -1,2 +1,3 @@
 export { TestStep } from "./TestStep";
-export { HealthGoalStep } from "./HealthGoalStep";
+export { FirstSurveyFunnel } from "./FirstSurveyFunnel";
+export { SecondSurveyFunnel } from "./SecondSurveyFunnel";

@@ -21,19 +21,21 @@ import {
 import { useSurveyListByPage } from "@/app/(featured-slice)/entities/survey/hooks";
 import { FrontCheckBox } from "@/app/(featured-slice)/shared/ui/checkbox";
 
+interface ThirdOption {
+  disease: string;
+  familyHistory: string;
+}
+
 export const ThirdSurveyStep = ({ goNextStep, setState }: StepProps) => {
   const { data: surveyData = [], isLoading } = useSurveyListByPage(3);
   const {
     formState: { errors, isValid },
     control,
     handleSubmit,
-  } = useForm<{ goal: string }>();
+  } = useForm<ThirdOption>();
 
-  const onSubmit: SubmitHandler<{ goal: string }> = (goal) => {
-    setState((data) => {
-      return { ...data, ...goal };
-    });
-    // goNextStep();
+  const onSubmit: SubmitHandler<ThirdOption> = (option) => {
+    goNextStep();
   };
 
   const diseaseQuestion = surveyData[0]?.text ?? "";
@@ -51,7 +53,7 @@ export const ThirdSurveyStep = ({ goNextStep, setState }: StepProps) => {
             </Heading>
             <Text color={"#807F7A"}>한 가지 이상 선택해주세요</Text>
           </Flex>
-          <FormControl isInvalid={!!errors.goal}>
+          <FormControl isInvalid={!!errors.disease}>
             <FrontCheckBox
               options={diseaseOption}
               control={control}
@@ -60,7 +62,7 @@ export const ThirdSurveyStep = ({ goNextStep, setState }: StepProps) => {
             />
 
             <FormErrorMessage>
-              {errors.goal && (
+              {errors.disease && (
                 <Flex gap={"4px"}>
                   <WarningIcon />
                   <Text color={"#FF0000"} fontSize={"16px"}>
@@ -81,7 +83,7 @@ export const ThirdSurveyStep = ({ goNextStep, setState }: StepProps) => {
             </Heading>
             <Text color={"#807F7A"}>한 가지 이상 선택해주세요</Text>
           </Flex>
-          <FormControl isInvalid={!!errors.goal}>
+          <FormControl isInvalid={!!errors.familyHistory}>
             <FrontCheckBox
               options={familyHistoryOption}
               control={control}
@@ -90,7 +92,7 @@ export const ThirdSurveyStep = ({ goNextStep, setState }: StepProps) => {
             />
 
             <FormErrorMessage>
-              {errors.goal && (
+              {errors.familyHistory && (
                 <Flex gap={"4px"}>
                   <WarningIcon />
                   <Text color={"#FF0000"} fontSize={"16px"}>

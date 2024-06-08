@@ -91,7 +91,7 @@ export const FrontCheckBox = ({
         const checkbox = getCheckboxProps({ value: value.text });
 
         return (
-          <CheckBoxCard key={value} {...checkbox}>
+          <CheckBoxCard key={value.text} {...checkbox}>
             {value.text}
           </CheckBoxCard>
         );

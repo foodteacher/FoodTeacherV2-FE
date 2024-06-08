@@ -21,19 +21,21 @@ import {
 } from "@/app/(featured-slice)/shared/ui/button";
 import { BoxRadio } from "@/app/(featured-slice)/shared/ui/radio";
 
-export const FourthSurveyStep = ({ goNextStep, setState }: StepProps) => {
+interface FourthOption {
+  isDosing: boolean;
+}
+
+export const FourthSurveyStep = ({ goNextStep }: StepProps) => {
   const { data: surveyData = [], isLoading } = useSurveyListByPage(4);
   const {
     formState: { errors, isValid },
     control,
     handleSubmit,
-  } = useForm<{ goal: string }>();
+  } = useForm<FourthOption>();
 
-  const onSubmit: SubmitHandler<{ goal: string }> = (goal) => {
-    setState((data) => {
-      return { ...data, ...goal };
-    });
+  const onSubmit: SubmitHandler<FourthOption> = (option) => {
     // goNextStep();
+    console.log(option);
   };
 
   const dosingQuestion = surveyData[0]?.text ?? "";
@@ -48,16 +50,16 @@ export const FourthSurveyStep = ({ goNextStep, setState }: StepProps) => {
               {dosingQuestion}
             </Heading>
           </Flex>
-          <FormControl isInvalid={!!errors.goal}>
+          <FormControl isInvalid={!!errors.isDosing}>
             <BoxRadio
               options={dosingOption}
-              name="dosing"
+              name="isDosing"
               control={control}
               h={"124px"}
             />
 
             <FormErrorMessage>
-              {errors.goal && (
+              {errors.isDosing && (
                 <Flex gap={"4px"}>
                   <WarningIcon />
                   <Text color={"#FF0000"} fontSize={"16px"}>

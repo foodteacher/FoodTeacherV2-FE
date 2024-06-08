@@ -29,7 +29,6 @@ import {
   SignupButton,
 } from "@/app/(featured-slice)/shared/ui/button";
 import { LevelRadioGroup } from "@/app/(featured-slice)/shared/ui/radio";
-import { useSurveyById } from "@/app/(featured-slice)/entities/survey/hooks";
 import SignupInput from "@/app/(featured-slice)/shared/ui/Input/SignupInput";
 import { useState } from "react";
 import { BottomSheetSelect } from "@/app/(featured-slice)/shared/ui/select";

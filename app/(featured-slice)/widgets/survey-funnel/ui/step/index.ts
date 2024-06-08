@@ -4,3 +4,4 @@ export { SecondSurveyFunnel } from "./SecondSurveyFunnel";
 export { ThirdSurveyFunnel } from "./ThirdSurveyFunnel";
 export { FourthSurveyStep } from "./FourthSurveyStep";
 export { FifthSurveyStep } from "./FifthSurveyStep";
+export { SixthSurveyStep } from "./SixthSurveyStep";

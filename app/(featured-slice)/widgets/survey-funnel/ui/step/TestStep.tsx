@@ -32,7 +32,6 @@ import { LevelRadioGroup } from "@/app/(featured-slice)/shared/ui/radio";
 import SignupInput from "@/app/(featured-slice)/shared/ui/Input/SignupInput";
 import { useState } from "react";
 import { BottomSheetSelect } from "@/app/(featured-slice)/shared/ui/select";
-import { favoriteOption } from "../../consts/const";
 
 interface TestStep extends UseCheckboxProps, StepProps {}
 interface FormType {
@@ -119,7 +118,7 @@ export const TestStep = ({ goNextStep, setState, ...props }: any) => {
         </SurveyResultCard>
       </VStack>
 
-      <LevelRadioGroup option={favoriteOption} />
+      {/* <LevelRadioGroup option={favoriteOption} /> */}
 
       <Flex w={"100%"} flexDir={"column"} gap={"16px"}>
         {Array.from({ length: 3 }, (_, idx) => idx).map((key) => {

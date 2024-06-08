@@ -26,8 +26,9 @@ export const LevelRadioGroup = ({ option }: LevelRadioGroupProps) => {
     <Stack {...getRootProps()}>
       <HStack
         pos={"relative"}
-        spacing={"15px"}
-        w={"296px"}
+        margin={"0 auto"}
+        spacing={"32px"}
+        h={"65px"}
         justifyContent={"space-between"}
       >
         <Divider pos={"absolute"} top={"36%"} w={"85%"} left={"10%"} />
@@ -73,6 +74,7 @@ const LevelRadio = ({
       <Box
         {...getRadioProps()}
         w={w}
+        // h={"65px"}
         // p={1}
         rounded="full"
         bg={"transparent"}

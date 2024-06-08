@@ -65,7 +65,7 @@ const CheckBoxCard = ({ h, ...props }: PropsWithChildren<RadioCardType>) => {
 };
 
 interface CustomRadioProps extends FlexProps {
-  options: (string | number)[];
+  options: any;
   name: string;
   control?: any;
 }
@@ -87,12 +87,12 @@ export const FrontCheckBox = ({
   });
   return (
     <Flex {...props} padding={"0"} gap={"16px"}>
-      {options.map((value: string | number) => {
-        const checkbox = getCheckboxProps({ value });
+      {options.map((value: any) => {
+        const checkbox = getCheckboxProps({ value: value.text });
 
         return (
           <CheckBoxCard key={value} {...checkbox}>
-            {value}
+            {value.text}
           </CheckBoxCard>
         );
       })}

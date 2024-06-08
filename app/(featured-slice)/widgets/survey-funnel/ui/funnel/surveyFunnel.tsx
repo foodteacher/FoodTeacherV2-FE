@@ -32,6 +32,7 @@ export const SurveyFunnel = () => {
       margin={"0 auto"}
       h={"100%"}
       bg={"#FDFBF8"}
+      overflow={"scroll"}
       w={["100%", "100%", "740px"]}
       css={{
         "&::-webkit-scrollbar": {

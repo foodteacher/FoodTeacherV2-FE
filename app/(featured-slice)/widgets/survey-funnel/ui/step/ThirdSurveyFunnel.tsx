@@ -22,6 +22,7 @@ import {
   WarningIcon,
 } from "@/app/(featured-slice)/shared/ui/Icons";
 import { useSurveyListByPage } from "@/app/(featured-slice)/entities/survey/hooks";
+import { FrontCheckBox } from "@/app/(featured-slice)/shared/ui/checkbox";
 
 export const ThirdSurveyFunnel = ({ goNextStep, setState }: StepProps) => {
   const { data: surveyData = [], isLoading } = useSurveyListByPage(3);
@@ -41,25 +42,25 @@ export const ThirdSurveyFunnel = ({ goNextStep, setState }: StepProps) => {
   const diseaseQuestion = surveyData[0]?.text ?? "";
   const diseaseOption = surveyData[0]?.options ?? [];
 
-  const smokeAwareOption = surveyData[1]?.options ?? [];
+  const familyHistoryOption = surveyData[1]?.options ?? [];
 
   return (
     <Flex as="form" onSubmit={handleSubmit(onSubmit)} flexDir={"column"}>
       <Flex flexDir={"column"} w={"100%"} paddingBottom={"150px"}>
         <Flex flexDir={"column"} gap={"32px"} padding={["16px", "16px", "10%"]}>
-          <Heading fontSize={"24px"} fontWeight={"bold"}>
-            {diseaseQuestion}
-          </Heading>
+          <Flex flexDir={"column"} gap={"10px"}>
+            <Heading fontSize={"24px"} fontWeight={"bold"}>
+              {diseaseQuestion}
+            </Heading>
+            <Text color={"#807F7A"}>한 가지 이상 선택해주세요</Text>
+          </Flex>
           <FormControl isInvalid={!!errors.goal}>
-            {/* <CheckRadio
+            <FrontCheckBox
               options={diseaseOption}
-              name={"goal"}
               control={control}
-              w={"100%"}
-              padding={"12px 16px"}
-              gap={"10px"}
+              name="disease"
               flexDir={"column"}
-            /> */}
+            />
 
             <FormErrorMessage>
               {errors.goal && (
@@ -79,18 +80,15 @@ export const ThirdSurveyFunnel = ({ goNextStep, setState }: StepProps) => {
         <Flex flexDir={"column"} gap={"32px"} padding={["16px", "16px", "10%"]}>
           <Flex flexDir={"column"} gap={"10px"}>
             <Heading fontSize={"24px"} fontWeight={"bold"}>
-              흡연을 하시나요?
+              직계 가족 중에 가지고 계신 질병을 선택해주세요
             </Heading>
-            <Text color={"#807F7A"}>최근 3개월 기준으로 답변해주세요.</Text>
+            <Text color={"#807F7A"}>한 가지 이상 선택해주세요</Text>
           </Flex>
           <FormControl isInvalid={!!errors.goal}>
-            <CheckRadio
-              options={smokeAwareOption}
-              name={"goal"}
+            <FrontCheckBox
+              options={familyHistoryOption}
               control={control}
-              w={"100%"}
-              padding={"12px 16px"}
-              gap={"10px"}
+              name="familyHistory"
               flexDir={"column"}
             />
 

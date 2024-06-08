@@ -21,7 +21,7 @@ import {
 import { useSurveyListByPage } from "@/app/(featured-slice)/entities/survey/hooks";
 import { FrontCheckBox } from "@/app/(featured-slice)/shared/ui/checkbox";
 
-export const ThirdSurveyFunnel = ({ goNextStep, setState }: StepProps) => {
+export const ThirdSurveyStep = ({ goNextStep, setState }: StepProps) => {
   const { data: surveyData = [], isLoading } = useSurveyListByPage(3);
   const {
     formState: { errors, isValid },

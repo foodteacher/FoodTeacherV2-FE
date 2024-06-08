@@ -1,7 +1,7 @@
 export { TestStep } from "./TestStep";
-export { FirstSurveyFunnel } from "./FirstSurveyFunnel";
-export { SecondSurveyFunnel } from "./SecondSurveyFunnel";
-export { ThirdSurveyFunnel } from "./ThirdSurveyFunnel";
+export { FirstSurveyStep } from "./FirstSurveyStep";
+export { SecondSurveyStep } from "./SecondSurveyStep";
+export { ThirdSurveyStep } from "./ThirdSurveyStep";
 export { FourthSurveyStep } from "./FourthSurveyStep";
 export { FifthSurveyStep } from "./FifthSurveyStep";
 export { SixthSurveyStep } from "./SixthSurveyStep";

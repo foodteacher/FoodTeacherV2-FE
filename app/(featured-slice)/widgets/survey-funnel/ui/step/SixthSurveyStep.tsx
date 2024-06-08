@@ -32,9 +32,6 @@ export const SixthSurveyStep = ({ goNextStep, setState }: StepProps) => {
   } = useForm<{ goal: string }>();
 
   const onSubmit: SubmitHandler<{ goal: string }> = (goal) => {
-    setState((data) => {
-      return { ...data, ...goal };
-    });
     // goNextStep();
   };
   const stressQuestion = surveyData[0]?.text ?? "";

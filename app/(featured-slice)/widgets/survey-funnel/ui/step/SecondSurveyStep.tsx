@@ -23,19 +23,21 @@ import {
 } from "@/app/(featured-slice)/shared/ui/Icons";
 import { useSurveyListByPage } from "@/app/(featured-slice)/entities/survey/hooks";
 
-export const SecondSurveyFunnel = ({ goNextStep, setState }: StepProps) => {
+interface SecondOption {
+  healthCheck: string;
+  smokeAware: string;
+}
+
+export const SecondSurveyStep = ({ goNextStep, setState }: StepProps) => {
   const { data: surveyData = [], isLoading } = useSurveyListByPage(2);
   const {
     formState: { errors, isValid },
     control,
     handleSubmit,
-  } = useForm<{ goal: string }>();
+  } = useForm<SecondOption>();
 
-  const onSubmit: SubmitHandler<{ goal: string }> = (goal) => {
-    setState((data) => {
-      return { ...data, ...goal };
-    });
-    // goNextStep();
+  const onSubmit: SubmitHandler<SecondOption> = (option) => {
+    goNextStep();
   };
 
   const heathCheckOption = surveyData[0]?.options ?? [];
@@ -49,10 +51,10 @@ export const SecondSurveyFunnel = ({ goNextStep, setState }: StepProps) => {
           <Heading fontSize={"24px"} fontWeight={"bold"}>
             건강 검진을 정기적으로 받으시나요?
           </Heading>
-          <FormControl isInvalid={!!errors.goal}>
+          <FormControl isInvalid={!!errors.healthCheck}>
             <CheckRadio
               options={heathCheckOption}
-              name={"goal"}
+              name="healthCheck"
               control={control}
               w={"100%"}
               padding={"12px 16px"}
@@ -61,7 +63,7 @@ export const SecondSurveyFunnel = ({ goNextStep, setState }: StepProps) => {
             />
 
             <FormErrorMessage>
-              {errors.goal && (
+              {errors.healthCheck && (
                 <Flex gap={"4px"}>
                   <WarningIcon />
                   <Text color={"#FF0000"} fontSize={"16px"}>
@@ -82,10 +84,10 @@ export const SecondSurveyFunnel = ({ goNextStep, setState }: StepProps) => {
             </Heading>
             <Text color={"#807F7A"}>최근 3개월 기준으로 답변해주세요.</Text>
           </Flex>
-          <FormControl isInvalid={!!errors.goal}>
+          <FormControl isInvalid={!!errors.smokeAware}>
             <CheckRadio
               options={smokeAwareOption}
-              name={"goal"}
+              name="smokeAware"
               control={control}
               w={"100%"}
               padding={"12px 16px"}
@@ -94,7 +96,7 @@ export const SecondSurveyFunnel = ({ goNextStep, setState }: StepProps) => {
             />
 
             <FormErrorMessage>
-              {errors.goal && (
+              {errors.smokeAware && (
                 <Flex gap={"4px"}>
                   <WarningIcon />
                   <Text color={"#FF0000"} fontSize={"16px"}>

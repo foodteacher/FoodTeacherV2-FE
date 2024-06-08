@@ -3,11 +3,11 @@ import Funnel from "@/app/(featured-slice)/shared/ui/funnel/Funnel";
 import React, { useState } from "react";
 import {
   FifthSurveyStep,
-  FirstSurveyFunnel,
+  FirstSurveyStep,
   FourthSurveyStep,
-  SecondSurveyFunnel,
+  SecondSurveyStep,
   SixthSurveyStep,
-  ThirdSurveyFunnel,
+  ThirdSurveyStep,
 } from "../step";
 import { ProgressBar } from "@/app/(featured-slice)/shared/ui/progress-box";
 
@@ -53,10 +53,7 @@ export const SurveyFunnel = () => {
         boxWidth={"28px"}
       />
       <Funnel.Step name={1}>
-        {/* <FirstSurveyFunnel
-          goNextStep={changeNextStep}
-          setState={setSurveyState}
-        /> */}
+        <FirstSurveyStep goNextStep={changeNextStep} />
         {/* <SecondSurveyFunnel
           goNextStep={changeNextStep}
           setState={setSurveyState}
@@ -73,19 +70,19 @@ export const SurveyFunnel = () => {
           goNextStep={changeNextStep}
           setState={setSurveyState}
         /> */}
-        <SixthSurveyStep
+        {/* <SixthSurveyStep
           goNextStep={changeNextStep}
           setState={setSurveyState}
-        />
+        /> */}
       </Funnel.Step>
       <Funnel.Step name={2}>
-        <SecondSurveyFunnel
+        <SecondSurveyStep
           goNextStep={changeNextStep}
           setState={setSurveyState}
         />
       </Funnel.Step>
       <Funnel.Step name={3}>
-        <ThirdSurveyFunnel
+        <ThirdSurveyStep
           goNextStep={changeNextStep}
           setState={setSurveyState}
         />

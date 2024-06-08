@@ -5,7 +5,7 @@ import { Dispatch, SetStateAction } from "react";
 export interface StepProps {
   goNextStep: () => void;
   goPrevStep?: () => void;
-  setState: Dispatch<SetStateAction<SignupState>>;
+  setState?: Dispatch<SetStateAction<SignupState>>;
 }
 
 export type BloodType = "A" | "B" | "AB" | "O";

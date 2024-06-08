@@ -12,9 +12,8 @@ import {
 import { ProgressBar } from "@/app/(featured-slice)/shared/ui/progress-box";
 
 export const SurveyFunnel = () => {
-  const { changeNextStep, currentStep, progress, steps } = useFunnel([
-    1, 2, 3, 4, 5, 6,
-  ]);
+  const { changeNextStep, changePrevStep, currentStep, progress, steps } =
+    useFunnel([1, 2, 3, 4, 5, 6]);
 
   const [surveyState, setSurveyState] = useState<any>({
     name: "",
@@ -53,7 +52,7 @@ export const SurveyFunnel = () => {
         boxWidth={"28px"}
       />
       <Funnel.Step name={1}>
-        {/* <FirstSurveyStep goNextStep={changeNextStep} /> */}
+        <FirstSurveyStep goNextStep={changeNextStep} />
         {/* <SecondSurveyFunnel
           goNextStep={changeNextStep}
           setState={setSurveyState}
@@ -62,11 +61,8 @@ export const SurveyFunnel = () => {
           goNextStep={changeNextStep}
           setState={setSurveyState}
         /> */}
-        <FourthSurveyStep goNextStep={changeNextStep} />
-        {/* <FifthSurveyStep
-          goNextStep={changeNextStep}
-          setState={setSurveyState}
-        /> */}
+        {/* <FourthSurveyStep goNextStep={changeNextStep} /> */}
+        {/* <FifthSurveyStep goNextStep={changeNextStep} /> */}
         {/* <SixthSurveyStep
           goNextStep={changeNextStep}
           setState={setSurveyState}
@@ -75,30 +71,35 @@ export const SurveyFunnel = () => {
       <Funnel.Step name={2}>
         <SecondSurveyStep
           goNextStep={changeNextStep}
+          goPrevStep={changePrevStep}
           setState={setSurveyState}
         />
       </Funnel.Step>
       <Funnel.Step name={3}>
         <ThirdSurveyStep
           goNextStep={changeNextStep}
+          goPrevStep={changePrevStep}
           setState={setSurveyState}
         />
       </Funnel.Step>
       <Funnel.Step name={4}>
         <FourthSurveyStep
           goNextStep={changeNextStep}
+          goPrevStep={changePrevStep}
           setState={setSurveyState}
         />
       </Funnel.Step>
       <Funnel.Step name={5}>
         <FifthSurveyStep
           goNextStep={changeNextStep}
+          goPrevStep={changePrevStep}
           setState={setSurveyState}
         />
       </Funnel.Step>
       <Funnel.Step name={6}>
         <SixthSurveyStep
           goNextStep={changeNextStep}
+          goPrevStep={changePrevStep}
           setState={setSurveyState}
         />
       </Funnel.Step>

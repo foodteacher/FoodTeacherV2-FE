@@ -14,12 +14,19 @@ import { CheckIcon } from "../Icons";
 
 type RadioCardType = UseRadioProps & FlexProps;
 
-const CheckRadioCard = ({ h, ...props }: PropsWithChildren<RadioCardType>) => {
+interface CheckRadioCard extends RadioCardType {
+  text: string;
+}
+
+const CheckRadioCard = ({
+  h,
+  text,
+  ...props
+}: PropsWithChildren<CheckRadioCard>) => {
   const { getInputProps, getRadioProps } = useRadio(props);
 
   const input = getInputProps();
   const checkbox = getRadioProps();
-
   const isChecked = props.isChecked;
 
   return (
@@ -48,7 +55,8 @@ const CheckRadioCard = ({ h, ...props }: PropsWithChildren<RadioCardType>) => {
         justifyContent={"space-between"}
         gap={"30px"}
       >
-        {props.children}
+        {/* {props.children} */}
+        {text}
         {isChecked && <CheckIcon />}
       </Flex>
     </Box>
@@ -83,12 +91,15 @@ export const CheckRadio = ({
   return (
     <Flex {...group} {...props} padding={"0"} gap={"16px"}>
       {options?.map((value: any, idx: number) => {
-        const radio = getRadioProps({ value: value.text });
+        const radio = getRadioProps({ value: value.optionId });
 
         return (
-          <CheckRadioCard key={idx} {...radio} {...props}>
-            {value.text}
-          </CheckRadioCard>
+          <CheckRadioCard
+            key={radio.value}
+            {...props}
+            {...radio}
+            text={value.text}
+          />
         );
       })}
     </Flex>

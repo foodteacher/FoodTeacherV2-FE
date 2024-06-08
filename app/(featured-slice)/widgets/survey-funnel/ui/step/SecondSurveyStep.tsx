@@ -28,7 +28,7 @@ interface SecondOption {
   smokeAware: string;
 }
 
-export const SecondSurveyStep = ({ goNextStep, setState }: StepProps) => {
+export const SecondSurveyStep = ({ goNextStep, goPrevStep }: StepProps) => {
   const { data: surveyData = [], isLoading } = useSurveyListByPage(2);
   const {
     formState: { errors, isValid },
@@ -122,7 +122,7 @@ export const SecondSurveyStep = ({ goNextStep, setState }: StepProps) => {
           padding={[" 16px", "16px", "16px 120px"]}
           gap={"16px"}
         >
-          <RevertButton h={"52px"} w={"52px"}>
+          <RevertButton h={"52px"} w={"52px"} onClick={() => goPrevStep()}>
             <BackArrowIcon />
           </RevertButton>
           <SignupButton type={"submit"}>다음</SignupButton>

@@ -24,12 +24,11 @@ import {
 import { FrontCheckBox } from "@/app/(featured-slice)/shared/ui/checkbox";
 import SignupInput from "@/app/(featured-slice)/shared/ui/Input/SignupInput";
 import { BottomSheetSelect } from "@/app/(featured-slice)/shared/ui/select";
-import { ChangeEvent, useRef, useState } from "react";
-import { Target } from "framer-motion";
+import { useState } from "react";
 
 const DOSING_FREQUENCY = ["주 1회 이하", "주 2~3회", "주 4~6회", "매일"];
 
-export const FifthSurveyStep = ({ goNextStep, setState }: StepProps) => {
+export const FifthSurveyStep = ({ goNextStep }: StepProps) => {
   const { data: surveyData = [], isLoading } = useSurveyListByPage(5);
   const [textLength, setTextLength] = useState(0);
   const {
@@ -39,9 +38,6 @@ export const FifthSurveyStep = ({ goNextStep, setState }: StepProps) => {
   } = useForm<{ goal: string }>();
 
   const onSubmit: SubmitHandler<{ goal: string }> = (goal) => {
-    setState((data) => {
-      return { ...data, ...goal };
-    });
     // goNextStep();
   };
 
@@ -62,17 +58,20 @@ export const FifthSurveyStep = ({ goNextStep, setState }: StepProps) => {
           <Box>
             <Text fontSize={"24px"}>(선택)</Text>
             <Heading fontSize={"24px"} fontWeight={"bold"}>
-              {dosingReasonQuestion} || "과거에 "
+              {dosingReasonQuestion}
             </Heading>
           </Box>
           <Box pos={"relative"}>
-            <Textarea
-              onChange={handleInputChange}
-              placeholder="과거에 정기적으로 복용하셨던 약의 이름과 복용을 중단한 이유를 써주세요(선택)"
-              resize={"none"}
-              maxLength={200}
-              minH={"160px"}
-            />
+            <FormControl isInvalid={!!errors.goal}>
+              <Textarea
+                onChange={handleInputChange}
+                placeholder="과거에 정기적으로 복용하셨던 약의 이름과 복용을 중단한 이유를 써주세요(선택)"
+                resize={"none"}
+                maxLength={200}
+                name={""}
+                minH={"160px"}
+              />
+            </FormControl>
             <Text
               pos={"absolute"}
               right={"20px"}

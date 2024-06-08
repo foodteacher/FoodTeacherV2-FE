@@ -13,20 +13,30 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { StepProps } from "../../../signup-funnel/types";
 import { SignupButton } from "@/app/(featured-slice)/shared/ui/button";
 import { WarningIcon } from "@/app/(featured-slice)/shared/ui/Icons";
-import { useSurveyListByPage } from "@/app/(featured-slice)/entities/survey/hooks";
+import {
+  useRegisterSurveyByPage,
+  useSurveyListByPage,
+} from "@/app/(featured-slice)/entities/survey/hooks";
 
 export const FirstSurveyStep = ({ goNextStep }: StepProps) => {
   const { data: surveyData = [], isLoading } = useSurveyListByPage(1);
+  const { mutateAsync: surveyMutation } = useRegisterSurveyByPage();
   const {
     formState: { errors, isValid },
     control,
     handleSubmit,
   } = useForm<{ goal: string }>();
 
-  const onSubmit: SubmitHandler<{ goal: string }> = (goal) => {
-    console.log(goal);
+  const onSubmit: SubmitHandler<{ goal: string }> = ({ goal }) => {
+    const formState = [
+      {
+        questionId: 1,
+        optionList: [goal],
+      },
+    ];
 
-    goNextStep();
+    console.log(formState);
+    // goNextStep();
   };
 
   const healthGoalQuestion = surveyData[0]?.text ?? "";

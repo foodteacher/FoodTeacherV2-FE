@@ -3,7 +3,6 @@
 import { useSurveyListByPage } from "@/app/(featured-slice)/entities/survey/hooks";
 import {
   Box,
-  Divider,
   Flex,
   FormControl,
   FormErrorMessage,

@@ -35,7 +35,6 @@ export const FourthSurveyStep = ({ goNextStep }: StepProps) => {
 
   const onSubmit: SubmitHandler<FourthOption> = (option) => {
     // goNextStep();
-    console.log(option);
   };
 
   const dosingQuestion = surveyData[0]?.text ?? "";

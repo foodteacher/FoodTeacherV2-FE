@@ -9,6 +9,8 @@ import {
   FormErrorMessage,
   Heading,
   Text,
+  Textarea,
+  TextareaProps,
 } from "@chakra-ui/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import {
@@ -22,11 +24,14 @@ import {
 import { FrontCheckBox } from "@/app/(featured-slice)/shared/ui/checkbox";
 import SignupInput from "@/app/(featured-slice)/shared/ui/Input/SignupInput";
 import { BottomSheetSelect } from "@/app/(featured-slice)/shared/ui/select";
+import { ChangeEvent, useRef, useState } from "react";
+import { Target } from "framer-motion";
 
 const DOSING_FREQUENCY = ["주 1회 이하", "주 2~3회", "주 4~6회", "매일"];
 
 export const FifthSurveyStep = ({ goNextStep, setState }: StepProps) => {
   const { data: surveyData = [], isLoading } = useSurveyListByPage(5);
+  const [textLength, setTextLength] = useState(0);
   const {
     formState: { errors, isValid },
     control,
@@ -40,6 +45,11 @@ export const FifthSurveyStep = ({ goNextStep, setState }: StepProps) => {
     // goNextStep();
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const value = e.target.value;
+    setTextLength(value.length);
+  };
+
   const dosingReasonQuestion = surveyData[0]?.text ?? "";
   const dosingReasonOption = surveyData[0]?.options ?? [];
 
@@ -49,6 +59,31 @@ export const FifthSurveyStep = ({ goNextStep, setState }: StepProps) => {
     <Flex as="form" onSubmit={handleSubmit(onSubmit)} flexDir={"column"}>
       <Flex flexDir={"column"} w={"100%"} paddingBottom={"150px"}>
         <Flex flexDir={"column"} gap={"32px"} padding={["16px", "16px", "10%"]}>
+          <Box>
+            <Text fontSize={"24px"}>(선택)</Text>
+            <Heading fontSize={"24px"} fontWeight={"bold"}>
+              {dosingReasonQuestion} || "과거에 "
+            </Heading>
+          </Box>
+          <Box pos={"relative"}>
+            <Textarea
+              onChange={handleInputChange}
+              placeholder="과거에 정기적으로 복용하셨던 약의 이름과 복용을 중단한 이유를 써주세요(선택)"
+              resize={"none"}
+              maxLength={200}
+              minH={"160px"}
+            />
+            <Text
+              pos={"absolute"}
+              right={"20px"}
+              bottom={"15px"}
+              color={"#B2B1AB"}
+            >
+              {textLength} / 200
+            </Text>
+          </Box>
+        </Flex>
+        {/* <Flex flexDir={"column"} gap={"32px"} padding={["16px", "16px", "10%"]}>
           <Flex flexDir={"column"} gap={"10px"}>
             <Heading fontSize={"24px"} fontWeight={"bold"}>
               {dosingReasonQuestion}
@@ -113,7 +148,7 @@ export const FifthSurveyStep = ({ goNextStep, setState }: StepProps) => {
               )}
             </FormErrorMessage>
           </FormControl>
-        </Flex>
+        </Flex> */}
 
         <Box
           pos={"fixed"}

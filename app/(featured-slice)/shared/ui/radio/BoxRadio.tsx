@@ -14,7 +14,7 @@ import { CheckIcon } from "../Icons";
 
 type RadioCardType = UseRadioProps & FlexProps;
 
-const CheckRadioCard = ({ h, ...props }: PropsWithChildren<RadioCardType>) => {
+const BoxRadioCard = ({ h, ...props }: PropsWithChildren<RadioCardType>) => {
   const { getInputProps, getRadioProps } = useRadio(props);
 
   const input = getInputProps();
@@ -33,7 +33,7 @@ const CheckRadioCard = ({ h, ...props }: PropsWithChildren<RadioCardType>) => {
         borderColor={"#EAEAEA"}
         alignItems={"center"}
         bg={"#FFFFFF"}
-        h={"60px"}
+        h={h}
         fontSize={"18px"}
         fontWeight={"bold"}
         boxShadow={"0 0px 8px 0px rgba(28,0,51,0.08)"}
@@ -45,11 +45,10 @@ const CheckRadioCard = ({ h, ...props }: PropsWithChildren<RadioCardType>) => {
           boxShadow: "0 0 12px 1px rgba(90,0,161,0.32)",
         }}
         padding={"20px 24px"}
-        justifyContent={"space-between"}
+        justifyContent={"center"}
         gap={"30px"}
       >
         {props.children}
-        {isChecked && <CheckIcon />}
       </Flex>
     </Box>
   );
@@ -62,7 +61,7 @@ interface CustomRadioProps extends FlexProps {
   control?: any;
 }
 
-export const CheckRadio = ({
+export const BoxRadio = ({
   options,
   name,
   control,
@@ -86,9 +85,9 @@ export const CheckRadio = ({
         const radio = getRadioProps({ value: value.text });
 
         return (
-          <CheckRadioCard key={idx} {...radio} {...props}>
+          <BoxRadioCard key={idx} {...radio} {...props}>
             {value.text}
-          </CheckRadioCard>
+          </BoxRadioCard>
         );
       })}
     </Flex>

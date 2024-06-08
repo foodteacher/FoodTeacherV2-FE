@@ -10,7 +10,7 @@ const getSurveyByPage = async (params: {
 }): Promise<SurveyListByPage[]> => {
   // const accessToken = localStorage.getItem("accessToken");
 
-  const res = await instance.get(`/survey/regist`, {
+  const res = await instance.get(`/survey/register`, {
     params,
     // headers: {
     //   Authorization: `Bearer ${accessToken}`,

@@ -3,6 +3,7 @@ import Funnel from "@/app/(featured-slice)/shared/ui/funnel/Funnel";
 import React, { useState } from "react";
 import {
   FirstSurveyFunnel,
+  FourthSurveyStep,
   SecondSurveyFunnel,
   ThirdSurveyFunnel,
 } from "../step";
@@ -58,7 +59,11 @@ export const SurveyFunnel = () => {
           goNextStep={changeNextStep}
           setState={setSurveyState}
         /> */}
-        <ThirdSurveyFunnel
+        {/* <ThirdSurveyFunnel
+          goNextStep={changeNextStep}
+          setState={setSurveyState}
+        /> */}
+        <FourthSurveyStep
           goNextStep={changeNextStep}
           setState={setSurveyState}
         />
@@ -75,7 +80,12 @@ export const SurveyFunnel = () => {
           setState={setSurveyState}
         />
       </Funnel.Step>
-      <Funnel.Step name={4}></Funnel.Step>
+      <Funnel.Step name={4}>
+        <FourthSurveyStep
+          goNextStep={changeNextStep}
+          setState={setSurveyState}
+        />
+      </Funnel.Step>
     </Funnel>
   );
 };

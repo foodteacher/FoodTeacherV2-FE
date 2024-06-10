@@ -1,5 +1,6 @@
 "use client";
 
+import { RadioOption } from "@/app/(featured-slice)/widgets/survey-funnel/types";
 import {
   Box,
   Divider,
@@ -11,6 +12,42 @@ import {
   useRadio,
   useRadioGroup,
 } from "@chakra-ui/react";
+
+interface LevelRadioGroupProps {
+  option: RadioOption[];
+}
+
+export const LevelRadioGroup = ({ option }: LevelRadioGroupProps) => {
+  const { value, getRadioProps, getRootProps } = useRadioGroup({
+    // onChange: handleChange,
+  });
+
+  return (
+    <Stack {...getRootProps()}>
+      <HStack
+        pos={"relative"}
+        margin={"0 auto"}
+        spacing={"32px"}
+        h={"65px"}
+        justifyContent={"space-between"}
+      >
+        <Divider pos={"absolute"} top={"36%"} w={"85%"} left={"10%"} />
+        {option.map((avatar) => {
+          return (
+            <LevelRadio
+              key={avatar.name}
+              icon={avatar.icon}
+              colorIcon={avatar.colorIcon}
+              text={avatar.text}
+              w={avatar.w}
+              {...getRadioProps({ value: avatar.name })}
+            />
+          );
+        })}
+      </HStack>
+    </Stack>
+  );
+};
 
 interface LevelRadioProps extends RadioProps {
   icon: string;
@@ -37,6 +74,7 @@ const LevelRadio = ({
       <Box
         {...getRadioProps()}
         w={w}
+        // h={"65px"}
         // p={1}
         rounded="full"
         bg={"transparent"}
@@ -61,84 +99,5 @@ const LevelRadio = ({
         </Text>
       </Box>
     </Text>
-  );
-};
-
-export const LevelRadioGroup = () => {
-  const radioOption = [
-    {
-      name: "1",
-      icon: "./img/verybad.png",
-      colorIcon: "./img/verybad-color.png",
-      text: "매우 많음",
-      w: "52px",
-    },
-    {
-      name: "2",
-      icon: "./img/bad.png",
-      colorIcon: "./img/bad-color.png",
-      text: "많음",
-      w: "32px",
-    },
-    {
-      name: "3",
-      icon: "./img/soso.png",
-      colorIcon: "./img/soso-color.png",
-      text: "보통",
-      w: "32px",
-    },
-    {
-      name: "4",
-      icon: "./img/good.png",
-      colorIcon: "./img/good-color.png",
-      text: "적음",
-      w: "32px",
-    },
-    {
-      name: "5",
-      icon: "./img/sogood.png",
-      colorIcon: "./img/sogood-color.png",
-      text: "매우 적음",
-      w: "52px",
-    },
-  ];
-
-  const handleChange = (value: any) => {
-    // toast({
-    //   title: `The value got changed to ${value}!`,
-    //   status: "success",
-    //   duration: 2000,
-    // });
-  };
-
-  const { value, getRadioProps, getRootProps } = useRadioGroup({
-    defaultValue: "Kevin",
-    onChange: handleChange,
-  });
-
-  return (
-    <Stack {...getRootProps()}>
-      <Text> {value}</Text>
-      <HStack
-        pos={"relative"}
-        spacing={"15px"}
-        w={"296px"}
-        justifyContent={"space-between"}
-      >
-        <Divider pos={"absolute"} top={"36%"} w={"85%"} left={"10%"} />
-        {radioOption.map((avatar) => {
-          return (
-            <LevelRadio
-              key={avatar.name}
-              icon={avatar.icon}
-              colorIcon={avatar.colorIcon}
-              text={avatar.text}
-              w={avatar.w}
-              {...getRadioProps({ value: avatar.name })}
-            />
-          );
-        })}
-      </HStack>
-    </Stack>
   );
 };

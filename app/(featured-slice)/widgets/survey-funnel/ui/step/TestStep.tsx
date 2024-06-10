@@ -29,15 +29,20 @@ import {
   SignupButton,
 } from "@/app/(featured-slice)/shared/ui/button";
 import { LevelRadioGroup } from "@/app/(featured-slice)/shared/ui/radio";
-import { useSurveyById } from "@/app/(featured-slice)/entities/survey/hooks";
+import SignupInput from "@/app/(featured-slice)/shared/ui/Input/SignupInput";
+import { useState } from "react";
+import { BottomSheetSelect } from "@/app/(featured-slice)/shared/ui/select";
 
 interface TestStep extends UseCheckboxProps, StepProps {}
 interface FormType {
   bloodType: string;
 }
 
+const DOSING_FREQUENCY = ["주 1회 이하", "주 2~3회", "주 4~6회", "매일"];
+
 export const TestStep = ({ goNextStep, setState, ...props }: any) => {
   const router = useRouter();
+  const [selectValue, setSelectValue] = useState<string>("횟수");
   const {
     formState: { errors, isValid },
     register,
@@ -49,12 +54,16 @@ export const TestStep = ({ goNextStep, setState, ...props }: any) => {
     console.log(data);
   };
 
-  const { data } = useSurveyById(1);
+  // const { data } = useSurveyById(1);
 
   const { isOpen, onClose, onOpen } = useDisclosure();
 
   return (
-    <VStack as="form" onSubmit={handleSubmit(submitFormHandler)} gap={"100px"}>
+    <Flex
+      as="form"
+      onSubmit={handleSubmit(submitFormHandler)}
+      flexDir={"column"}
+    >
       <FrontCheckBox
         options={BLOOD_TYPE_OTPIONS}
         name={"bloodType"}
@@ -109,7 +118,23 @@ export const TestStep = ({ goNextStep, setState, ...props }: any) => {
         </SurveyResultCard>
       </VStack>
 
-      <LevelRadioGroup />
+      {/* <LevelRadioGroup option={favoriteOption} /> */}
+
+      <Flex w={"100%"} flexDir={"column"} gap={"16px"}>
+        {Array.from({ length: 3 }, (_, idx) => idx).map((key) => {
+          return (
+            <Flex gap={"12px"} key={key}>
+              <SignupInput id="name" placeholder="약 이름" />
+              <BottomSheetSelect
+                id="dosing"
+                initialText="횟수"
+                sheetHeader="복용 횟수"
+                list={DOSING_FREQUENCY}
+              />
+            </Flex>
+          );
+        })}
+      </Flex>
 
       <Modal isOpen={isOpen} onClose={onClose} scrollBehavior={"inside"}>
         <ModalOverlay />
@@ -203,6 +228,6 @@ export const TestStep = ({ goNextStep, setState, ...props }: any) => {
       </Modal>
 
       <Button type={"submit"}>click</Button>
-    </VStack>
+    </Flex>
   );
 };

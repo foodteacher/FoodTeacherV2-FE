@@ -5,7 +5,7 @@ import { Dispatch, SetStateAction } from "react";
 export interface StepProps {
   goNextStep: () => void;
   goPrevStep?: () => void;
-  setState: Dispatch<SetStateAction<SignupState>>;
+  setState?: Dispatch<SetStateAction<SignupState>>;
 }
 
 export type BloodType = "A" | "B" | "AB" | "O";
@@ -28,8 +28,8 @@ export type SignupState = UserInfoType & PhysicalInfo;
 export type FunnelInfo = SignupState;
 
 export interface FunnelState extends BoxProps {
-  currentStep: string;
+  currentStep: string | number;
   funnelState: FunnelInfo;
   progress?: number;
-  steps?: string[];
+  steps?: (string | number)[];
 }

@@ -13,7 +13,7 @@
 /out/
 
 # CICD
-/.github/workflows
+/.github
 
 # production
 /build

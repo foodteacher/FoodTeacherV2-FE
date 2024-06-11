@@ -59,7 +59,7 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
       h={"100%"}
       pos={"relative"}
     >
-      <Flex flexDir={"column"} gap={"32px"} w={"100%"} paddingBottom={"150px"}>
+      <Flex flexDir={"column"} gap={"32px"} w={"100%"} paddingBottom={"50%"}>
         <Heading fontSize={"24px"} fontWeight={"bold"}>
           기본 정보를 입력해주세요
         </Heading>
@@ -98,7 +98,7 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
               }),
             }}
           />
-          <FormErrorMessage>
+          <FormErrorMessage color={"#FF0000"} fontSize={"16px"}>
             {errors.birthday?.message && (
               <Flex gap={"4px"}>
                 <WarningIcon />
@@ -125,7 +125,7 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
             gap={"16px"}
             padding={"12px 16px"}
           />
-          <FormErrorMessage>
+          <FormErrorMessage color={"#FF0000"} fontSize={"16px"}>
             {errors.gender && (
               <Flex gap={"4px"}>
                 <WarningIcon />

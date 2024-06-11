@@ -49,11 +49,11 @@ export const SignupFunnel = () => {
           boxWidth={"28px"}
         />
         <Funnel.Step name="info">
-          <UserInfo goNextStep={changeNextStep} setState={setSurveyState} />
-          {/* <UserPysicalStep
+          {/* <UserInfo goNextStep={changeNextStep} setState={setSurveyState} /> */}
+          <UserPysicalStep
             goNextStep={changeNextStep}
             setState={setSurveyState}
-          /> */}
+          />
         </Funnel.Step>
         <Funnel.Step name="physical">
           <UserPysicalStep

@@ -43,7 +43,7 @@ const RadioCard = ({
           fontWeight: "bold",
         }}
         _focus={{
-          boxShadow: "outline",
+          boxShadow: "none",
         }}
         padding={padding}
         justifyContent={"center"}

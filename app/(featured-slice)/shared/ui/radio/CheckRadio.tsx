@@ -11,11 +11,12 @@ import {
 } from "@chakra-ui/react";
 import { UseFormRegisterReturn, useController } from "react-hook-form";
 import { CheckIcon } from "../Icons";
+import { TextValueOptionType } from "@/app/(featured-slice)/widgets/signup-funnel/const/const";
 
 type RadioCardType = UseRadioProps & FlexProps;
 
 interface CheckRadioCard extends RadioCardType {
-  text: string;
+  text: string | number;
 }
 
 const CheckRadioCard = ({
@@ -90,12 +91,12 @@ export const CheckRadio = ({
 
   return (
     <Flex {...group} {...props} padding={"0"} gap={"16px"}>
-      {options?.map((value: any, idx: number) => {
+      {options?.map((value: TextValueOptionType) => {
         const radio = getRadioProps({ value: value.optionId });
 
         return (
           <CheckRadioCard
-            key={radio.value}
+            key={value.optionId}
             {...props}
             {...radio}
             text={value.text}

@@ -36,6 +36,12 @@ jobs:
         echo "NEXT_PUBLIC_NAVER_CLIENT_ID=${{ secrets.NEXT_PUBLIC_NAVER_CLIENT_ID }}" >> .env
         echo "NEXT_PUBLIC_NAVER_REST_ID=${{ secrets.NEXT_PUBLIC_NAVER_REST_ID }}" >> .env
 
+    - name: Get image tag(verion)
+      id: image
+      run: |
+        VERSION=$(git rev-parse --short HEAD)
+        echo VERSION=$VERSION
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
 
     - name: build and push
       uses: docker/build-push-action@v3
@@ -43,7 +49,7 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/foodteacher-fe-dev:${{ github.sha }}
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/foodteacher-fe-dev:${{ steps.image.outputs.version }}
     
     - name: Discord notification on build failure
       if: failure()
@@ -58,9 +64,9 @@ jobs:
         git init
         git config --global user.email "gracehpark@naver.com"
         git config --global user.name "gracehpark0120"
-        git clone https://${{ secrets.GIT_TOKEN }}@github.com/foodteacher/devops.git
-        cd devops/fe
-        sed -i "s|gracehpark/foodteacher-fe-dev:.*|gracehpark/foodteacher-fe-dev:${{ github.sha }}|g" fe-dev.yaml
+        git clone https://${{ secrets.GIT_TOKEN }}@github.com/foodteacher/foodteacher-helm.git
+        cd foodteacher-helm/apps/foodteacher-fe
+        sed -i '/dev_image:/,/tag:/ s/tag: ".*"/tag: "${{ steps.image.outputs.version }}"/' values.yaml
         git commit -am "Update Docker Image Name"
         git push
 

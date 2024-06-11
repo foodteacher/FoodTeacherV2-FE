@@ -28,7 +28,10 @@ interface SecondOption {
   smokeAware: string;
 }
 
-export const SecondSurveyStep = ({ goNextStep, goPrevStep }: StepProps) => {
+export const SecondSurveyStep = ({
+  goNextStep,
+  goPrevStep = () => {},
+}: StepProps) => {
   const { data: surveyData = [], isLoading } = useSurveyListByPage(2);
   const {
     formState: { errors, isValid },

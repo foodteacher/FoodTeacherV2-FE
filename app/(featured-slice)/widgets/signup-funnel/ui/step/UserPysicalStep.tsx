@@ -35,9 +35,11 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
 
   /**최종 회원가입 */
   const onSubmit: SubmitHandler<PhysicalInfo> = (physicalInfo) => {
-    setState((data) => {
-      return { ...data, ...physicalInfo };
-    });
+    if (setState) {
+      setState((data) => {
+        return { ...data, ...physicalInfo };
+      });
+    }
     goNextStep();
     router.push("/signup-complete");
   };

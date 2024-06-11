@@ -28,9 +28,11 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
   });
 
   const onSubmit: SubmitHandler<UserInfoType> = (formInfo) => {
-    setState((data) => {
-      return { ...data, ...formInfo };
-    });
+    if (setState) {
+      setState((data) => {
+        return { ...data, ...formInfo };
+      });
+    }
     goNextStep();
   };
 

@@ -45,7 +45,7 @@ const CheckRadioCard = ({
         fontWeight={"bold"}
         boxShadow={"0 0px 8px 0px rgba(28,0,51,0.08)"}
         _checked={{
-          bg: "#FCF8FF",
+          bg: "#FAF4FF",
           fontWeight: "bold",
           color: "#6D00A3",
           border: "2px solid #8A00FF",

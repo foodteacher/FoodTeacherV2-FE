@@ -5,6 +5,7 @@ import {
   Box,
   Flex,
   FlexProps,
+  Input,
   Radio,
   UseRadioProps,
   useRadio,
@@ -36,7 +37,7 @@ const RadioCard = ({
         borderColor={"#EAEAEA"}
         alignItems={"flex-start"}
         h={"80px"}
-        bg={"#F6F4F1"}
+        bg={"#FFFFFF"}
         _checked={{
           bg: "#FAF7FC",
           fontWeight: "bold",
@@ -49,7 +50,26 @@ const RadioCard = ({
         flexDir={"column"}
         gap={"30px"}
       >
-        <Radio {...props} size={"lg"} flexDir={"row"} gap={"0px"} />
+        <Radio
+          {...props}
+          size={"lg"}
+          flexDir={"row"}
+          gap={"0px"}
+          _checked={{
+            bg: "white",
+            borderColor: "#8F00FF",
+            color: "#8F00FF",
+            _before: {
+              content: "''",
+              display: "inline-block",
+              pos: "relative",
+              w: "10px",
+              h: "10px",
+              borderRadius: "50%",
+              bg: "currentColor",
+            },
+          }}
+        />
       </Flex>
     </Box>
   );

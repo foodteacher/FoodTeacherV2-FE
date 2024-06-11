@@ -4,7 +4,7 @@ interface Option {
   initialStep: string;
 }
 
-export const useFunnel = (steps: string[], option?: Option) => {
+export const useFunnel = (steps: (string | number)[], option?: Option) => {
   /**step 초기화 */
   const initializeStep = () => {
     const initialStep = option?.initialStep;
@@ -15,7 +15,7 @@ export const useFunnel = (steps: string[], option?: Option) => {
     }
   };
 
-  const [currentStep, setCurrentStep] = useState<string>(() =>
+  const [currentStep, setCurrentStep] = useState<string | number>(() =>
     initializeStep()
   );
 

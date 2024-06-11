@@ -18,6 +18,7 @@ import { BLOOD_TYPE_OTPIONS } from "../../const/const";
 import SignupInput from "@/app/(featured-slice)/shared/ui/Input/SignupInput";
 import { useRouter } from "next/navigation";
 import { CheckRadio } from "@/app/(featured-slice)/shared/ui/radio";
+import { WarningIcon } from "@/app/(featured-slice)/shared/ui/Icons";
 
 export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
   const router = useRouter();
@@ -34,9 +35,11 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
 
   /**최종 회원가입 */
   const onSubmit: SubmitHandler<PhysicalInfo> = (physicalInfo) => {
-    setState((data) => {
-      return { ...data, ...physicalInfo };
-    });
+    if (setState) {
+      setState((data) => {
+        return { ...data, ...physicalInfo };
+      });
+    }
     goNextStep();
     router.push("/signup-complete");
   };
@@ -148,9 +151,11 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
           />
 
           <FormErrorMessage>
-            <Text color={"#FF0000"} fontSize={"16px"}>
-              {errors.bloodType && "혈액형을 선택해 주세요."}
-            </Text>
+            {errors.bloodType && (
+              <Text color={"#FF0000"} fontSize={"16px"}>
+                <WarningIcon /> "혈액형을 선택해 주세요."
+              </Text>
+            )}
           </FormErrorMessage>
         </FormControl>
       </Flex>

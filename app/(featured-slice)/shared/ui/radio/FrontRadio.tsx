@@ -5,7 +5,6 @@ import {
   Box,
   Flex,
   FlexProps,
-  Input,
   Radio,
   UseRadioProps,
   useRadio,

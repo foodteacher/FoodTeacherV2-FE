@@ -25,7 +25,6 @@ const RadioCard = ({
   const input = getInputProps();
   const checkbox = getRadioProps();
   const label = getLabelProps();
-  // console.log(props.children);
   return (
     <Box as="label" w={"100%"} left={0} h={h}>
       <input {...input} />

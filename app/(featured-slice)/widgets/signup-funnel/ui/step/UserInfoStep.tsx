@@ -5,6 +5,7 @@ import {
   FormControl,
   FormErrorMessage,
   Heading,
+  Text,
 } from "@chakra-ui/react";
 import React from "react";
 import { StepProps, UserInfoType } from "../../types";
@@ -14,6 +15,7 @@ import { GENDER_OPTIONS } from "../../const/const";
 import SignupInput from "@/app/(featured-slice)/shared/ui/Input/SignupInput";
 import { SignupButton } from "@/app/(featured-slice)/shared/ui/button";
 import { FrontRadio } from "@/app/(featured-slice)/shared/ui/radio";
+import { WarningIcon } from "@/app/(featured-slice)/shared/ui/Icons";
 
 export const UserInfo = ({ goNextStep, setState }: StepProps) => {
   const {
@@ -74,7 +76,12 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
           />
 
           <FormErrorMessage>
-            {errors.name && errors.name.message}
+            {errors.name && (
+              <Flex gap={"4px"}>
+                <WarningIcon />
+                {errors.name.message}
+              </Flex>
+            )}
           </FormErrorMessage>
         </FormControl>
 
@@ -92,9 +99,17 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
             }}
           />
           <FormErrorMessage>
-            {errors.birthday && errors.birthday.message}
+            {errors.birthday?.message && (
+              <Flex gap={"4px"}>
+                <WarningIcon />
+                {errors.birthday.message}
+              </Flex>
+            )}
             {errors?.birthday?.type === "pattern" && (
-              <p>형식에 맞게 입력해주세요.</p>
+              <Flex gap={"4px"}>
+                <WarningIcon />
+                형식에 맞게 입력해주세요.
+              </Flex>
             )}
           </FormErrorMessage>
         </FormControl>
@@ -111,7 +126,12 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
             padding={"12px 16px"}
           />
           <FormErrorMessage>
-            {errors.gender && "성별을 선택해 주세요."}
+            {errors.gender && (
+              <Flex gap={"4px"}>
+                <WarningIcon />
+                성별을 선택해 주세요.
+              </Flex>
+            )}
           </FormErrorMessage>
         </FormControl>
       </Flex>

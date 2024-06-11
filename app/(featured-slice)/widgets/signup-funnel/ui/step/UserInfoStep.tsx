@@ -5,7 +5,6 @@ import {
   FormControl,
   FormErrorMessage,
   Heading,
-  Text,
 } from "@chakra-ui/react";
 import React from "react";
 import { StepProps, UserInfoType } from "../../types";
@@ -35,7 +34,8 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
         return { ...data, ...formInfo };
       });
     }
-    goNextStep();
+    console.log(formInfo);
+    // goNextStep();
   };
 
   const inputSlashValidation = (e: any) => {

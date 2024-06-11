@@ -56,7 +56,6 @@ const CheckRadioCard = ({
         justifyContent={"space-between"}
         gap={"30px"}
       >
-        {/* {props.children} */}
         {text}
         {isChecked && <CheckIcon />}
       </Flex>
@@ -65,7 +64,7 @@ const CheckRadioCard = ({
 };
 
 interface CustomRadioProps extends FlexProps {
-  options: any;
+  options: TextValueOptionType[];
   name: string;
   register?: UseFormRegisterReturn;
   control?: any;

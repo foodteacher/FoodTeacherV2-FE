@@ -19,11 +19,4 @@ const getSurveyByPage = async (params: {
   return res.data;
 };
 
-/**설문조사 제출*/
-const postSurveyByPage = async () => {
-  const res = await instance.post("/survey/register/answers", {});
-
-  return res;
-};
-
-export { getSurveyByPage, postSurveyByPage };
+export { getSurveyByPage };

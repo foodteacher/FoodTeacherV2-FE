@@ -13,21 +13,20 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { StepProps } from "../../../signup-funnel/types";
 import { SignupButton } from "@/app/(featured-slice)/shared/ui/button";
 import { WarningIcon } from "@/app/(featured-slice)/shared/ui/Icons";
-import {
-  useRegisterSurveyByPage,
-  useSurveyListByPage,
-} from "@/app/(featured-slice)/entities/survey/hooks";
+import { useSurveyListByPage } from "@/app/(featured-slice)/entities/survey/hooks";
+import { useSurveyAnswer } from "@/app/(featured-slice)/features/survey/hooks/useSurveyAnswer";
 
 export const FirstSurveyStep = ({ goNextStep }: StepProps) => {
   const { data: surveyData = [], isLoading } = useSurveyListByPage(1);
-  const { mutateAsync: surveyMutation } = useRegisterSurveyByPage();
+
+  const { mutateAsync: mutateSurveyAnswer, isPending } = useSurveyAnswer();
   const {
     formState: { errors, isValid },
     control,
     handleSubmit,
   } = useForm<{ goal: string }>();
 
-  const onSubmit: SubmitHandler<{ goal: string }> = ({ goal }) => {
+  const onSubmit: SubmitHandler<{ goal: string }> = async ({ goal }) => {
     const formState = [
       {
         questionId: 1,
@@ -35,7 +34,8 @@ export const FirstSurveyStep = ({ goNextStep }: StepProps) => {
       },
     ];
 
-    console.log(formState);
+    await mutateSurveyAnswer(formState);
+
     // goNextStep();
   };
 

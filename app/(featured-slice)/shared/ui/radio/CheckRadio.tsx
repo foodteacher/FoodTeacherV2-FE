@@ -11,11 +11,12 @@ import {
 } from "@chakra-ui/react";
 import { UseFormRegisterReturn, useController } from "react-hook-form";
 import { CheckIcon } from "../Icons";
+import { TextValueOptionType } from "@/app/(featured-slice)/widgets/signup-funnel/const/const";
 
 type RadioCardType = UseRadioProps & FlexProps;
 
 interface CheckRadioCard extends RadioCardType {
-  text: string;
+  text: string | number;
 }
 
 const CheckRadioCard = ({
@@ -45,7 +46,7 @@ const CheckRadioCard = ({
         fontWeight={"bold"}
         boxShadow={"0 0px 8px 0px rgba(28,0,51,0.08)"}
         _checked={{
-          bg: "#FCF8FF",
+          bg: "#FAF4FF",
           fontWeight: "bold",
           color: "#6D00A3",
           border: "2px solid #8A00FF",
@@ -55,7 +56,6 @@ const CheckRadioCard = ({
         justifyContent={"space-between"}
         gap={"30px"}
       >
-        {/* {props.children} */}
         {text}
         {isChecked && <CheckIcon />}
       </Flex>
@@ -64,7 +64,7 @@ const CheckRadioCard = ({
 };
 
 interface CustomRadioProps extends FlexProps {
-  options: any;
+  options: TextValueOptionType[];
   name: string;
   register?: UseFormRegisterReturn;
   control?: any;
@@ -90,12 +90,12 @@ export const CheckRadio = ({
 
   return (
     <Flex {...group} {...props} padding={"0"} gap={"16px"}>
-      {options?.map((value: any, idx: number) => {
+      {options?.map((value: TextValueOptionType) => {
         const radio = getRadioProps({ value: value.optionId });
 
         return (
           <CheckRadioCard
-            key={radio.value}
+            key={value.optionId}
             {...props}
             {...radio}
             text={value.text}

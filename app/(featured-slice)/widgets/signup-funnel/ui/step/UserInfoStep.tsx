@@ -14,6 +14,7 @@ import { GENDER_OPTIONS } from "../../const/const";
 import SignupInput from "@/app/(featured-slice)/shared/ui/Input/SignupInput";
 import { SignupButton } from "@/app/(featured-slice)/shared/ui/button";
 import { FrontRadio } from "@/app/(featured-slice)/shared/ui/radio";
+import { WarningIcon } from "@/app/(featured-slice)/shared/ui/Icons";
 
 export const UserInfo = ({ goNextStep, setState }: StepProps) => {
   const {
@@ -33,7 +34,8 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
         return { ...data, ...formInfo };
       });
     }
-    goNextStep();
+    console.log(formInfo);
+    // goNextStep();
   };
 
   const inputSlashValidation = (e: any) => {
@@ -57,7 +59,7 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
       h={"100%"}
       pos={"relative"}
     >
-      <Flex flexDir={"column"} gap={"32px"} w={"100%"} paddingBottom={"150px"}>
+      <Flex flexDir={"column"} gap={"32px"} w={"100%"} paddingBottom={"50%"}>
         <Heading fontSize={"24px"} fontWeight={"bold"}>
           기본 정보를 입력해주세요
         </Heading>
@@ -74,7 +76,12 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
           />
 
           <FormErrorMessage>
-            {errors.name && errors.name.message}
+            {errors.name && (
+              <Flex gap={"4px"}>
+                <WarningIcon />
+                {errors.name.message}
+              </Flex>
+            )}
           </FormErrorMessage>
         </FormControl>
 
@@ -91,10 +98,18 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
               }),
             }}
           />
-          <FormErrorMessage>
-            {errors.birthday && errors.birthday.message}
+          <FormErrorMessage color={"#FF0000"} fontSize={"16px"}>
+            {errors.birthday?.message && (
+              <Flex gap={"4px"}>
+                <WarningIcon />
+                {errors.birthday.message}
+              </Flex>
+            )}
             {errors?.birthday?.type === "pattern" && (
-              <p>형식에 맞게 입력해주세요.</p>
+              <Flex gap={"4px"}>
+                <WarningIcon />
+                형식에 맞게 입력해주세요.
+              </Flex>
             )}
           </FormErrorMessage>
         </FormControl>
@@ -110,8 +125,13 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
             gap={"16px"}
             padding={"12px 16px"}
           />
-          <FormErrorMessage>
-            {errors.gender && "성별을 선택해 주세요."}
+          <FormErrorMessage color={"#FF0000"} fontSize={"16px"}>
+            {errors.gender && (
+              <Flex gap={"4px"}>
+                <WarningIcon />
+                성별을 선택해 주세요.
+              </Flex>
+            )}
           </FormErrorMessage>
         </FormControl>
       </Flex>

@@ -12,8 +12,6 @@
 /.next/
 /out/
 
-# CICD
-/.github
 
 # production
 /build

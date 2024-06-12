@@ -10,7 +10,8 @@ import {
   useRadio,
   useRadioGroup,
 } from "@chakra-ui/react";
-import { useController } from "react-hook-form";
+import { UseFormRegisterReturn, useController } from "react-hook-form";
+import { TextValueOptionType } from "@/app/(featured-slice)/widgets/signup-funnel/const/const";
 
 type RadioCardType = UseRadioProps & FlexProps;
 
@@ -20,12 +21,10 @@ const RadioCard = ({
   padding,
   ...props
 }: PropsWithChildren<RadioCardType>) => {
-  const { getInputProps, getRadioProps, getLabelProps } = useRadio(props);
+  const { getInputProps, getRadioProps } = useRadio(props);
 
   const input = getInputProps();
   const checkbox = getRadioProps();
-  const label = getLabelProps();
-  // console.log(props.children);
   return (
     <Box as="label" w={"100%"} left={0} h={h}>
       <input {...input} />
@@ -37,28 +36,58 @@ const RadioCard = ({
         borderColor={"#EAEAEA"}
         alignItems={"flex-start"}
         h={"80px"}
-        bg={"#F6F4F1"}
+        bg={"#FFFFFF"}
         _checked={{
           bg: "#FAF7FC",
           fontWeight: "bold",
         }}
         _focus={{
-          boxShadow: "outline",
+          boxShadow: "none",
         }}
         padding={padding}
         justifyContent={"center"}
         flexDir={"column"}
         gap={"30px"}
       >
-        <Radio {...props} size={"lg"} flexDir={"row"} gap={"0px"} />
+        <Radio
+          {...props}
+          size={"lg"}
+          flexDir={"row"}
+          gap={"0px"}
+          borderColor="#E1E1E1"
+          _before={{
+            content: "''",
+            display: "inline-block",
+            pos: "relative",
+            w: "10px",
+            h: "10px",
+            borderRadius: "50%",
+            bg: "#D0CECB",
+          }}
+          _checked={{
+            bg: "white",
+            borderColor: "#8F00FF",
+            color: "#8F00FF",
+            _before: {
+              content: "''",
+              display: "inline-block",
+              pos: "relative",
+              w: "10px",
+              h: "10px",
+              borderRadius: "50%",
+              bg: "currentColor",
+            },
+          }}
+        />
       </Flex>
     </Box>
   );
 };
 
 interface CustomRadioProps extends FlexProps {
-  options: (string | number)[];
+  options: TextValueOptionType[];
   name: string;
+  register?: UseFormRegisterReturn;
   control?: any;
 }
 
@@ -82,11 +111,11 @@ export const FrontRadio = ({
 
   return (
     <Flex {...group} {...props} padding={"0"} h={"80px"}>
-      {options.map((value: string | number) => {
-        const radio = getRadioProps({ value });
+      {options?.map((value: TextValueOptionType) => {
+        const radio = getRadioProps({ value: value.optionId });
         return (
-          <RadioCard key={value} {...radio} {...props}>
-            {value}
+          <RadioCard key={value.optionId} {...radio} {...props}>
+            {value.text}
           </RadioCard>
         );
       })}

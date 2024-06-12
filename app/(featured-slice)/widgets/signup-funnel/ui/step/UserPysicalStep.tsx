@@ -51,7 +51,7 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
         gap={"32px"}
         w={"100%"}
         h={"100%"}
-        paddingBottom={"150px"}
+        paddingBottom={"50%"}
       >
         <Heading fontSize={"24px"} fontWeight={"bold"}>
           신체 정보를 입력해주세요
@@ -77,7 +77,11 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
             </InputRightElement>
           </InputGroup>
           <FormErrorMessage color={"#FF0000"} fontSize={"16px"}>
-            {errors.height && errors.height.message}
+            {errors.height?.message && (
+              <Flex gap={"4px"}>
+                <WarningIcon /> {errors.height?.message}
+              </Flex>
+            )}
           </FormErrorMessage>
         </FormControl>
 
@@ -105,7 +109,11 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
             </InputRightElement>
           </InputGroup>
           <FormErrorMessage color={"#FF0000"} fontSize={"16px"}>
-            {errors.weight && errors.weight.message}
+            {errors.weight?.message && (
+              <Flex gap={"4px"}>
+                <WarningIcon /> {errors.weight?.message}
+              </Flex>
+            )}
           </FormErrorMessage>
         </FormControl>
 
@@ -134,7 +142,11 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
           </InputGroup>
 
           <FormErrorMessage color={"#FF0000"} fontSize={"16px"}>
-            {errors.targetWeight && errors.targetWeight.message}
+            {errors.targetWeight?.message && (
+              <Flex gap={"4px"}>
+                <WarningIcon /> {errors.targetWeight?.message}
+              </Flex>
+            )}
           </FormErrorMessage>
         </FormControl>
 
@@ -150,11 +162,11 @@ export const UserPysicalStep = ({ goNextStep, setState }: StepProps) => {
             flexDir={"column"}
           />
 
-          <FormErrorMessage>
+          <FormErrorMessage color={"#FF0000"} fontSize={"16px"}>
             {errors.bloodType && (
-              <Text color={"#FF0000"} fontSize={"16px"}>
-                <WarningIcon /> "혈액형을 선택해 주세요."
-              </Text>
+              <Flex gap={"4px"}>
+                <WarningIcon /> 혈액형을 선택해 주세요.
+              </Flex>
             )}
           </FormErrorMessage>
         </FormControl>

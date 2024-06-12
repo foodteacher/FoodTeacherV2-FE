@@ -8,7 +8,7 @@ import React from "react";
 const page = () => {
   return (
     <Box h={"100%"}>
-      <TheHeader leftElement={<BackArrowIcon />}>
+      <TheHeader leftElement={<BackArrowIcon />} w={"48px"}>
         <Text fontSize={"16px"}>회원가입</Text>
       </TheHeader>
       <SignupFunnel />

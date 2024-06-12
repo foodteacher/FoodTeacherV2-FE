@@ -3,8 +3,6 @@
 import { CheckRadio } from "@/app/(featured-slice)/shared/ui/radio";
 import {
   Box,
-  Button,
-  Divider,
   Flex,
   FormControl,
   FormErrorMessage,
@@ -49,7 +47,7 @@ export const SecondSurveyStep = ({
 
   return (
     <Flex as="form" onSubmit={handleSubmit(onSubmit)} flexDir={"column"}>
-      <Flex flexDir={"column"} w={"100%"} paddingBottom={"150px"}>
+      <Flex flexDir={"column"} w={"100%"}>
         <Flex flexDir={"column"} gap={"32px"} padding={["16px", "16px", "10%"]}>
           <Heading fontSize={"24px"} fontWeight={"bold"}>
             건강 검진을 정기적으로 받으시나요?

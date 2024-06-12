@@ -20,17 +20,26 @@ export const FirstSurveyStep = ({ goNextStep }: StepProps) => {
   const { data: surveyData = [], isLoading } = useSurveyListByPage(1);
 
   const { mutateAsync: mutateSurveyAnswer, isPending } = useSurveyAnswer();
+
+  const preSelectedValue = surveyData[0]?.options
+    .filter((ele) => ele.selected)[0]
+    .optionId.toString();
+
   const {
     formState: { errors, isValid },
     control,
     handleSubmit,
-  } = useForm<{ goal: string }>();
+  } = useForm<{ goal: string }>({
+    defaultValues: async () => {
+      return { goal: preSelectedValue || "35" };
+    },
+  });
 
   const onSubmit: SubmitHandler<{ goal: string }> = async ({ goal }) => {
     const formState = [
       {
         questionId: 1,
-        optionList: [goal],
+        optionIdList: [Number(goal)],
       },
     ];
 

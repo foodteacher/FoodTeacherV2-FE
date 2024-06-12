@@ -18,22 +18,11 @@ export const SurveyFunnel = () => {
   const { changeNextStep, changePrevStep, currentStep, progress, steps } =
     useFunnel([1, 2, 3, 4, 5, 6]);
 
-  const [surveyState, setSurveyState] = useState<any>({
-    name: "",
-    height: 0,
-    weight: 0,
-    birthday: "",
-    gender: "",
-    targetWeight: 0,
-    bloodType: "A",
-  });
   return (
     <Funnel
       currentStep={currentStep}
-      funnelState={surveyState}
       progress={progress}
       steps={steps}
-      // padding={["16px", "16px", "10%"]}
       margin={"0 auto"}
       h={"100%"}
       bg={"#FDFBF8"}
@@ -56,9 +45,9 @@ export const SurveyFunnel = () => {
       />
       <Funnel.Step name={1}>
         <FirstSurveyStep goNextStep={changeNextStep} />
-        {/* <SecondSurveyFunnel
+        {/* <SecondSurveyStep
           goNextStep={changeNextStep}
-          setState={setSurveyState}
+          goPrevStep={changePrevStep}
         /> */}
         {/* <ThirdSurveyFunnel
           goNextStep={changeNextStep}
@@ -76,35 +65,30 @@ export const SurveyFunnel = () => {
         <SecondSurveyStep
           goNextStep={changeNextStep}
           goPrevStep={changePrevStep}
-          setState={setSurveyState}
         />
       </Funnel.Step>
       <Funnel.Step name={3}>
         <ThirdSurveyStep
           goNextStep={changeNextStep}
           goPrevStep={changePrevStep}
-          setState={setSurveyState}
         />
       </Funnel.Step>
       <Funnel.Step name={4}>
         <FourthSurveyStep
           goNextStep={changeNextStep}
           goPrevStep={changePrevStep}
-          setState={setSurveyState}
         />
       </Funnel.Step>
       <Funnel.Step name={5}>
         <FifthSurveyStep
           goNextStep={changeNextStep}
           goPrevStep={changePrevStep}
-          setState={setSurveyState}
         />
       </Funnel.Step>
       <Funnel.Step name={6}>
         <SixthSurveyStep
           goNextStep={changeNextStep}
           goPrevStep={changePrevStep}
-          setState={setSurveyState}
         />
       </Funnel.Step>
     </Funnel>

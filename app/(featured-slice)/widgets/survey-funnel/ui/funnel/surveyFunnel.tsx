@@ -55,7 +55,7 @@ export const SurveyFunnel = () => {
         boxWidth={"28px"}
       />
       <Funnel.Step name={1}>
-        {/* <FirstSurveyStep goNextStep={changeNextStep} /> */}
+        <FirstSurveyStep goNextStep={changeNextStep} />
         {/* <SecondSurveyFunnel
           goNextStep={changeNextStep}
           setState={setSurveyState}
@@ -70,7 +70,7 @@ export const SurveyFunnel = () => {
           goNextStep={changeNextStep}
           setState={setSurveyState}
         /> */}
-        <TestStep />
+        {/* <TestStep /> */}
       </Funnel.Step>
       <Funnel.Step name={2}>
         <SecondSurveyStep

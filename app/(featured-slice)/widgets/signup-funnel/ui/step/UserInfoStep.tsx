@@ -34,8 +34,7 @@ export const UserInfo = ({ goNextStep, setState }: StepProps) => {
         return { ...data, ...formInfo };
       });
     }
-    console.log(formInfo);
-    // goNextStep();
+    goNextStep();
   };
 
   const inputSlashValidation = (e: any) => {

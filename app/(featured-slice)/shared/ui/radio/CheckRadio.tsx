@@ -28,6 +28,7 @@ const CheckRadioCard = ({
 
   const input = getInputProps();
   const checkbox = getRadioProps();
+
   const isChecked = props.isChecked;
 
   return (
@@ -90,16 +91,11 @@ export const CheckRadio = ({
 
   return (
     <Flex {...group} {...props} padding={"0"} gap={"16px"}>
-      {options?.map((value: TextValueOptionType) => {
-        const radio = getRadioProps({ value: value.optionId });
+      {options?.map(({ optionId, text }: TextValueOptionType) => {
+        const radio = getRadioProps({ value: optionId.toString() });
 
         return (
-          <CheckRadioCard
-            key={value.optionId}
-            {...props}
-            {...radio}
-            text={value.text}
-          />
+          <CheckRadioCard key={optionId} {...props} {...radio} text={text} />
         );
       })}
     </Flex>

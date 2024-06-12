@@ -30,7 +30,7 @@ export const SecondSurveyStep = ({
   goNextStep,
   goPrevStep = () => {},
 }: StepProps) => {
-  const { data: surveyData = [], isLoading } = useSurveyListByPage(2);
+  const { data: surveyData = [] } = useSurveyListByPage(2);
   const {
     formState: { errors, isValid },
     control,

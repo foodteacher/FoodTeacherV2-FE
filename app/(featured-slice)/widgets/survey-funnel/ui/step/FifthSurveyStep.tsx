@@ -29,7 +29,7 @@ import { useState } from "react";
 const DOSING_FREQUENCY = ["주 1회 이하", "주 2~3회", "주 4~6회", "매일"];
 
 export const FifthSurveyStep = ({ goNextStep }: StepProps) => {
-  const { data: surveyData = [], isLoading } = useSurveyListByPage(5);
+  const { data: surveyData = [] } = useSurveyListByPage(5);
   const [textLength, setTextLength] = useState(0);
   const {
     formState: { errors, isValid },

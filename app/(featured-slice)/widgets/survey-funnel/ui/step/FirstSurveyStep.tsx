@@ -15,35 +15,60 @@ import { SignupButton } from "@/app/(featured-slice)/shared/ui/button";
 import { WarningIcon } from "@/app/(featured-slice)/shared/ui/Icons";
 import { useSurveyListByPage } from "@/app/(featured-slice)/entities/survey/hooks";
 import { useSurveyAnswer } from "@/app/(featured-slice)/features/survey/hooks/useSurveyAnswer";
+import { useState } from "react";
+import { FormData } from "../../types";
+import { getSurveyByPage } from "@/app/(featured-slice)/entities/survey/api/survey";
 
 export const FirstSurveyStep = ({ goNextStep }: StepProps) => {
-  const { data: surveyData = [], isLoading } = useSurveyListByPage(1);
+  const { data: surveyData } = useSurveyListByPage(1);
 
   const { mutateAsync: mutateSurveyAnswer, isPending } = useSurveyAnswer();
 
-  const preSelectedValue = surveyData[0]?.options
-    .filter((ele) => ele.selected)[0]
-    .optionId.toString();
+  const [customOptionText, setCustomOptionText] = useState<string>("");
 
   const {
-    formState: { errors, isValid },
+    formState: { errors, isValid, isLoading },
     control,
     handleSubmit,
   } = useForm<{ goal: string }>({
     defaultValues: async () => {
-      return { goal: preSelectedValue || "35" };
+      const data = await getSurveyByPage({ pageNum: 1 });
+
+      const preSelectedValue = data[0]?.options
+        .filter((ele) => ele.selected)[0]
+        .optionId.toString();
+
+      return {
+        goal: preSelectedValue,
+      };
     },
   });
 
-  const onSubmit: SubmitHandler<{ goal: string }> = async ({ goal }) => {
-    const formState = [
-      {
-        questionId: 1,
-        optionIdList: [Number(goal)],
-      },
-    ];
+  const getCustomText = (text: string) => {
+    setCustomOptionText(text);
+  };
 
-    await mutateSurveyAnswer(formState);
+  const onSubmit: SubmitHandler<{ goal: string }> = async ({ goal }) => {
+    const optionIdList = [Number(goal)];
+
+    const formState: FormData = {
+      questionId: 1,
+      optionIdList,
+    };
+
+    if (customOptionText) {
+      const textAnswer = {
+        optionId: Number(goal),
+        answer: customOptionText,
+      };
+
+      const copyFormState = { ...formState };
+      copyFormState.textAnswer = textAnswer;
+
+      return await mutateSurveyAnswer([copyFormState]);
+    }
+
+    await mutateSurveyAnswer([formState]);
 
     // goNextStep();
   };
@@ -59,15 +84,18 @@ export const FirstSurveyStep = ({ goNextStep }: StepProps) => {
             {healthGoalQuestion}
           </Heading>
           <FormControl isInvalid={!!errors.goal}>
-            <CheckRadio
-              options={healthGoalOption}
-              name={"goal"}
-              control={control}
-              w={"100%"}
-              padding={"12px 16px"}
-              gap={"10px"}
-              flexDir={"column"}
-            />
+            {!isLoading && (
+              <CheckRadio
+                options={healthGoalOption}
+                name={"goal"}
+                control={control}
+                w={"100%"}
+                padding={"12px 16px"}
+                gap={"10px"}
+                flexDir={"column"}
+                getCustomText={getCustomText}
+              />
+            )}
 
             <FormErrorMessage>
               {errors.goal && (

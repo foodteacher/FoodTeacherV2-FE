@@ -5,3 +5,12 @@ export interface RadioOption {
   text: string;
   w: string;
 }
+
+export interface FormData {
+  questionId: number;
+  optionIdList: number[];
+  textAnswer?: {
+    optionId: number;
+    answer: string;
+  };
+}

@@ -20,6 +20,8 @@ import {
   WarningIcon,
 } from "@/app/(featured-slice)/shared/ui/Icons";
 import { useSurveyListByPage } from "@/app/(featured-slice)/entities/survey/hooks";
+import { FormData } from "../../types";
+import { useSurveyAnswer } from "@/app/(featured-slice)/features/survey/hooks/useSurveyAnswer";
 
 interface SecondOption {
   healthCheck: string;
@@ -31,13 +33,30 @@ export const SecondSurveyStep = ({
   goPrevStep = () => {},
 }: StepProps) => {
   const { data: surveyData = [] } = useSurveyListByPage(2);
+
+  const { mutateAsync: mutateSurveyAnswer, isPending } = useSurveyAnswer();
+
   const {
     formState: { errors, isValid },
     control,
     handleSubmit,
-  } = useForm<SecondOption>();
+  } = useForm<SecondOption>({});
 
-  const onSubmit: SubmitHandler<SecondOption> = (option) => {
+  const onSubmit: SubmitHandler<SecondOption> = async (option) => {
+    console.log(option);
+    const formState: FormData[] = [
+      {
+        questionId: 2,
+        optionIdList: [Number(option.healthCheck)],
+      },
+      {
+        questionId: 3,
+        optionIdList: [Number(option.smokeAware)],
+      },
+    ];
+
+    await mutateSurveyAnswer(formState);
+
     goNextStep();
   };
 

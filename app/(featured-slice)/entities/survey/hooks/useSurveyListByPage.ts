@@ -6,11 +6,8 @@ const useSurveyListByPage = (id: number) => {
     queryKey: ["survey", { pageNum: id }],
     queryFn: () => getSurveyByPage({ pageNum: id }),
   });
-  const preSelectedValue = data[0]?.options
-    .filter((ele) => ele.selected)[0]
-    .optionId.toString();
 
-  return { data, preSelectedValue, isLoading };
+  return { data, isLoading };
 };
 
 export { useSurveyListByPage };

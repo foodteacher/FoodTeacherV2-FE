@@ -67,7 +67,7 @@ export const FirstSurveyStep = ({ goNextStep }: StepProps) => {
     }
     await mutateSurveyAnswer([formState]);
 
-    // goNextStep();
+    goNextStep();
   };
 
   const healthGoalQuestion = surveyData[0]?.text ?? "";
@@ -81,18 +81,16 @@ export const FirstSurveyStep = ({ goNextStep }: StepProps) => {
             {healthGoalQuestion}
           </Heading>
           <FormControl isInvalid={!!errors.goal}>
-            {!isLoading && (
-              <CheckRadio
-                options={healthGoalOption}
-                name={"goal"}
-                control={control}
-                w={"100%"}
-                padding={"12px 16px"}
-                gap={"10px"}
-                flexDir={"column"}
-                getCustomText={getCustomText}
-              />
-            )}
+            <CheckRadio
+              options={healthGoalOption}
+              name={"goal"}
+              control={control}
+              w={"100%"}
+              padding={"12px 16px"}
+              gap={"10px"}
+              flexDir={"column"}
+              getCustomText={getCustomText}
+            />
 
             <FormErrorMessage>
               {errors.goal && (

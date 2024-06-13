@@ -114,7 +114,7 @@ const OptionalRadioCard = ({
         padding={isChecked ? "20px 16px" : "20px 24px"}
       >
         <Flex w={"100%"} alignItems={"center"} justifyContent={"space-between"}>
-          {text}
+          직접 입력할래요
           {isChecked && <CheckIcon />}
         </Flex>
 
@@ -130,6 +130,7 @@ const OptionalRadioCard = ({
               h={"106px"}
               bg={"#FFFFFF"}
               color={"#000000"}
+              defaultValue={text}
             />
             <Text
               pos={"absolute"}
@@ -183,12 +184,12 @@ export const CheckRadio = ({
 
   return (
     <Flex {...group} {...props} padding={"0"} gap={"16px"}>
-      {options?.map(({ optionId, text }: TextValueOptionType) => {
+      {options?.map(({ optionId, text, isCostom }: TextValueOptionType) => {
         const radio = getRadioProps({ value: optionId.toString() });
 
         return (
           <Box key={optionId}>
-            {text !== "직접 입력할래요" ? (
+            {!isCostom ? (
               <CheckRadioCard {...props} {...radio} text={text} />
             ) : (
               <OptionalRadioCard

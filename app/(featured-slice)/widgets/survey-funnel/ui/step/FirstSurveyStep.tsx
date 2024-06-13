@@ -50,13 +50,11 @@ export const FirstSurveyStep = ({ goNextStep }: StepProps) => {
 
   const onSubmit: SubmitHandler<{ goal: string }> = async ({ goal }) => {
     const optionIdList = [Number(goal)];
-
     const formState: FormData = {
-      questionId: 1,
+      questionId: surveyData[0].questionId,
       optionIdList,
     };
-
-    if (customOptionText) {
+    if (Number(goal) === 37) {
       const textAnswer = {
         optionId: Number(goal),
         answer: customOptionText,
@@ -67,7 +65,6 @@ export const FirstSurveyStep = ({ goNextStep }: StepProps) => {
 
       return await mutateSurveyAnswer([copyFormState]);
     }
-
     await mutateSurveyAnswer([formState]);
 
     // goNextStep();

@@ -1,6 +1,8 @@
 export interface TextValueOptionType {
   text: string | number;
   optionId: string | number;
+  selected?: boolean;
+  isCostom?: boolean;
 }
 
 export const GENDER_OPTIONS: TextValueOptionType[] = [

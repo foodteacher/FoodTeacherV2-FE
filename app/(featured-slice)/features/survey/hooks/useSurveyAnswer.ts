@@ -6,11 +6,5 @@ export const useSurveyAnswer = () => {
     mutationFn: (surveyAnswer: any) => {
       return postSurveyByPage(surveyAnswer);
     },
-    onError: (err) => {
-      console.log(err);
-    },
-    onSuccess: () => {
-      console.log("succeess");
-    },
   });
 };

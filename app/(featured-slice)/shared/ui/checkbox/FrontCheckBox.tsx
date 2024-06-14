@@ -120,7 +120,7 @@ const OptionalCheckboxCard = ({
       <Flex w={"100%"} alignItems={"center"} justifyContent={"space-between"}>
         <Flex gridColumnGap={2} alignItems="center" lineHeight={1}>
           {isChecked ? (
-            <Flex marginLeft={"-2px"}>
+            <Flex marginLeft={"6px"}>
               <CheckBoxCheckIcon />
             </Flex>
           ) : (
@@ -146,7 +146,7 @@ const OptionalCheckboxCard = ({
           <Textarea
             padding={"16px"}
             onChange={handleInputChange}
-            placeholder="바라시는 건강목표를 입력해주세요."
+            placeholder="가지고 계신 질병을 입력해주세요."
             resize={"none"}
             maxLength={200}
             name={""}
@@ -175,12 +175,14 @@ interface CustomRadioProps extends FlexProps {
   options: any;
   name: string;
   control?: any;
+  getCustomText?: (text: string) => void;
 }
 
 export const FrontCheckBox = ({
   options,
   name,
   control,
+  getCustomText,
   ...props
 }: CustomRadioProps) => {
   const { field } = useController({
@@ -192,6 +194,13 @@ export const FrontCheckBox = ({
   const { getCheckboxProps } = useCheckboxGroup({
     ...field,
   });
+
+  const getText = (text: string) => {
+    if (getCustomText) {
+      getCustomText(text);
+    }
+  };
+
   return (
     <Flex {...props} padding={"0"} gap={"16px"}>
       {options?.map(({ optionId, text, isCostom }: TextValueOptionType) => {
@@ -202,7 +211,9 @@ export const FrontCheckBox = ({
             {!isCostom ? (
               <CheckBoxCard {...checkbox}>{text}</CheckBoxCard>
             ) : (
-              <OptionalCheckboxCard {...checkbox}>{text}</OptionalCheckboxCard>
+              <OptionalCheckboxCard {...checkbox} getText={getText}>
+                {text}
+              </OptionalCheckboxCard>
             )}
           </Box>
         );

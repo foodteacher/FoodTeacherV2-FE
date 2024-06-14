@@ -21,16 +21,24 @@ import {
 import { useSurveyListByPage } from "@/app/(featured-slice)/entities/survey/hooks";
 import { FrontCheckBox } from "@/app/(featured-slice)/shared/ui/checkbox";
 import { useSurveyAnswer } from "@/app/(featured-slice)/features/survey/hooks/useSurveyAnswer";
+import { FormData } from "../../types";
+import { useState } from "react";
 
 interface ThirdOption {
-  disease: string;
-  familyHistory: string;
+  disease: string[];
+  familyHistory: string[];
 }
 
 export const ThirdSurveyStep = ({ goNextStep }: StepProps) => {
   const { data: surveyData = [] } = useSurveyListByPage(3);
 
-  const { mutateAsync, isPending } = useSurveyAnswer();
+  const { mutateAsync: mutationSurveyAnswer, isPending } = useSurveyAnswer();
+
+  const [customOptionText, setCustomOptionText] = useState<string>("");
+
+  const getCustomText = (text: string) => {
+    setCustomOptionText(text);
+  };
 
   const {
     formState: { errors, isValid },
@@ -38,9 +46,39 @@ export const ThirdSurveyStep = ({ goNextStep }: StepProps) => {
     handleSubmit,
   } = useForm<ThirdOption>();
 
-  const onSubmit: SubmitHandler<ThirdOption> = (option) => {
-    console.log(option);
-    // goNextStep();
+  const onSubmit: SubmitHandler<ThirdOption> = async ({
+    disease,
+    familyHistory,
+  }) => {
+    const formState: FormData[] = [
+      {
+        questionId: surveyData[0].questionId,
+        optionIdList: disease.map((ele) => Number(ele)),
+      },
+      {
+        questionId: surveyData[1].questionId,
+        optionIdList: familyHistory.map((ele) => Number(ele)),
+      },
+    ];
+
+    if (disease.includes("14")) {
+      const textAnswer = {
+        optionId: Number(14),
+        answer: customOptionText,
+      };
+
+      const copyFormState = formState.slice();
+      // copyFormState.push(textAnswer);
+
+      mutationSurveyAnswer(formState);
+      goNextStep();
+
+      return;
+    }
+
+    await mutationSurveyAnswer(formState);
+
+    goNextStep();
   };
 
   const diseaseQuestion = surveyData[0]?.text ?? "";
@@ -94,6 +132,7 @@ export const ThirdSurveyStep = ({ goNextStep }: StepProps) => {
               control={control}
               name="familyHistory"
               flexDir={"column"}
+              getCustomText={getCustomText}
             />
 
             <FormErrorMessage>

@@ -27,7 +27,7 @@ export const FirstSurveyStep = ({ goNextStep }: StepProps) => {
   const [customOptionText, setCustomOptionText] = useState<string>("");
 
   const {
-    formState: { errors, isValid, isLoading },
+    formState: { errors },
     control,
     handleSubmit,
   } = useForm<{ goal: string }>({
@@ -63,7 +63,9 @@ export const FirstSurveyStep = ({ goNextStep }: StepProps) => {
       const copyFormState = { ...formState };
       copyFormState.textAnswer = textAnswer;
 
-      return await mutateSurveyAnswer([copyFormState]);
+      await mutateSurveyAnswer([copyFormState]);
+      goNextStep();
+      return;
     }
     await mutateSurveyAnswer([formState]);
 

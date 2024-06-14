@@ -151,9 +151,7 @@ const OptionalRadioCard = ({
 interface CustomRadioProps extends FlexProps {
   options: TextValueOptionType[];
   name: string;
-  register?: UseFormRegisterReturn;
   control?: any;
-  hasCustomOption?: boolean;
   getCustomText?: (text: string) => void;
 }
 

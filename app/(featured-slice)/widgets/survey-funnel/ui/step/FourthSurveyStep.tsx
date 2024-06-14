@@ -20,21 +20,36 @@ import {
   SignupButton,
 } from "@/app/(featured-slice)/shared/ui/button";
 import { BoxRadio } from "@/app/(featured-slice)/shared/ui/radio";
+import { FormData } from "../../types";
+import { useSurveyAnswer } from "@/app/(featured-slice)/features/survey/hooks/useSurveyAnswer";
 
 interface FourthOption {
   isDosing: boolean;
 }
 
-export const FourthSurveyStep = ({ goNextStep }: StepProps) => {
+export const FourthSurveyStep = ({ goNextStep, goPrevStep }: StepProps) => {
   const { data: surveyData = [], isLoading } = useSurveyListByPage(4);
+
+  const { mutateAsync: mutateSurveyAnswer, isPending } = useSurveyAnswer();
   const {
     formState: { errors, isValid },
     control,
     handleSubmit,
   } = useForm<FourthOption>();
 
-  const onSubmit: SubmitHandler<FourthOption> = (option) => {
-    // goNextStep();
+  const onSubmit: SubmitHandler<FourthOption> = async ({ isDosing }) => {
+    const optionIdList = [Number(isDosing)];
+
+    const formState: FormData[] = [
+      {
+        questionId: surveyData[0].questionId,
+        optionIdList,
+      },
+    ];
+
+    await mutateSurveyAnswer(formState);
+
+    goNextStep();
   };
 
   const dosingQuestion = surveyData[0]?.text ?? "";
@@ -84,7 +99,15 @@ export const FourthSurveyStep = ({ goNextStep }: StepProps) => {
           padding={[" 16px", "16px", "16px 120px"]}
           gap={"16px"}
         >
-          <RevertButton h={"52px"} w={"52px"}>
+          <RevertButton
+            h={"52px"}
+            w={"52px"}
+            onClick={() => {
+              if (goPrevStep) {
+                goPrevStep();
+              }
+            }}
+          >
             <BackArrowIcon />
           </RevertButton>
           <SignupButton type={"submit"}>다음</SignupButton>

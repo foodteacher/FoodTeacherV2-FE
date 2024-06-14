@@ -13,30 +13,63 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { StepProps } from "../../../signup-funnel/types";
 import { SignupButton } from "@/app/(featured-slice)/shared/ui/button";
 import { WarningIcon } from "@/app/(featured-slice)/shared/ui/Icons";
-import {
-  useRegisterSurveyByPage,
-  useSurveyListByPage,
-} from "@/app/(featured-slice)/entities/survey/hooks";
+import { useSurveyListByPage } from "@/app/(featured-slice)/entities/survey/hooks";
+import { useSurveyAnswer } from "@/app/(featured-slice)/features/survey/hooks/useSurveyAnswer";
+import { useState } from "react";
+import { FormData } from "../../types";
+import { getSurveyByPage } from "@/app/(featured-slice)/entities/survey/api/survey";
 
 export const FirstSurveyStep = ({ goNextStep }: StepProps) => {
-  const { data: surveyData = [], isLoading } = useSurveyListByPage(1);
-  const { mutateAsync: surveyMutation } = useRegisterSurveyByPage();
+  const { data: surveyData } = useSurveyListByPage(1);
+
+  const { mutateAsync: mutateSurveyAnswer, isPending } = useSurveyAnswer();
+
+  const [customOptionText, setCustomOptionText] = useState<string>("");
+
   const {
-    formState: { errors, isValid },
+    formState: { errors },
     control,
     handleSubmit,
-  } = useForm<{ goal: string }>();
+  } = useForm<{ goal: string }>({
+    defaultValues: async () => {
+      const data = await getSurveyByPage({ pageNum: 1 });
 
-  const onSubmit: SubmitHandler<{ goal: string }> = ({ goal }) => {
-    const formState = [
-      {
-        questionId: 1,
-        optionList: [goal],
-      },
-    ];
+      const preSelectedValue = data[0]?.options
+        .filter((ele) => ele.selected)[0]
+        .optionId.toString();
 
-    console.log(formState);
-    // goNextStep();
+      return {
+        goal: preSelectedValue,
+      };
+    },
+  });
+
+  const getCustomText = (text: string) => {
+    setCustomOptionText(text);
+  };
+
+  const onSubmit: SubmitHandler<{ goal: string }> = async ({ goal }) => {
+    const optionIdList = [Number(goal)];
+    const formState: FormData = {
+      questionId: surveyData[0].questionId,
+      optionIdList,
+    };
+    if (Number(goal) === 37) {
+      const textAnswer = {
+        optionId: Number(goal),
+        answer: customOptionText,
+      };
+
+      const copyFormState = { ...formState };
+      copyFormState.textAnswer = textAnswer;
+
+      await mutateSurveyAnswer([copyFormState]);
+      goNextStep();
+      return;
+    }
+    await mutateSurveyAnswer([formState]);
+
+    goNextStep();
   };
 
   const healthGoalQuestion = surveyData[0]?.text ?? "";
@@ -58,6 +91,7 @@ export const FirstSurveyStep = ({ goNextStep }: StepProps) => {
               padding={"12px 16px"}
               gap={"10px"}
               flexDir={"column"}
+              getCustomText={getCustomText}
             />
 
             <FormErrorMessage>
@@ -84,7 +118,9 @@ export const FirstSurveyStep = ({ goNextStep }: StepProps) => {
             alignSelf={"flex-end"}
             padding={[" 16px", "16px", "16px 120px"]}
           >
-            <SignupButton type={"submit"}>다음</SignupButton>
+            <SignupButton type={"submit"} isLoading={isPending}>
+              다음
+            </SignupButton>
           </Box>
         </Flex>
       </Flex>

@@ -29,7 +29,7 @@ export type FunnelInfo = SignupState;
 
 export interface FunnelState extends BoxProps {
   currentStep: string | number;
-  funnelState: FunnelInfo;
+  funnelState?: FunnelInfo;
   progress?: number;
   steps?: (string | number)[];
 }

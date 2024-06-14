@@ -1,0 +1,1 @@
+export { postSurveyByPage } from "./survey";

@@ -116,7 +116,9 @@ export const FirstSurveyStep = ({ goNextStep }: StepProps) => {
             alignSelf={"flex-end"}
             padding={[" 16px", "16px", "16px 120px"]}
           >
-            <SignupButton type={"submit"}>다음</SignupButton>
+            <SignupButton type={"submit"} isLoading={isPending}>
+              다음
+            </SignupButton>
           </Box>
         </Flex>
       </Flex>

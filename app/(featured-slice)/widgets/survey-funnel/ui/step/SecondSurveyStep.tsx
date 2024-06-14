@@ -145,7 +145,9 @@ export const SecondSurveyStep = ({
           <RevertButton h={"52px"} w={"52px"} onClick={() => goPrevStep()}>
             <BackArrowIcon />
           </RevertButton>
-          <SignupButton type={"submit"}>다음</SignupButton>
+          <SignupButton isLoading={isPending} type={"submit"}>
+            다음
+          </SignupButton>
         </Box>
       </Flex>
     </Flex>

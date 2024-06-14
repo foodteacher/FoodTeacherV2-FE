@@ -20,14 +20,18 @@ import {
 } from "@/app/(featured-slice)/shared/ui/Icons";
 import { useSurveyListByPage } from "@/app/(featured-slice)/entities/survey/hooks";
 import { FrontCheckBox } from "@/app/(featured-slice)/shared/ui/checkbox";
+import { useSurveyAnswer } from "@/app/(featured-slice)/features/survey/hooks/useSurveyAnswer";
 
 interface ThirdOption {
   disease: string;
   familyHistory: string;
 }
 
-export const ThirdSurveyStep = ({ goNextStep, setState }: StepProps) => {
-  const { data: surveyData = [], isLoading } = useSurveyListByPage(3);
+export const ThirdSurveyStep = ({ goNextStep }: StepProps) => {
+  const { data: surveyData = [] } = useSurveyListByPage(3);
+
+  const { mutateAsync, isPending } = useSurveyAnswer();
+
   const {
     formState: { errors, isValid },
     control,
@@ -35,7 +39,8 @@ export const ThirdSurveyStep = ({ goNextStep, setState }: StepProps) => {
   } = useForm<ThirdOption>();
 
   const onSubmit: SubmitHandler<ThirdOption> = (option) => {
-    goNextStep();
+    console.log(option);
+    // goNextStep();
   };
 
   const diseaseQuestion = surveyData[0]?.text ?? "";
@@ -121,7 +126,9 @@ export const ThirdSurveyStep = ({ goNextStep, setState }: StepProps) => {
           <RevertButton h={"52px"} w={"52px"}>
             <BackArrowIcon />
           </RevertButton>
-          <SignupButton type={"submit"}>다음</SignupButton>
+          <SignupButton isLoading={isPending} type={"submit"}>
+            다음
+          </SignupButton>
         </Box>
       </Flex>
     </Flex>

@@ -97,12 +97,9 @@ const OptionalCheckboxCard = ({
       display="flex"
       flexDirection="row"
       alignItems="center"
-      gridColumnGap={2}
       w={"100%"}
       border={isChecked ? "2px solid #8A00FF" : "1px solid #EAEAEA"}
       rounded="lg"
-      px={3}
-      py={1}
       cursor="pointer"
       bg={isChecked ? "#FCF8FF" : "#FFFFFF"}
       h={isChecked ? "179px" : "60px"}
@@ -113,35 +110,41 @@ const OptionalCheckboxCard = ({
           ? "0 0 12px 1px rgba(90,0,161,0.32)"
           : "0 0px 8px 0px rgba(28,0,51,0.08)"
       }
-      padding={"20px 24px"}
+      padding={isChecked ? "20px 16px " : "20px 24px"}
       flexDir={"column"}
+      gap={"10px"}
       {...htmlProps}
     >
       <input {...getInputProps()} hidden />
 
       <Flex w={"100%"} alignItems={"center"} justifyContent={"space-between"}>
-        {isChecked ? (
-          <Flex marginLeft={"-2px"}>
-            <CheckBoxCheckIcon />
-          </Flex>
-        ) : (
-          <Flex {...getCheckboxProps()}>
-            <CheckBoxIcon />
-          </Flex>
-        )}
-        {/* <Flex w={"100%"} alignItems={"center"} justifyContent={"space-between"}>
-        직접 입력할래요
-        {isChecked && <CheckBoxIcon />}
-        </Flex> */}
+        <Flex gridColumnGap={2} alignItems="center" lineHeight={1}>
+          {isChecked ? (
+            <Flex marginLeft={"-2px"}>
+              <CheckBoxCheckIcon />
+            </Flex>
+          ) : (
+            <Flex {...getCheckboxProps()}>
+              <CheckBoxIcon />
+            </Flex>
+          )}
 
-        <Text color={isChecked ? "#6D00A3" : "black"} {...getLabelProps()}>
-          {props.children}
-        </Text>
+          <Text color={isChecked ? "#6D00A3" : "black"} {...getLabelProps()}>
+            직접 입력할래요
+          </Text>
+        </Flex>
       </Flex>
 
       {isChecked && (
-        <Box pos={"relative"} fontSize={"18px"}>
+        <Box
+          pos={"relative"}
+          fontSize={"18px"}
+          w={"95%"}
+          minW={"296px"}
+          h={"106px"}
+        >
           <Textarea
+            padding={"16px"}
             onChange={handleInputChange}
             placeholder="바라시는 건강목표를 입력해주세요."
             resize={"none"}
@@ -160,7 +163,7 @@ const OptionalCheckboxCard = ({
             color={"#B2B1AB"}
             zIndex={100}
           >
-            {textLength} / 200
+            {textLength} / 50
           </Text>
         </Box>
       )}

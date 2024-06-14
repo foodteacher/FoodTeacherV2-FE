@@ -1,6 +1,8 @@
 export interface TextValueOptionType {
   text: string | number;
   optionId: string | number;
+  selected?: boolean;
+  isCostom?: boolean;
 }
 
 export const GENDER_OPTIONS: TextValueOptionType[] = [
@@ -9,8 +11,8 @@ export const GENDER_OPTIONS: TextValueOptionType[] = [
 ];
 
 export const BLOOD_TYPE_OTPIONS: TextValueOptionType[] = [
-  { text: "A", optionId: "A" },
-  { text: "B", optionId: "B" },
-  { text: "AB", optionId: "AB" },
-  { text: "O", optionId: "O" },
+  { text: "A", optionId: "1" },
+  { text: "B", optionId: "2" },
+  { text: "AB", optionId: "3" },
+  { text: "O", optionId: "4" },
 ];

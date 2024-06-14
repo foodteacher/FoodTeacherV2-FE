@@ -3,8 +3,6 @@
 import { CheckRadio } from "@/app/(featured-slice)/shared/ui/radio";
 import {
   Box,
-  Button,
-  Divider,
   Flex,
   FormControl,
   FormErrorMessage,
@@ -22,6 +20,8 @@ import {
   WarningIcon,
 } from "@/app/(featured-slice)/shared/ui/Icons";
 import { useSurveyListByPage } from "@/app/(featured-slice)/entities/survey/hooks";
+import { FormData } from "../../types";
+import { useSurveyAnswer } from "@/app/(featured-slice)/features/survey/hooks/useSurveyAnswer";
 
 interface SecondOption {
   healthCheck: string;
@@ -32,14 +32,31 @@ export const SecondSurveyStep = ({
   goNextStep,
   goPrevStep = () => {},
 }: StepProps) => {
-  const { data: surveyData = [], isLoading } = useSurveyListByPage(2);
+  const { data: surveyData = [] } = useSurveyListByPage(2);
+
+  const { mutateAsync: mutateSurveyAnswer, isPending } = useSurveyAnswer();
+
   const {
     formState: { errors, isValid },
     control,
     handleSubmit,
-  } = useForm<SecondOption>();
+  } = useForm<SecondOption>({});
 
-  const onSubmit: SubmitHandler<SecondOption> = (option) => {
+  const onSubmit: SubmitHandler<SecondOption> = async (option) => {
+    console.log(option);
+    const formState: FormData[] = [
+      {
+        questionId: 2,
+        optionIdList: [Number(option.healthCheck)],
+      },
+      {
+        questionId: 3,
+        optionIdList: [Number(option.smokeAware)],
+      },
+    ];
+
+    await mutateSurveyAnswer(formState);
+
     goNextStep();
   };
 
@@ -49,7 +66,7 @@ export const SecondSurveyStep = ({
 
   return (
     <Flex as="form" onSubmit={handleSubmit(onSubmit)} flexDir={"column"}>
-      <Flex flexDir={"column"} w={"100%"} paddingBottom={"150px"}>
+      <Flex flexDir={"column"} w={"100%"}>
         <Flex flexDir={"column"} gap={"32px"} padding={["16px", "16px", "10%"]}>
           <Heading fontSize={"24px"} fontWeight={"bold"}>
             건강 검진을 정기적으로 받으시나요?
@@ -128,7 +145,9 @@ export const SecondSurveyStep = ({
           <RevertButton h={"52px"} w={"52px"} onClick={() => goPrevStep()}>
             <BackArrowIcon />
           </RevertButton>
-          <SignupButton type={"submit"}>다음</SignupButton>
+          <SignupButton isLoading={isPending} type={"submit"}>
+            다음
+          </SignupButton>
         </Box>
       </Flex>
     </Flex>
